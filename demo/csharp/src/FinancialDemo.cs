@@ -68,15 +68,15 @@ namespace NPlotDemo
 	/// </summary>
 	public class FinancialDemo : System.Windows.Forms.Form
 	{
-        private NPlot.Windows.PlotSurface2D volumePS;
-        private NPlot.Windows.PlotSurface2D costPS;
+        private NPlot.WinForms.WinFormsPlotSurface2D volumePS;
+        private NPlot.WinForms.WinFormsPlotSurface2D costPS;
         private System.Windows.Forms.Button closeButton;
 
 
 		/// <summary>
 		/// Right context menu with non-default functionality. Just take out some functionality. Could also have added some.
 		/// </summary>
-		public class ReducedContextMenu : NPlot.Windows.PlotSurface2D.PlotContextMenu
+		public class ReducedContextMenu : NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu
 		{
 
 			/// <summary>
@@ -137,10 +137,10 @@ namespace NPlotDemo
             costPS.YAxis1.LabelOffsetAbsolute = true;
             costPS.XAxis1.HideTickText = true;
             costPS.SurfacePadding = 5;
-            costPS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.HorizontalDrag());
-            costPS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.VerticalDrag());
-            costPS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.AxisDrag(false));
-            costPS.InteractionOccured += new NPlot.Windows.PlotSurface2D.InteractionHandler(costPS_InteractionOccured);
+            costPS.AddInteraction(new NPlot.Interactions.HorizontalDrag());
+            costPS.AddInteraction(new NPlot.Interactions.VerticalDrag());
+            costPS.AddInteraction(new NPlot.Interactions.AxisDrag(false));
+            costPS.InteractionOccurred += costPS_InteractionOccured;
             costPS.AddAxesConstraint(new AxesConstraint.AxisPosition(PlotSurface2D.YAxisPosition.Left, 60));
 
             PointPlot pp = new PointPlot();
@@ -156,10 +156,10 @@ namespace NPlotDemo
             volumePS.YAxis1.LabelOffset = 40;
             volumePS.SurfacePadding = 5;
             volumePS.AddAxesConstraint(new AxesConstraint.AxisPosition(PlotSurface2D.YAxisPosition.Left, 60));
-            volumePS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.AxisDrag(false));
-            volumePS.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.HorizontalDrag());
-            volumePS.InteractionOccured += new NPlot.Windows.PlotSurface2D.InteractionHandler(volumePS_InteractionOccured);
-            volumePS.PreRefresh += new NPlot.Windows.PlotSurface2D.PreRefreshHandler(volumePS_PreRefresh);
+            volumePS.AddInteraction(new NPlot.Interactions.AxisDrag(false));
+            volumePS.AddInteraction(new NPlot.Interactions.HorizontalDrag());
+            volumePS.InteractionOccurred += volumePS_InteractionOccured;
+            volumePS.PreRefresh += new NPlot.WinForms.WinFormsPlotSurface2D.PreRefreshHandler(volumePS_PreRefresh);
 
             this.costPS.RightMenu = new ReducedContextMenu();
 			
@@ -185,8 +185,8 @@ namespace NPlotDemo
 		private void InitializeComponent()
 		{
             this.closeButton = new System.Windows.Forms.Button();
-            this.volumePS = new NPlot.Windows.PlotSurface2D();
-            this.costPS = new NPlot.Windows.PlotSurface2D();
+            this.volumePS = new NPlot.WinForms.WinFormsPlotSurface2D();
+            this.costPS = new NPlot.WinForms.WinFormsPlotSurface2D();
             this.SuspendLayout();
 // 
 // closeButton
@@ -266,7 +266,7 @@ namespace NPlotDemo
         /// When the costPS chart has changed, this is called which updates the volumePS chart.
         /// </summary>
         /// <param name="sender"></param>
-        private void costPS_InteractionOccured(object sender)
+        private void costPS_InteractionOccured(object sender, IInteraction interaction)
         {
             DateTimeAxis axis = new DateTimeAxis(costPS.XAxis1);
             axis.Label = "Date / Time";
@@ -279,7 +279,7 @@ namespace NPlotDemo
         /// <summary>
         /// When the volumePS chart has changed, this is called which updates hte costPS chart.
         /// </summary>
-        private void volumePS_InteractionOccured(object sender)
+        private void volumePS_InteractionOccured(object sender, IInteraction interaction)
         {
             DateTimeAxis axis = new DateTimeAxis(volumePS.XAxis1);
             axis.Label = "";

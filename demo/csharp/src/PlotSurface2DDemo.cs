@@ -81,7 +81,7 @@ namespace NPlotDemo
 		private System.ComponentModel.IContainer components;
 		private PrintDocument printDocument;
 		private System.Windows.Forms.Button prevPlotButton;
-		private NPlot.Windows.PlotSurface2D plotSurface;
+		private NPlot.WinForms.WinFormsPlotSurface2D plotSurface;
 		private System.Windows.Forms.Timer qeExampleTimer;
 		private System.Windows.Forms.Label exampleNumberLabel;
 
@@ -545,7 +545,7 @@ namespace NPlotDemo
 			plotSurface.XAxis1.WorldMax = plotSurface.YAxis1.WorldMax;
 			plotSurface.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.MouseWheelZoom());
+            plotSurface.AddInteraction(new NPlot.Interactions.MouseWheelZoom());
 
             // make sure plot surface colors are as we expect - the wave example changes them.
             //plotSurface.PlotBackColor = Color.White;
@@ -1027,9 +1027,9 @@ namespace NPlotDemo
 
 			plotSurface.XAxis1 = new TradingDateTimeAxis( plotSurface.XAxis1 );
 
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.HorizontalDrag());
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.VerticalDrag());
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.AxisDrag(true));
+            plotSurface.AddInteraction(new NPlot.Interactions.HorizontalDrag());
+            plotSurface.AddInteraction(new NPlot.Interactions.VerticalDrag());
+            plotSurface.AddInteraction(new NPlot.Interactions.AxisDrag(true));
 
 
             // make sure plot surface colors are as we expect - the wave example changes them.
@@ -1102,7 +1102,7 @@ namespace NPlotDemo
 			//	new AxesConstraint.YPixelWorldLength(0.1f,PlotSurface2D.XAxisPosition.Bottom) );
 			//plotSurface.AddAxesConstraint( new AxesConstraint.AspectRatio(1.0,PlotSurface2D.XAxisPosition.Top,PlotSurface2D.YAxisPosition.Left) );
 
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.RubberBandSelection());
+            plotSurface.AddInteraction(new NPlot.Interactions.RubberBandSelection());
 
             plotSurface.Refresh();
 
@@ -1303,9 +1303,9 @@ namespace NPlotDemo
             file.Close();
 
             plotSurface.Clear();
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.VerticalGuideline());
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.HorizontalRangeSelection(3));
-            plotSurface.AddInteraction(new NPlot.Windows.PlotSurface2D.Interactions.AxisDrag(true));
+            plotSurface.AddInteraction(new NPlot.Interactions.VerticalGuideline());
+            plotSurface.AddInteraction(new NPlot.Interactions.HorizontalRangeSelection(3));
+            plotSurface.AddInteraction(new NPlot.Interactions.AxisDrag(true));
 
             plotSurface.Add(new HorizontalLine(0.0, Color.LightBlue));
             
@@ -1394,7 +1394,7 @@ namespace NPlotDemo
 			line2.LengthScale = 0.89f;
 			plotSurface.Add( line2 );
 
-			plotSurface.AddInteraction( new NPlot.Windows.PlotSurface2D.Interactions.MouseWheelZoom() );
+			plotSurface.AddInteraction( new NPlot.Interactions.MouseWheelZoom() );
 
 			plotSurface.Title = "Line in the Title Number 1\nFollowed by another title line\n and another";
             plotSurface.Refresh();
@@ -1608,8 +1608,8 @@ namespace NPlotDemo
 			printDocument.PrintPage += new PrintPageEventHandler(pd_PrintPage);
 			int id = currentPlot + 1;
 			exampleNumberLabel.Text = "Plot " + id.ToString("0") + "/" + PlotRoutines.Length.ToString("0");
-			
-			this.plotSurface.RightMenu = NPlot.Windows.PlotSurface2D.DefaultContextMenu;
+
+            this.plotSurface.RightMenu = NPlot.WinForms.WinFormsPlotSurface2D.DefaultContextMenu;
 
             // draw the first plot.
 			currentPlot = 0;
@@ -1647,7 +1647,7 @@ namespace NPlotDemo
             this.prevPlotButton = new System.Windows.Forms.Button();
             this.qeExampleTimer = new System.Windows.Forms.Timer(this.components);
             this.infoBox = new System.Windows.Forms.TextBox();
-            this.plotSurface = new NPlot.Windows.PlotSurface2D();
+            this.plotSurface = new NPlot.WinForms.WinFormsPlotSurface2D();
             this.SuspendLayout();
 // 
 // quitButton

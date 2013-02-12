@@ -51,8 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InteractionRegistry.cs" />
+    <Compile Include="Interactions\AxisDrag.cs" />
+    <Compile Include="Interactions\HorizontalDrag.cs" />
+    <Compile Include="Interactions\HorizontalGuideline.cs" />
+    <Compile Include="Interactions\HorizontalRangeSelection.cs" />
+    <Compile Include="Interactions\MouseWheelZoom.cs" />
+    <Compile Include="Interactions\RubberBandSelection.cs" />
+    <Compile Include="Interactions\VerticalDrag.cs" />
+    <Compile Include="Interactions\VerticalGuideline.cs" />
     <Compile Include="ISurface.cs" />
+    <Compile Include="IWinFormsInteraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinFormsInteraction.cs" />
     <Compile Include="WinFormsPlotSurface2D.cs">
       <SubType>Component</SubType>
     </Compile>

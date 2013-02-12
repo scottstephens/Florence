@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="NPlotDemo">
+</Property><Property Name="Solution File" Value="C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\NPlotDemo.sln">
+</Property><Property Name="Date" Value="Tuesday, February 12, 2013">
+</Property><Property Name="Time" Value="14:15 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="NPlotDemo.sln" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\NPlotDemo.sln">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="NPlotDemo.csproj" Description="Project file successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\NPlotDemo.csproj">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="src\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\src\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="src\AxisTestsForm.cs" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\src\AxisTestsForm.cs">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="src\FinancialDemo.cs" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\src\FinancialDemo.cs">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="src\MenuForm.cs" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\src\MenuForm.cs">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="src\PlotSurface2DDemo.cs" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\src\PlotSurface2DDemo.cs">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\NPlotDemo-icon.ico" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\NPlotDemo-icon.ico">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\asx_jbh.xml" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\asx_jbh.xml">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\AxisTestsForm.resx" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\AxisTestsForm.resx">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\FinancialDemo.resx" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\FinancialDemo.resx">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\light.wav" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\light.wav">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\MenuForm.resx" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\MenuForm.resx">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\pattern01.jpg" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\pattern01.jpg">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="resources\PlotSurface2DDemo.resx" Description="File successfully backed up as C:\Users\rock361\Development\thirdpartywork\ReplPlotBig\demo\csharp\Backup\resources\PlotSurface2DDemo.resx">
+</Event><Event ErrorLevel="1" Project="NPlotDemo" Source="NPlotDemo.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="NPlotDemo.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="NPlotDemo" Source="NPlotDemo.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="NPlotDemo.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="NPlotDemo.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NPlotDemo" Source="NPlotDemo.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

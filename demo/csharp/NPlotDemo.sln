@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPlotDemo", "NPlotDemo.csproj", "{7427C7A7-6CB0-4CB3-A0DB-F11603C5C29A}"
 EndProject
 Global
