@@ -77,14 +77,14 @@
     </Compile>
     <EmbeddedResource Include="..\..\resources\WinFormsPlotSurface2D.resx">
       <LogicalName>Windows.PlotSurface2D.resources</LogicalName>
-      <DependentUpon>..\src\NPlot.WinForms\WinFormsPlotSurface2D.cs</DependentUpon>
+      <DependentUpon>..\src\Florence.WinForms\WinFormsPlotSurface2D.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InteractivePlotForm.resx">
       <DependentUpon>InteractivePlotForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NPlot\NPlot.csproj">
+    <ProjectReference Include="..\Florence\NPlot.csproj">
       <Project>{E6867FF5-74EC-4464-8958-D71CB46232F3}</Project>
       <Name>NPlot</Name>
     </ProjectReference>
