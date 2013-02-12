@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace NPlot.Interactions
+namespace Florence.Interactions
 {
     public class VerticalGuideline : IInteraction
     {

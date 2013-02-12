@@ -32,7 +32,7 @@
 using System;
 using System.Drawing;
 
-namespace NPlot
+namespace Florence
 {
 	/// <summary>
 	/// Class for creating a rainbow legend.

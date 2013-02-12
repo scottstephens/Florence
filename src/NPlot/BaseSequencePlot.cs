@@ -31,7 +31,7 @@
 
 using System;
 
-namespace NPlot
+namespace Florence
 {
 
 	/// <summary>

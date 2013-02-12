@@ -37,7 +37,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Data;
-using NPlot;
+using Florence;
 using System.IO;
 using System.Reflection;
 
@@ -81,7 +81,7 @@ namespace NPlotDemo
 		private System.ComponentModel.IContainer components;
 		private PrintDocument printDocument;
 		private System.Windows.Forms.Button prevPlotButton;
-		private NPlot.WinForms.WinFormsPlotSurface2D plotSurface;
+		private Florence.WinForms.WinFormsPlotSurface2D plotSurface;
 		private System.Windows.Forms.Timer qeExampleTimer;
 		private System.Windows.Forms.Label exampleNumberLabel;
 
@@ -545,7 +545,7 @@ namespace NPlotDemo
 			plotSurface.XAxis1.WorldMax = plotSurface.YAxis1.WorldMax;
 			plotSurface.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            plotSurface.AddInteraction(new NPlot.Interactions.MouseWheelZoom());
+            plotSurface.AddInteraction(new Florence.Interactions.MouseWheelZoom());
 
             // make sure plot surface colors are as we expect - the wave example changes them.
             //plotSurface.PlotBackColor = Color.White;
@@ -1027,9 +1027,9 @@ namespace NPlotDemo
 
 			plotSurface.XAxis1 = new TradingDateTimeAxis( plotSurface.XAxis1 );
 
-            plotSurface.AddInteraction(new NPlot.Interactions.HorizontalDrag());
-            plotSurface.AddInteraction(new NPlot.Interactions.VerticalDrag());
-            plotSurface.AddInteraction(new NPlot.Interactions.AxisDrag(true));
+            plotSurface.AddInteraction(new Florence.Interactions.HorizontalDrag());
+            plotSurface.AddInteraction(new Florence.Interactions.VerticalDrag());
+            plotSurface.AddInteraction(new Florence.Interactions.AxisDrag(true));
 
 
             // make sure plot surface colors are as we expect - the wave example changes them.
@@ -1102,7 +1102,7 @@ namespace NPlotDemo
 			//	new AxesConstraint.YPixelWorldLength(0.1f,PlotSurface2D.XAxisPosition.Bottom) );
 			//plotSurface.AddAxesConstraint( new AxesConstraint.AspectRatio(1.0,PlotSurface2D.XAxisPosition.Top,PlotSurface2D.YAxisPosition.Left) );
 
-            plotSurface.AddInteraction(new NPlot.Interactions.RubberBandSelection());
+            plotSurface.AddInteraction(new Florence.Interactions.RubberBandSelection());
 
             plotSurface.Refresh();
 
@@ -1303,9 +1303,9 @@ namespace NPlotDemo
             file.Close();
 
             plotSurface.Clear();
-            plotSurface.AddInteraction(new NPlot.Interactions.VerticalGuideline());
-            plotSurface.AddInteraction(new NPlot.Interactions.HorizontalRangeSelection(3));
-            plotSurface.AddInteraction(new NPlot.Interactions.AxisDrag(true));
+            plotSurface.AddInteraction(new Florence.Interactions.VerticalGuideline());
+            plotSurface.AddInteraction(new Florence.Interactions.HorizontalRangeSelection(3));
+            plotSurface.AddInteraction(new Florence.Interactions.AxisDrag(true));
 
             plotSurface.Add(new HorizontalLine(0.0, Color.LightBlue));
             
@@ -1394,7 +1394,7 @@ namespace NPlotDemo
 			line2.LengthScale = 0.89f;
 			plotSurface.Add( line2 );
 
-			plotSurface.AddInteraction( new NPlot.Interactions.MouseWheelZoom() );
+			plotSurface.AddInteraction( new Florence.Interactions.MouseWheelZoom() );
 
 			plotSurface.Title = "Line in the Title Number 1\nFollowed by another title line\n and another";
             plotSurface.Refresh();
@@ -1465,7 +1465,7 @@ namespace NPlotDemo
 			storeGrowth.OrdinateDataTop = "StoreGrowth";
 			storeGrowth.OrdinateDataBottom = "BarBase";
 			storeGrowth.Label = "Store Growth";
-			storeGrowth.FillBrush = NPlot.RectangleBrushes.Solid.Black;
+			storeGrowth.FillBrush = Florence.RectangleBrushes.Solid.Black;
 			//storeGrowth.BorderPen = new Pen( Color.Black, 2.0f );
 			plotSurface.Add( storeGrowth );
 
@@ -1476,7 +1476,7 @@ namespace NPlotDemo
 			averageGrowth.OrdinateDataBottom = "BarBase";
 			averageGrowth.OrdinateDataTop = "AverageGrowth";
 			averageGrowth.Label = "Average Growth";
-			averageGrowth.FillBrush = NPlot.RectangleBrushes.Solid.Gray;
+			averageGrowth.FillBrush = Florence.RectangleBrushes.Solid.Gray;
 			//averageGrowth.BorderPen = new Pen( Color.Black, 2.0f );
 			plotSurface.Add( averageGrowth );
 
@@ -1533,12 +1533,12 @@ namespace NPlotDemo
 
 			Legend l = new Legend();
 			l.NumberItemsVertically = 2;
-			l.AttachTo( NPlot.PlotSurface2D.XAxisPosition.Bottom, NPlot.PlotSurface2D.YAxisPosition.Left );
-			l.HorizontalEdgePlacement = NPlot.Legend.Placement.Outside;
-			l.VerticalEdgePlacement = NPlot.Legend.Placement.Inside;
+			l.AttachTo( Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left );
+			l.HorizontalEdgePlacement = Florence.Legend.Placement.Outside;
+			l.VerticalEdgePlacement = Florence.Legend.Placement.Inside;
 			l.XOffset = 5;
 			l.YOffset = 50;
-			l.BorderStyle = NPlot.LegendBase.BorderType.Line;
+			l.BorderStyle = Florence.LegendBase.BorderType.Line;
 
 			plotSurface.Legend = l;
 
@@ -1609,7 +1609,7 @@ namespace NPlotDemo
 			int id = currentPlot + 1;
 			exampleNumberLabel.Text = "Plot " + id.ToString("0") + "/" + PlotRoutines.Length.ToString("0");
 
-            this.plotSurface.RightMenu = NPlot.WinForms.WinFormsPlotSurface2D.DefaultContextMenu;
+            this.plotSurface.RightMenu = Florence.WinForms.WinFormsPlotSurface2D.DefaultContextMenu;
 
             // draw the first plot.
 			currentPlot = 0;
@@ -1647,7 +1647,7 @@ namespace NPlotDemo
             this.prevPlotButton = new System.Windows.Forms.Button();
             this.qeExampleTimer = new System.Windows.Forms.Timer(this.components);
             this.infoBox = new System.Windows.Forms.TextBox();
-            this.plotSurface = new NPlot.WinForms.WinFormsPlotSurface2D();
+            this.plotSurface = new Florence.WinForms.WinFormsPlotSurface2D();
             this.SuspendLayout();
 // 
 // quitButton

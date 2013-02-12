@@ -58,7 +58,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.Reflection;
 
-using NPlot;
+using Florence;
 
 
 namespace NPlotDemo
@@ -68,15 +68,15 @@ namespace NPlotDemo
 	/// </summary>
 	public class FinancialDemo : System.Windows.Forms.Form
 	{
-        private NPlot.WinForms.WinFormsPlotSurface2D volumePS;
-        private NPlot.WinForms.WinFormsPlotSurface2D costPS;
+        private Florence.WinForms.WinFormsPlotSurface2D volumePS;
+        private Florence.WinForms.WinFormsPlotSurface2D costPS;
         private System.Windows.Forms.Button closeButton;
 
 
 		/// <summary>
 		/// Right context menu with non-default functionality. Just take out some functionality. Could also have added some.
 		/// </summary>
-		public class ReducedContextMenu : NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu
+		public class ReducedContextMenu : Florence.WinForms.WinFormsPlotSurface2D.PlotContextMenu
 		{
 
 			/// <summary>
@@ -137,9 +137,9 @@ namespace NPlotDemo
             costPS.YAxis1.LabelOffsetAbsolute = true;
             costPS.XAxis1.HideTickText = true;
             costPS.SurfacePadding = 5;
-            costPS.AddInteraction(new NPlot.Interactions.HorizontalDrag());
-            costPS.AddInteraction(new NPlot.Interactions.VerticalDrag());
-            costPS.AddInteraction(new NPlot.Interactions.AxisDrag(false));
+            costPS.AddInteraction(new Florence.Interactions.HorizontalDrag());
+            costPS.AddInteraction(new Florence.Interactions.VerticalDrag());
+            costPS.AddInteraction(new Florence.Interactions.AxisDrag(false));
             costPS.InteractionOccurred += costPS_InteractionOccured;
             costPS.AddAxesConstraint(new AxesConstraint.AxisPosition(PlotSurface2D.YAxisPosition.Left, 60));
 
@@ -156,10 +156,10 @@ namespace NPlotDemo
             volumePS.YAxis1.LabelOffset = 40;
             volumePS.SurfacePadding = 5;
             volumePS.AddAxesConstraint(new AxesConstraint.AxisPosition(PlotSurface2D.YAxisPosition.Left, 60));
-            volumePS.AddInteraction(new NPlot.Interactions.AxisDrag(false));
-            volumePS.AddInteraction(new NPlot.Interactions.HorizontalDrag());
+            volumePS.AddInteraction(new Florence.Interactions.AxisDrag(false));
+            volumePS.AddInteraction(new Florence.Interactions.HorizontalDrag());
             volumePS.InteractionOccurred += volumePS_InteractionOccured;
-            volumePS.PreRefresh += new NPlot.WinForms.WinFormsPlotSurface2D.PreRefreshHandler(volumePS_PreRefresh);
+            volumePS.PreRefresh += new Florence.WinForms.WinFormsPlotSurface2D.PreRefreshHandler(volumePS_PreRefresh);
 
             this.costPS.RightMenu = new ReducedContextMenu();
 			
@@ -185,8 +185,8 @@ namespace NPlotDemo
 		private void InitializeComponent()
 		{
             this.closeButton = new System.Windows.Forms.Button();
-            this.volumePS = new NPlot.WinForms.WinFormsPlotSurface2D();
-            this.costPS = new NPlot.WinForms.WinFormsPlotSurface2D();
+            this.volumePS = new Florence.WinForms.WinFormsPlotSurface2D();
+            this.costPS = new Florence.WinForms.WinFormsPlotSurface2D();
             this.SuspendLayout();
 // 
 // closeButton

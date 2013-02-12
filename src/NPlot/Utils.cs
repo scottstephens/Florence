@@ -35,7 +35,7 @@ using System.Drawing.Drawing2D;
 using System.Data;
 using System.Collections;
 
-namespace NPlot
+namespace Florence
 {
 
 	/// <summary>

@@ -5,15 +5,15 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NPlot.WinForms.Interactions
+namespace Florence.WinForms.Interactions
 {
     /// <summary>
     /// 
     /// </summary>
-    public class VerticalDrag : WinFormsInteraction<NPlot.Interactions.VerticalDrag>
+    public class VerticalDrag : WinFormsInteraction<Florence.Interactions.VerticalDrag>
     {
 
-        public VerticalDrag(NPlot.Interactions.VerticalDrag interaction) : base(interaction) { }
+        public VerticalDrag(Florence.Interactions.VerticalDrag interaction) : base(interaction) { }
 
         /// <summary>
         /// 
@@ -22,7 +22,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="ctr"></param>
         public override bool DoMouseDown(MouseEventArgs e, Control ctr)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < (ps.PlotAreaBoundingBoxCache.Right) &&
                 e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)
@@ -45,7 +45,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="lastKeyEventArgs"></param>
         public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             if ((e.Button == MouseButtons.Left) && dragInitiated_)
             {

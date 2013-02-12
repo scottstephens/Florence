@@ -5,14 +5,14 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NPlot.WinForms.Interactions
+namespace Florence.WinForms.Interactions
 {
     /// <summary>
     /// This plot intraction allows the user to select horizontal regions.
     /// </summary>
-    public class HorizontalRangeSelection : WinFormsInteraction<NPlot.Interactions.HorizontalRangeSelection>
+    public class HorizontalRangeSelection : WinFormsInteraction<Florence.Interactions.HorizontalRangeSelection>
     {
-        public HorizontalRangeSelection(NPlot.Interactions.HorizontalRangeSelection interaction) : base(interaction) { }
+        public HorizontalRangeSelection(Florence.Interactions.HorizontalRangeSelection interaction) : base(interaction) { }
 
         private bool selectionInitiated_ = false;
         private Point startPoint_ = new Point(-1, -1);
@@ -44,7 +44,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="ctr">the plot surface this event applies to</param>
         public override bool DoMouseDown(MouseEventArgs e, Control ctr)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < ps.PlotAreaBoundingBoxCache.Right &&
                 e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)
@@ -80,7 +80,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="lastKeyEventArgs"></param>
         public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             // if dragging on axis to zoom.
             if ((e.Button == MouseButtons.Left) && selectionInitiated_)
@@ -114,7 +114,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="ctr">the plot surface this event applies to</param>
         public override bool DoMouseUp(MouseEventArgs e, Control ctr)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             if ((e.Button == MouseButtons.Left) && selectionInitiated_)
             {
@@ -204,7 +204,7 @@ namespace NPlot.WinForms.Interactions
 
         private void DrawHorizontalSelection(Point start, Point end, System.Windows.Forms.Control ctr)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             // the clipping rectangle in screen coordinates
             Rectangle clip = ctr.RectangleToScreen(

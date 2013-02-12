@@ -39,7 +39,7 @@ using System.IO;
 using System.Collections;
 using System.Text;
 
-namespace NPlot.Web
+namespace Florence.Web
 {
 
 	/// <summary>
@@ -55,12 +55,12 @@ namespace NPlot.Web
 	[
 	DefaultProperty("Title"), 
 	ToolboxData("<{0}:PlotSurface2D runat=server></{0}:PlotSurface2D>"),
-	Designer(typeof(NPlot.Web.Design.WebPlotSurface2D))
+	Designer(typeof(Florence.Web.Design.WebPlotSurface2D))
 	]
 	public class WebPlotSurface2D : System.Web.UI.WebControls.WebControl, IPlotSurface2D 
 	{
 
-		private NPlot.PlotSurface2D ps_ = new NPlot.PlotSurface2D();
+		private Florence.PlotSurface2D ps_ = new Florence.PlotSurface2D();
 
 
 		/// <summary>
@@ -119,7 +119,7 @@ namespace NPlot.Web
 		/// <param name="p">the IDrawable object to add to the plot surface</param>
 		/// <param name="xp">the x-axis to add the plot against.</param>
 		/// <param name="yp">the y-axis to add the plot against.</param>
-		public void Add( IDrawable p, NPlot.PlotSurface2D.XAxisPosition xp, NPlot.PlotSurface2D.YAxisPosition yp )
+		public void Add( IDrawable p, Florence.PlotSurface2D.XAxisPosition xp, Florence.PlotSurface2D.YAxisPosition yp )
 		{
 			ps_.Add( p, xp, yp );
 		}
@@ -145,8 +145,8 @@ namespace NPlot.Web
 		/// <param name="xp">the x-axis to add the plot against.</param>
 		/// <param name="yp">the y-axis to add the plot against.</param>
 		/// <param name="zOrder">The z-ordering when drawing (objects with lower numbers are drawn first)</param>
-		public void Add( IDrawable p, NPlot.PlotSurface2D.XAxisPosition xp,
-			NPlot.PlotSurface2D.YAxisPosition yp, int zOrder )
+		public void Add( IDrawable p, Florence.PlotSurface2D.XAxisPosition xp,
+			Florence.PlotSurface2D.YAxisPosition yp, int zOrder )
 		{
 			ps_.Add( p, xp, yp , zOrder);
 		}
@@ -362,7 +362,7 @@ namespace NPlot.Web
 		Bindable(false),
 		Browsable(false)
 		]
-		public NPlot.Legend Legend
+		public Florence.Legend Legend
 		{
 			get
 			{

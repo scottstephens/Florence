@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace NPlot
+namespace Florence
 {
 
 	/// <summary>

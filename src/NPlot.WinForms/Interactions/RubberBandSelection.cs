@@ -5,14 +5,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace NPlot.WinForms.Interactions
+namespace Florence.WinForms.Interactions
 {
     /// <summary>
     /// 
     /// </summary>
-    public class RubberBandSelection : WinFormsInteraction<NPlot.Interactions.RubberBandSelection>
+    public class RubberBandSelection : WinFormsInteraction<Florence.Interactions.RubberBandSelection>
     {
-        public RubberBandSelection(NPlot.Interactions.RubberBandSelection interaction) : base(interaction) { }
+        public RubberBandSelection(Florence.Interactions.RubberBandSelection interaction) : base(interaction) { }
 
         private bool selectionInitiated_ = false;
 
@@ -68,7 +68,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="ctr"></param>
         public override bool DoMouseUp(MouseEventArgs e, Control ctr)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             // handle left button (selecting region).
             if ((e.Button == MouseButtons.Left) && selectionInitiated_)
@@ -139,7 +139,7 @@ namespace NPlot.WinForms.Interactions
         /// been contained by a PlotSurface.</param>
         private void DrawRubberBand(Point start, Point end, System.Windows.Forms.Control ctr)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             Rectangle rect = new Rectangle();
 

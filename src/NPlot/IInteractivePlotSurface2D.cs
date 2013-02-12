@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NPlot
+namespace Florence
 {
     public interface IInteractivePlotSurface2D : IPlotSurface2D
     {

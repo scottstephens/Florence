@@ -10,7 +10,7 @@
     <AssemblyName>NPlot</AssemblyName>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>NPlot</RootNamespace>
+    <RootNamespace>Florence</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>

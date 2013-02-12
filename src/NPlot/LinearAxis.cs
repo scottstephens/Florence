@@ -35,7 +35,7 @@ using System;
 using System.Text;
 using System.Diagnostics;
 
-namespace NPlot
+namespace Florence
 {
 
 	/// <summary>

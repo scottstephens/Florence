@@ -5,14 +5,14 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NPlot.WinForms.Interactions
+namespace Florence.WinForms.Interactions
 {
     /// <summary>
     /// 
     /// </summary>
-    public class MouseWheelZoom : WinFormsInteraction<NPlot.Interactions.MouseWheelZoom>
+    public class MouseWheelZoom : WinFormsInteraction<Florence.Interactions.MouseWheelZoom>
     {
-        public MouseWheelZoom(NPlot.Interactions.MouseWheelZoom interaction) : base(interaction) { }
+        public MouseWheelZoom(Florence.Interactions.MouseWheelZoom interaction) : base(interaction) { }
 
         private Point point_ = new Point(-1, -1);
         //private bool mouseDown_ = false;
@@ -57,7 +57,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="ctr"></param>
         public override bool DoMouseWheel(MouseEventArgs e, Control ctr)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             ((WinForms.WinFormsPlotSurface2D)ctr).CacheAxes();
 

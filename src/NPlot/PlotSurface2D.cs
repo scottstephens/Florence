@@ -35,7 +35,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Collections;
 
-namespace NPlot
+namespace Florence
 {
 
 	/// <summary>
@@ -1172,7 +1172,7 @@ namespace NPlot
 		/// Legend to use. If this property is null [default], then the plot
 		/// surface will have no corresponding legend.
 		/// </summary>
-		public NPlot.Legend Legend
+		public Florence.Legend Legend
 		{
 			get
 			{

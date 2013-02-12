@@ -37,9 +37,9 @@ using System.Data;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 
-using NPlot;
+using Florence;
 
-namespace NPlot.WinForms
+namespace Florence.WinForms
 {
 
 	/// <summary>
@@ -48,14 +48,14 @@ namespace NPlot.WinForms
 	/// <remarks>
 	/// Unfortunately it's not possible to derive from both Control and NPlot.PlotSurface2D.
 	/// </remarks>
-	[ ToolboxBitmapAttribute(typeof(NPlot.WinForms.WinFormsPlotSurface2D),"PlotSurface2D.ico") ]
+	[ ToolboxBitmapAttribute(typeof(Florence.WinForms.WinFormsPlotSurface2D),"PlotSurface2D.ico") ]
 	public class WinFormsPlotSurface2D : System.Windows.Forms.Control, IInteractivePlotSurface2D, ISurface
 	{
 
         private System.Windows.Forms.ToolTip coordinates_;
 
 		private System.Collections.ArrayList selectedObjects_;
-        private NPlot.PlotSurface2D ps_;
+        private Florence.PlotSurface2D ps_;
 
 		private Axis xAxis1ZoomCache_;
 		private Axis yAxis1ZoomCache_;
@@ -99,7 +99,7 @@ namespace NPlot.WinForms
 			base.SetStyle(ControlStyles.UserPaint, true);
 			base.ResizeRedraw = true;
 
-			ps_ = new NPlot.PlotSurface2D();
+			ps_ = new Florence.PlotSurface2D();
                         
             this.PreRefresh += new PreRefreshHandler( OnPreRefresh );
 		}
@@ -260,7 +260,7 @@ namespace NPlot.WinForms
 		/// <param name="p">the IDrawable object to add to the plot surface</param>
 		/// <param name="xp">the x-axis to add the plot against.</param>
 		/// <param name="yp">the y-axis to add the plot against.</param>
-		public void Add( IDrawable p, NPlot.PlotSurface2D.XAxisPosition xp, NPlot.PlotSurface2D.YAxisPosition yp )
+		public void Add( IDrawable p, Florence.PlotSurface2D.XAxisPosition xp, Florence.PlotSurface2D.YAxisPosition yp )
 		{
 			ps_.Add( p, xp, yp );
 		}
@@ -286,8 +286,8 @@ namespace NPlot.WinForms
 		/// <param name="xp">the x-axis to add the plot against.</param>
 		/// <param name="yp">the y-axis to add the plot against.</param>
 		/// <param name="zOrder">The z-ordering when drawing (objects with lower numbers are drawn first)</param>
-		public void Add( IDrawable p, NPlot.PlotSurface2D.XAxisPosition xp,
-			NPlot.PlotSurface2D.YAxisPosition yp, int zOrder )
+		public void Add( IDrawable p, Florence.PlotSurface2D.XAxisPosition xp,
+			Florence.PlotSurface2D.YAxisPosition yp, int zOrder )
 		{
 			ps_.Add( p, xp, yp , zOrder);
 		}
@@ -300,7 +300,7 @@ namespace NPlot.WinForms
 		Browsable(false),
 		Bindable(false)
 		]
-		public NPlot.Legend Legend
+		public Florence.Legend Legend
 		{
 			get
 			{
@@ -1138,7 +1138,7 @@ namespace NPlot.WinForms
 		Browsable(false),
 		Bindable(false)
 		]
-		public NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu RightMenu
+		public Florence.WinForms.WinFormsPlotSurface2D.PlotContextMenu RightMenu
 		{
 			get
 			{
@@ -1153,7 +1153,7 @@ namespace NPlot.WinForms
 				}
 			}
 		}
-		private NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu rightMenu_ = null;
+		private Florence.WinForms.WinFormsPlotSurface2D.PlotContextMenu rightMenu_ = null;
 
 
 		/// <summary>
@@ -1164,7 +1164,7 @@ namespace NPlot.WinForms
 		{
 			get
 			{
-				return new NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu();
+				return new Florence.WinForms.WinFormsPlotSurface2D.PlotContextMenu();
 			}
 		}
 
@@ -1176,7 +1176,7 @@ namespace NPlot.WinForms
 		Browsable(false),
 		Bindable(false)
 		]
-        public NPlot.PlotSurface2D Inner
+        public Florence.PlotSurface2D Inner
         {
             get
             {

@@ -6,14 +6,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections;
 
-namespace NPlot.WinForms.Interactions
+namespace Florence.WinForms.Interactions
 {
     /// <summary>
     /// 
     /// </summary>
-    public class AxisDrag : WinFormsInteraction<NPlot.Interactions.AxisDrag>
+    public class AxisDrag : WinFormsInteraction<Florence.Interactions.AxisDrag>
     {
-        public AxisDrag(NPlot.Interactions.AxisDrag interaction) : base(interaction) { }
+        public AxisDrag(Florence.Interactions.AxisDrag interaction) : base(interaction) { }
 
         
 
@@ -34,7 +34,7 @@ namespace NPlot.WinForms.Interactions
         {
             // if the mouse is inside the plot area [the tick marks are here and part of the 
             // axis], then don't invoke drag. 
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
             if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < ps.PlotAreaBoundingBoxCache.Right &&
                 e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)
             {
@@ -48,7 +48,7 @@ namespace NPlot.WinForms.Interactions
 
                 foreach (object o in objects)
                 {
-                    if (o is NPlot.Axis)
+                    if (o is Florence.Axis)
                     {
                         doing_ = true;
                         axis_ = (Axis)o;
@@ -91,7 +91,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="lastKeyEventArgs"></param>
         public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             // if dragging on axis to zoom.
             if ((e.Button == MouseButtons.Left) && doing_ && physicalAxis_ != null)

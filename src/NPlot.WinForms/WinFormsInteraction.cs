@@ -5,14 +5,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace NPlot.WinForms
+namespace Florence.WinForms
 {
 
     /// <summary>
     /// Base class for an interaction. All methods are virtual. Not abstract as not all interactions
     /// need to use all methods. Default functionality for each method is to do nothing. 
     /// </summary>
-    public class WinFormsInteraction<T> : NPlot.WinForms.IWinFormsInteraction where T : IInteraction
+    public class WinFormsInteraction<T> : Florence.WinForms.IWinFormsInteraction where T : IInteraction
     {
         public IInteraction GenericInteraction { get { return this.Interaction; } }
         public T Interaction { get; private set; }

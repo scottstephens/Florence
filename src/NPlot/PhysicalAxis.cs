@@ -34,7 +34,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Collections;
 
-namespace NPlot
+namespace Florence
 {
 	/// <summary>
 	/// This class adds physical positioning information [PhysicalMin, PhysicalMax]

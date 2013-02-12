@@ -34,7 +34,7 @@ using System.Collections;
 using System.Drawing;
 using System.Data;
 
-namespace NPlot
+namespace Florence
 {
 
     /// <summary>

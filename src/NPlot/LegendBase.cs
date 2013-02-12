@@ -33,7 +33,7 @@ using System;
 using System.Collections;
 using System.Drawing;
 
-namespace NPlot
+namespace Florence
 {
 
 	/// <summary>
@@ -379,7 +379,7 @@ namespace NPlot
 				borderStyle_ = value;
 			}
 		}
-		private NPlot.Legend.BorderType borderStyle_;
+		private Florence.Legend.BorderType borderStyle_;
 
 
 		/// <summary>

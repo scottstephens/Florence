@@ -1,7 +1,7 @@
 ﻿using System;
-using NPlot;
+using Florence;
 
-namespace NPlot.WinForms
+namespace Florence.WinForms
 {
     public interface IWinFormsInteraction
     {

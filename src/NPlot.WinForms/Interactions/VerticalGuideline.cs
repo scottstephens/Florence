@@ -5,14 +5,14 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NPlot.WinForms.Interactions
+namespace Florence.WinForms.Interactions
 {
 /// <summary>
     /// 
     /// </summary>
-    public class VerticalGuideline : WinFormsInteraction<NPlot.Interactions.VerticalGuideline>
+    public class VerticalGuideline : WinFormsInteraction<Florence.Interactions.VerticalGuideline>
     {
-        public VerticalGuideline(NPlot.Interactions.VerticalGuideline interaction) : base(interaction) { }
+        public VerticalGuideline(Florence.Interactions.VerticalGuideline interaction) : base(interaction) { }
 
         private int barPos_;
 
@@ -36,7 +36,7 @@ namespace NPlot.WinForms.Interactions
         /// <param name="lastKeyEventArgs"></param>
         public override bool DoMouseMove(MouseEventArgs e, System.Windows.Forms.Control ctr, KeyEventArgs lastKeyEventArgs)
         {
-            NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+            Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
             // if mouse isn't in plot region, then don't draw horizontal line
             if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < (ps.PlotAreaBoundingBoxCache.Right - 1) &&
@@ -109,7 +109,7 @@ namespace NPlot.WinForms.Interactions
         {
             if (barPos_ != -1)
             {
-                NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
+                Florence.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                 Rectangle clip = ctr.RectangleToScreen(
                     new Rectangle(

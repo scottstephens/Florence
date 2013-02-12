@@ -1,4 +1,4 @@
-﻿namespace NPlot.WinForms
+﻿namespace Florence.WinForms
 {
     partial class InteractivePlotForm
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.plotSurface = new NPlot.WinForms.WinFormsPlotSurface2D();
+            this.plotSurface = new Florence.WinForms.WinFormsPlotSurface2D();
             this.SuspendLayout();
             // 
             // plotSurface
@@ -71,6 +71,6 @@
 
         #endregion
 
-        private NPlot.WinForms.WinFormsPlotSurface2D plotSurface;
+        private Florence.WinForms.WinFormsPlotSurface2D plotSurface;
     }
 }

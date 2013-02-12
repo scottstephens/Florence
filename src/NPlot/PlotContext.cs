@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace NPlot
+namespace Florence
 {
     public class PlotContext
     {
@@ -31,7 +31,7 @@ namespace NPlot
             pp.OrdinateData = y;
             pp.AbscissaData = x;
             pp.Marker = new Marker(Marker.MarkerType.FilledCircle, 4, new Pen(Color.Blue));
-            this.PlotSurface.Add(pp, NPlot.PlotSurface2D.XAxisPosition.Bottom, NPlot.PlotSurface2D.YAxisPosition.Left);
+            this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
             
             this.refresh();
         }

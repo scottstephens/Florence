@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NPlot.WinForms
+namespace Florence.WinForms
 {
     public class InteractionRegistry
     {
@@ -25,14 +25,14 @@ namespace NPlot.WinForms
         private InteractionRegistry()
         {
             _interactions = new Dictionary<Type, Func<IInteraction, IWinFormsInteraction>>();
-            this.RegisterInteraction(typeof(NPlot.Interactions.AxisDrag), (i) => new Interactions.AxisDrag((NPlot.Interactions.AxisDrag)i));
-            this.RegisterInteraction(typeof(NPlot.Interactions.HorizontalDrag), (i) => new Interactions.HorizontalDrag((NPlot.Interactions.HorizontalDrag)i));
-            this.RegisterInteraction(typeof(NPlot.Interactions.HorizontalGuideline), (i) => new Interactions.HorizontalGuideline((NPlot.Interactions.HorizontalGuideline)i));
-            this.RegisterInteraction(typeof(NPlot.Interactions.MouseWheelZoom), (i) => new Interactions.MouseWheelZoom((NPlot.Interactions.MouseWheelZoom)i));
-            this.RegisterInteraction(typeof(NPlot.Interactions.HorizontalRangeSelection), (i) => new Interactions.HorizontalRangeSelection((NPlot.Interactions.HorizontalRangeSelection)i));
-            this.RegisterInteraction(typeof(NPlot.Interactions.RubberBandSelection), (i) => new Interactions.RubberBandSelection((NPlot.Interactions.RubberBandSelection)i));
-            this.RegisterInteraction(typeof(NPlot.Interactions.VerticalDrag), (i) => new Interactions.VerticalDrag((NPlot.Interactions.VerticalDrag)i));
-            this.RegisterInteraction(typeof(NPlot.Interactions.VerticalGuideline), (i) => new Interactions.VerticalGuideline((NPlot.Interactions.VerticalGuideline)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.AxisDrag), (i) => new Interactions.AxisDrag((Florence.Interactions.AxisDrag)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.HorizontalDrag), (i) => new Interactions.HorizontalDrag((Florence.Interactions.HorizontalDrag)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.HorizontalGuideline), (i) => new Interactions.HorizontalGuideline((Florence.Interactions.HorizontalGuideline)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.MouseWheelZoom), (i) => new Interactions.MouseWheelZoom((Florence.Interactions.MouseWheelZoom)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.HorizontalRangeSelection), (i) => new Interactions.HorizontalRangeSelection((Florence.Interactions.HorizontalRangeSelection)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.RubberBandSelection), (i) => new Interactions.RubberBandSelection((Florence.Interactions.RubberBandSelection)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.VerticalDrag), (i) => new Interactions.VerticalDrag((Florence.Interactions.VerticalDrag)i));
+            this.RegisterInteraction(typeof(Florence.Interactions.VerticalGuideline), (i) => new Interactions.VerticalGuideline((Florence.Interactions.VerticalGuideline)i));
         }
 
         public void RegisterInteraction(Type interaction_type, Func<IInteraction, IWinFormsInteraction> toolkit_specific_retriever)

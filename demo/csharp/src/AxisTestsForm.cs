@@ -35,7 +35,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-using NPlot;
+using Florence;
 
 namespace NPlotDemo
 {
@@ -101,7 +101,7 @@ namespace NPlotDemo
 		{
 			System.Drawing.Rectangle boundingBox;
 
-			NPlot.LinearAxis a = new LinearAxis(0, 10);
+			Florence.LinearAxis a = new LinearAxis(0, 10);
 			a.Draw( e.Graphics, new Point(10,10), new Point(10, 200), out boundingBox );
 
 			a.Reversed = true;

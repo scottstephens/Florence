@@ -33,7 +33,7 @@ using System;
 using System.Drawing;
 using System.Diagnostics;
 
-namespace NPlot
+namespace Florence
 {
 
 	/// <summary>

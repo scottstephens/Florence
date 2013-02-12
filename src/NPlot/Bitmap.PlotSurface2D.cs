@@ -34,7 +34,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Collections;
 
-namespace NPlot.Bitmap
+namespace Florence.Bitmap
 {
 	/// <summary>
 	/// Wrapper around NPlot.PlotSurface2D that provides extra functionality
@@ -51,7 +51,7 @@ namespace NPlot.Bitmap
 		public PlotSurface2D( int width, int height )
 		{
 			b_ = new System.Drawing.Bitmap( width, height );
-			ps_ = new NPlot.PlotSurface2D();	
+			ps_ = new Florence.PlotSurface2D();	
 		}
 
 
@@ -62,7 +62,7 @@ namespace NPlot.Bitmap
 		public PlotSurface2D( System.Drawing.Bitmap b )
 		{
 			b_ = b;
-			ps_ = new NPlot.PlotSurface2D();	
+			ps_ = new Florence.PlotSurface2D();	
 		}
 
 
@@ -104,7 +104,7 @@ namespace NPlot.Bitmap
 		/// <param name="p">the IDrawable object to add to the plot surface</param>
 		/// <param name="xp">the x-axis to add the plot against.</param>
 		/// <param name="yp">the y-axis to add the plot against.</param>
-		public void Add( IDrawable p, NPlot.PlotSurface2D.XAxisPosition xp, NPlot.PlotSurface2D.YAxisPosition yp )
+		public void Add( IDrawable p, Florence.PlotSurface2D.XAxisPosition xp, Florence.PlotSurface2D.YAxisPosition yp )
 		{
 			ps_.Add( p, xp, yp );
 		}
@@ -130,8 +130,8 @@ namespace NPlot.Bitmap
 		/// <param name="xp">the x-axis to add the plot against.</param>
 		/// <param name="yp">the y-axis to add the plot against.</param>
 		/// <param name="zOrder">The z-ordering when drawing (objects with lower numbers are drawn first)</param>
-		public void Add( IDrawable p, NPlot.PlotSurface2D.XAxisPosition xp,
-			NPlot.PlotSurface2D.YAxisPosition yp, int zOrder )
+		public void Add( IDrawable p, Florence.PlotSurface2D.XAxisPosition xp,
+			Florence.PlotSurface2D.YAxisPosition yp, int zOrder )
 		{
 			ps_.Add( p, xp, yp , zOrder);
 		}
@@ -271,7 +271,7 @@ namespace NPlot.Bitmap
 		/// <summary>
 		/// Gets or Sets the legend to use with this plot surface.
 		/// </summary>
-		public NPlot.Legend Legend
+		public Florence.Legend Legend
 		{
 			get
 			{
@@ -431,7 +431,7 @@ namespace NPlot.Bitmap
 		}
 
 
-		private NPlot.PlotSurface2D ps_;
+		private Florence.PlotSurface2D ps_;
 		private System.Drawing.Bitmap b_;
 
 		

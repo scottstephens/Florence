@@ -38,7 +38,7 @@ using System.Globalization;
 // TODO: SkipWeekends property.
 // TODO: Make a relative (as opposed to absolute) TimeAxis.
 
-namespace NPlot
+namespace Florence
 {
 	/// <summary>
 	/// The DateTimeAxis class

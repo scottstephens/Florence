@@ -8,7 +8,7 @@
     <ProjectGuid>{7173A744-7A13-439B-AE13-A1CCCF4C8197}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NPlot.WinForms</RootNamespace>
+    <RootNamespace>Florence.WinForms</RootNamespace>
     <AssemblyName>NPlot.WinForms</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>

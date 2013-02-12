@@ -8,7 +8,7 @@
     <ProjectGuid>{516937CF-6815-4979-930C-14D7FCEC40B9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NPlot.Web</RootNamespace>
+    <RootNamespace>Florence.Web</RootNamespace>
     <AssemblyName>NPlot.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>

@@ -36,9 +36,9 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
-using NPlot;
+using Florence;
 
-namespace NPlot.Web.Design
+namespace Florence.Web.Design
 {
     /// <summary>
     /// The Design Time rendered for the NPlot.Web.PlotSurface2D control.
