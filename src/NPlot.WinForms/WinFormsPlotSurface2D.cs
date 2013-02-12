@@ -39,7 +39,7 @@ using System.Drawing.Printing;
 
 using NPlot;
 
-namespace NPlot.Windows
+namespace NPlot.WinForms
 {
 
 	/// <summary>
@@ -48,8 +48,8 @@ namespace NPlot.Windows
 	/// <remarks>
 	/// Unfortunately it's not possible to derive from both Control and NPlot.PlotSurface2D.
 	/// </remarks>
-	[ ToolboxBitmapAttribute(typeof(NPlot.Windows.PlotSurface2D),"PlotSurface2D.ico") ]
-	public class PlotSurface2D : System.Windows.Forms.Control, IPlotSurface2D, ISurface
+	[ ToolboxBitmapAttribute(typeof(NPlot.WinForms.WinFormsPlotSurface2D),"PlotSurface2D.ico") ]
+	public class WinFormsPlotSurface2D : System.Windows.Forms.Control, IPlotSurface2D, ISurface
 	{
 
         private System.Windows.Forms.ToolTip coordinates_;
@@ -88,7 +88,7 @@ namespace NPlot.Windows
 		/// <summary>
 		/// Default constructor.
 		/// </summary>
-		public PlotSurface2D()
+		public WinFormsPlotSurface2D()
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
@@ -1138,7 +1138,7 @@ namespace NPlot.Windows
 		Browsable(false),
 		Bindable(false)
 		]
-		public NPlot.Windows.PlotSurface2D.PlotContextMenu RightMenu
+		public NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu RightMenu
 		{
 			get
 			{
@@ -1153,7 +1153,7 @@ namespace NPlot.Windows
 				}
 			}
 		}
-		private NPlot.Windows.PlotSurface2D.PlotContextMenu rightMenu_ = null;
+		private NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu rightMenu_ = null;
 
 
 		/// <summary>
@@ -1164,7 +1164,7 @@ namespace NPlot.Windows
 		{
 			get
 			{
-				return new NPlot.Windows.PlotSurface2D.PlotContextMenu();
+				return new NPlot.WinForms.WinFormsPlotSurface2D.PlotContextMenu();
 			}
 		}
 
@@ -1338,7 +1338,7 @@ namespace NPlot.Windows
                 /// <param name="ctr"></param>
                 public override bool DoMouseUp(MouseEventArgs e, Control ctr)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     // handle left button (selecting region).
                     if ((e.Button == MouseButtons.Left) && selectionInitiated_)
@@ -1381,18 +1381,18 @@ namespace NPlot.Windows
 
                         if (isRubberbandInbounds && minPoint != maxPoint)
                         {
-                            ((Windows.PlotSurface2D)ctr).CacheAxes();
+                            ((WinForms.WinFormsPlotSurface2D)ctr).CacheAxes();
 
-                            ((Windows.PlotSurface2D)ctr).PhysicalXAxis1Cache.SetWorldLimitsFromPhysical(minPoint, maxPoint);
-                            ((Windows.PlotSurface2D)ctr).PhysicalXAxis2Cache.SetWorldLimitsFromPhysical(minPoint, maxPoint);
-                            ((Windows.PlotSurface2D)ctr).PhysicalYAxis1Cache.SetWorldLimitsFromPhysical(maxPoint, minPoint);
-                            ((Windows.PlotSurface2D)ctr).PhysicalYAxis2Cache.SetWorldLimitsFromPhysical(maxPoint, minPoint);
+                            ((WinForms.WinFormsPlotSurface2D)ctr).PhysicalXAxis1Cache.SetWorldLimitsFromPhysical(minPoint, maxPoint);
+                            ((WinForms.WinFormsPlotSurface2D)ctr).PhysicalXAxis2Cache.SetWorldLimitsFromPhysical(minPoint, maxPoint);
+                            ((WinForms.WinFormsPlotSurface2D)ctr).PhysicalYAxis1Cache.SetWorldLimitsFromPhysical(maxPoint, minPoint);
+                            ((WinForms.WinFormsPlotSurface2D)ctr).PhysicalYAxis2Cache.SetWorldLimitsFromPhysical(maxPoint, minPoint);
 
                             // reset the start/end points
                             startPoint_ = unset_;
                             endPoint_ = unset_;
 
-                            ((Windows.PlotSurface2D)ctr).InteractionOccured(this);
+                            ((WinForms.WinFormsPlotSurface2D)ctr).InteractionOccured(this);
 
 							return true;
                         }
@@ -1411,7 +1411,7 @@ namespace NPlot.Windows
                 /// been contained by a PlotSurface.</param>
                 private void DrawRubberBand(Point start, Point end, System.Windows.Forms.Control ctr)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     Rectangle rect = new Rectangle();
 
@@ -1510,7 +1510,7 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
 				public override bool DoMouseMove(MouseEventArgs e, System.Windows.Forms.Control ctr, KeyEventArgs lastKeyEventArgs)
 				{
-					NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+					NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
 					// if mouse isn't in plot region, then don't draw horizontal line
 					if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < ps.PlotAreaBoundingBoxCache.Right &&
@@ -1581,7 +1581,7 @@ namespace NPlot.Windows
 				{
 					if (barPos_ != -1)             
 					{
-						NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+						NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 				
 						Rectangle clip = ctr.RectangleToScreen(
 							new Rectangle(
@@ -1649,7 +1649,7 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
                 public override bool DoMouseMove(MouseEventArgs e, System.Windows.Forms.Control ctr, KeyEventArgs lastKeyEventArgs)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     // if mouse isn't in plot region, then don't draw horizontal line
                     if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < (ps.PlotAreaBoundingBoxCache.Right-1) &&
@@ -1722,7 +1722,7 @@ namespace NPlot.Windows
 				{
 					if (barPos_ != -1)       
 					{
-						NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+						NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 				
 						Rectangle clip = ctr.RectangleToScreen(
 							new Rectangle(
@@ -1754,7 +1754,7 @@ namespace NPlot.Windows
                 /// <param name="ctr"></param>
                 public override bool DoMouseDown(MouseEventArgs e, Control ctr)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < (ps.PlotAreaBoundingBoxCache.Right) &&
                         e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)
@@ -1777,13 +1777,13 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
                 public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
 					if ((e.Button == MouseButtons.Left) && dragInitiated_)
 					{
 						int diffX = e.X - lastPoint_.X;
 
-						((Windows.PlotSurface2D)ctr).CacheAxes();
+						((WinForms.WinFormsPlotSurface2D)ctr).CacheAxes();
 
 						// original code was using PixelWorldLength of the physical axis
 						// but it was not working for non-linear axes - the code below works
@@ -1822,7 +1822,7 @@ namespace NPlot.Windows
 						
 						lastPoint_ = new Point(e.X, e.Y);
 
-						((Windows.PlotSurface2D)ctr).InteractionOccured(this);
+						((WinForms.WinFormsPlotSurface2D)ctr).InteractionOccured(this);
 
 						return true;
 					}
@@ -1866,7 +1866,7 @@ namespace NPlot.Windows
                 /// <param name="ctr"></param>
                 public override bool DoMouseDown(MouseEventArgs e, Control ctr)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < (ps.PlotAreaBoundingBoxCache.Right) &&
                         e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)
@@ -1889,14 +1889,14 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
 				public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
 				{
-					NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+					NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
 					if ((e.Button == MouseButtons.Left) && dragInitiated_)
 					{
   
 						int diffY = e.Y - lastPoint_.Y;
 
-						((Windows.PlotSurface2D)ctr).CacheAxes();
+						((WinForms.WinFormsPlotSurface2D)ctr).CacheAxes();
 
 						if (ps.YAxis1 != null)
 						{
@@ -1932,7 +1932,7 @@ namespace NPlot.Windows
 
 						lastPoint_ = new Point(e.X, e.Y);
 
-						((Windows.PlotSurface2D)ctr).InteractionOccured(this);
+						((WinForms.WinFormsPlotSurface2D)ctr).InteractionOccured(this);
 
 						return true;
 					}
@@ -2036,7 +2036,7 @@ namespace NPlot.Windows
 				/// <param name="ctr">the plot surface this event applies to</param>
                 public override bool DoMouseDown(MouseEventArgs e, Control ctr )
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < ps.PlotAreaBoundingBoxCache.Right &&
                         e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)
@@ -2072,7 +2072,7 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
                 public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     // if dragging on axis to zoom.
                     if ((e.Button == MouseButtons.Left) && selectionInitiated_)
@@ -2106,7 +2106,7 @@ namespace NPlot.Windows
                 /// <param name="ctr">the plot surface this event applies to</param>
                 public override bool DoMouseUp(MouseEventArgs e, Control ctr)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     if ((e.Button == MouseButtons.Left) && selectionInitiated_)
                     {
@@ -2136,7 +2136,7 @@ namespace NPlot.Windows
 							return false;
 						}
 
-                        ((Windows.PlotSurface2D)ctr).CacheAxes();
+                        ((WinForms.WinFormsPlotSurface2D)ctr).CacheAxes();
 
 						// determine the new x axis 1 world limits (and check to see if they are far enough appart).
 						double xAxis1Min = double.NaN;
@@ -2185,7 +2185,7 @@ namespace NPlot.Windows
 							ps.XAxis2.WorldMin = xAxis2Min;
 						}
 
-                        ((Windows.PlotSurface2D)ctr).InteractionOccured(this);
+                        ((WinForms.WinFormsPlotSurface2D)ctr).InteractionOccured(this);
 
                         return true;
                     }
@@ -2196,7 +2196,7 @@ namespace NPlot.Windows
 
                 private void DrawHorizontalSelection(Point start, Point end, System.Windows.Forms.Control ctr)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     // the clipping rectangle in screen coordinates
                     Rectangle clip = ctr.RectangleToScreen(
@@ -2248,7 +2248,7 @@ namespace NPlot.Windows
                 {
                     // if the mouse is inside the plot area [the tick marks are here and part of the 
                     // axis], then don't invoke drag. 
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
                     if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < ps.PlotAreaBoundingBoxCache.Right &&
                         e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)
                     {
@@ -2305,7 +2305,7 @@ namespace NPlot.Windows
                 /// <param name="lastKeyEventArgs"></param>
                 public override bool DoMouseMove(MouseEventArgs e, Control ctr, KeyEventArgs lastKeyEventArgs)
                 {
-                    NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+                    NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
                     // if dragging on axis to zoom.
 					if ((e.Button == MouseButtons.Left) && doing_ && physicalAxis_ != null)
@@ -2333,7 +2333,7 @@ namespace NPlot.Windows
 							float prop = (float)(physicalWorldLength * dist / sensitivity_);
 							prop *= 2;
 
-							((Windows.PlotSurface2D)ctr).CacheAxes();
+							((WinForms.WinFormsPlotSurface2D)ctr).CacheAxes();
 
 							float relativePosX = (startPoint_.X - pMin.X) / (pMax.X - pMin.X);
 							float relativePosY = (startPoint_.Y - pMin.Y) / (pMax.Y - pMin.Y);
@@ -2361,7 +2361,7 @@ namespace NPlot.Windows
 							axis_.WorldMin = newWorldMin;
 							axis_.WorldMax = newWorldMax;
 							
-							((Windows.PlotSurface2D)ctr).InteractionOccured(this);
+							((WinForms.WinFormsPlotSurface2D)ctr).InteractionOccured(this);
 							
 							return true;
 						}
@@ -2458,9 +2458,9 @@ namespace NPlot.Windows
                 /// <param name="ctr"></param>
 				public override bool DoMouseWheel(MouseEventArgs e, Control ctr)
 				{
-					NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+					NPlot.PlotSurface2D ps = ((WinForms.WinFormsPlotSurface2D)ctr).Inner;
 
-					((Windows.PlotSurface2D)ctr).CacheAxes();
+					((WinForms.WinFormsPlotSurface2D)ctr).CacheAxes();
 
 #if API_1_1
                     float delta = (float)e.Delta / (float)e.Delta;
@@ -2471,7 +2471,7 @@ namespace NPlot.Windows
 					Axis axis = null;
 					PointF pMin = PointF.Empty;
 					PointF pMax = PointF.Empty;
-					KeyEventArgs keyArgs = ((Windows.PlotSurface2D)ctr).lastKeyEventArgs_;
+					KeyEventArgs keyArgs = ((WinForms.WinFormsPlotSurface2D)ctr).lastKeyEventArgs_;
 					bool zoom = (keyArgs != null && keyArgs.Control);
 
 					if (keyArgs != null && keyArgs.Shift)     
@@ -2499,7 +2499,7 @@ namespace NPlot.Windows
 					axis.WorldMin = newWorldMin;
 					axis.WorldMax = newWorldMax;
 					
-					((Windows.PlotSurface2D)ctr).InteractionOccured(this);
+					((WinForms.WinFormsPlotSurface2D)ctr).InteractionOccured(this);
 				
 					return true;
                 }
@@ -2856,7 +2856,7 @@ namespace NPlot.Windows
 			/// The PlotSurface2D associated with the context menu. Generally, the user
 			/// should not set this. It is used internally by PlotSurface2D.
 			/// </summary>
-			public Windows.PlotSurface2D PlotSurface2D
+			public WinForms.WinFormsPlotSurface2D PlotSurface2D
 			{
 				set
 				{
@@ -2868,7 +2868,7 @@ namespace NPlot.Windows
 			/// The PlotSurface2D associated with the context menu. Classes inherited
 			/// from PlotContextMenu will likely use this to implement their functionality.
 			/// </summary>
-			protected Windows.PlotSurface2D plotSurface2D_;
+			protected WinForms.WinFormsPlotSurface2D plotSurface2D_;
 
 			
 			/// <summary>

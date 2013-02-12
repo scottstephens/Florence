@@ -55,9 +55,9 @@ namespace NPlot.Web
 	[
 	DefaultProperty("Title"), 
 	ToolboxData("<{0}:PlotSurface2D runat=server></{0}:PlotSurface2D>"),
-	Designer(typeof(NPlot.Web.Design.PlotSurface2D))
+	Designer(typeof(NPlot.Web.Design.WebPlotSurface2D))
 	]
-	public class PlotSurface2D : System.Web.UI.WebControls.WebControl, IPlotSurface2D 
+	public class WebPlotSurface2D : System.Web.UI.WebControls.WebControl, IPlotSurface2D 
 	{
 
 		private NPlot.PlotSurface2D ps_ = new NPlot.PlotSurface2D();
@@ -66,7 +66,7 @@ namespace NPlot.Web
 		/// <summary>
 		/// Default constructor.
 		/// </summary>
-		public PlotSurface2D() : 
+		public WebPlotSurface2D() : 
 			base()
 		{
 		}

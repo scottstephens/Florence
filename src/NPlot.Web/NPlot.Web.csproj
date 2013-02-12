@@ -53,8 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web.Design.PlotSurface2D.cs" />
-    <Compile Include="Web.PlotSurface2D.cs" />
+    <Compile Include="Design\WebPlotSurface2D.cs" />
+    <Compile Include="WebPlotSurface2D.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NPlot\NPlot.csproj">

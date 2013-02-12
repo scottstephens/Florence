@@ -41,9 +41,9 @@ using NPlot;
 namespace NPlot.Web.Design
 {
     /// <summary>
-    /// The Design Time rendered for the NPlot.web.PlotSurface2D control.
+    /// The Design Time rendered for the NPlot.Web.PlotSurface2D control.
     /// </summary>
-    public class PlotSurface2D : System.Web.UI.Design.ControlDesigner
+    public class WebPlotSurface2D : System.Web.UI.Design.ControlDesigner
     {
 
 	    /// <summary>
@@ -56,7 +56,7 @@ namespace NPlot.Web.Design
 		    // Extremely simple design time rendering!
 		    // will work on something better sooner or later.
 		    // This acts as a placeholder.
-		    Web.PlotSurface2D plot = (Web.PlotSurface2D)Component;
+		    Web.WebPlotSurface2D plot = (Web.WebPlotSurface2D)Component;
 
 		    int xs = Convert.ToInt32(plot.Width.Value);
 		    if ( xs < 1 ) return "";

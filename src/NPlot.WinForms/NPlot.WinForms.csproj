@@ -53,12 +53,12 @@
   <ItemGroup>
     <Compile Include="ISurface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Windows.PlotSurface2D.cs">
+    <Compile Include="WinFormsPlotSurface2D.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="..\..\resources\Windows.PlotSurface2D.resx">
+    <EmbeddedResource Include="..\..\resources\WinFormsPlotSurface2D.resx">
       <LogicalName>Windows.PlotSurface2D.resources</LogicalName>
-      <DependentUpon>..\src\NPlot.WinForms\Windows.PlotSurface2D.cs</DependentUpon>
+      <DependentUpon>..\src\NPlot.WinForms\WinFormsPlotSurface2D.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
