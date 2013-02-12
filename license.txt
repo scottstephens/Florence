@@ -1,5 +1,6 @@
-NPlot - A charting library for .NET
+ReplPlotBig - A charting library for .NET
 Copyright (C) 2003-2006 Matt Howlett and others.
+Copyright (C) 2013 Scott Stephens
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
