@@ -48,18 +48,24 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\net\4.0\debug\</OutputPath>
+    <OutputPath>..\..\bin\NPlot\net\4.0\debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;CHECK_ERRORS</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
     <DebugType>Full</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\net\4.0\release\</OutputPath>
+    <OutputPath>..\..\bin\NPlot\net\4.0\release\</OutputPath>
     <DefineConstants>TRACE;RELEASE</DefineConstants>
     <DocumentationFile>NPlot.xml</DocumentationFile>
     <DebugSymbols>false</DebugSymbols>
     <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\NPlot-key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -85,180 +91,175 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\AdapterUtils.cs">
+    <Compile Include="AdapterUtils.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\ArrowItem.cs">
+    <Compile Include="ArrowItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\AssemblyInfo.cs">
+    <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\AxesConstraint.cs">
+    <Compile Include="AxesConstraint.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Axis.cs">
+    <Compile Include="Axis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\BarPlot.cs">
+    <Compile Include="BarPlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\BasePlot.cs">
+    <Compile Include="BasePlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\BaseSequencePlot.cs">
+    <Compile Include="BaseSequencePlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Bitmap.PlotSurface2D.cs">
+    <Compile Include="Bitmap.PlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\CandlePlot.cs">
+    <Compile Include="CandlePlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\DateTimeAxis.cs">
+    <Compile Include="DateTimeAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\FilledRegion.cs">
+    <Compile Include="FilledRegion.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Grid.cs">
+    <Compile Include="Grid.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\HistogramPlot.cs">
+    <Compile Include="HistogramPlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\HorizontalLine.cs">
+    <Compile Include="HorizontalLine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\IDrawable.cs">
+    <Compile Include="IDrawable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\IGradient.cs">
+    <Compile Include="IGradient.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\ImagePlot.cs">
+    <Compile Include="ImagePlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\IPlot.cs">
+    <Compile Include="IPlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\IPlotSurface2D.cs">
+    <Compile Include="IPlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\ISequencePlot.cs">
+    <Compile Include="ISequencePlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\ISurface.cs">
+    <Compile Include="ISurface.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\ITransform2D.cs">
+    <Compile Include="ITransform2D.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\LabelAxis.cs">
+    <Compile Include="LabelAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\LabelPointPlot.cs">
+    <Compile Include="LabelPointPlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Legend.cs">
+    <Compile Include="Legend.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\LegendBase.cs">
+    <Compile Include="LegendBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\LinearAxis.cs">
+    <Compile Include="LinearAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\LinearGradient.cs">
+    <Compile Include="LinearGradient.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\LinePlot.cs">
+    <Compile Include="LinePlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\LogAxis.cs">
+    <Compile Include="LogAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Marker.cs">
+    <Compile Include="Marker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\MarkerItem.cs">
+    <Compile Include="MarkerItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\NPlotException.cs">
+    <Compile Include="NPlotException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\PageAlignedPhysicalAxis.cs">
+    <Compile Include="PageAlignedPhysicalAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\PhysicalAxis.cs">
+    <Compile Include="PhysicalAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\PiAxis.cs">
+    <Compile Include="PiAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\PlotSurface2D.cs">
+    <Compile Include="PlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\PointD.cs">
+    <Compile Include="PointD.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\PointPlot.cs">
+    <Compile Include="PointPlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\RectangleBrushes.cs">
+    <Compile Include="RectangleBrushes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\RectangleD.cs">
+    <Compile Include="RectangleD.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\SequenceAdapter.cs">
+    <Compile Include="SequenceAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\StartStep.cs">
+    <Compile Include="StartStep.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\StepGradient.cs">
+    <Compile Include="StepGradient.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\StepPlot.cs">
+    <Compile Include="StepPlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\TextItem.cs">
+    <Compile Include="TextItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\TradingDateTimeAxis.cs">
+    <Compile Include="TradingDateTimeAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Transform2D.cs">
+    <Compile Include="Transform2D.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Utils.cs">
+    <Compile Include="Utils.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\VerticalLine.cs">
+    <Compile Include="VerticalLine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Web.Design.PlotSurface2D.cs">
+    <Compile Include="Web.Design.PlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Web.PlotSurface2D.cs">
+    <Compile Include="Web.PlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\Windows.PlotSurface2D.cs">
+    <Compile Include="Windows.PlotSurface2D.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="resources\NPlot-icon.ico">
+    <EmbeddedResource Include="..\..\resources\NPlot-icon.ico">
       <LogicalName>NPlot.icon.ico</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\Windows.PlotSurface2D.resx">
+    <EmbeddedResource Include="..\..\resources\Windows.PlotSurface2D.resx">
       <LogicalName>Windows.PlotSurface2D.resources</LogicalName>
-      <DependentUpon>..\src\Windows.PlotSurface2D.cs</DependentUpon>
+      <DependentUpon>..\src\NPlot\Windows.PlotSurface2D.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="changelog.txt" />
-    <Content Include="doc\house_rules.txt" />
-    <Content Include="license.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -276,6 +277,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NPlot-key.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" Condition="'$(SharpDevelopBinPath)'==''" />
   <Import Project="$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets" Condition="'$(SharpDevelopBinPath)'=='' AND '$(TargetFrameworkVersion)'=='v1.1' and Exists('$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets')" />
