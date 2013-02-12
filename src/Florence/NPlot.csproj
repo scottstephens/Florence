@@ -243,7 +243,7 @@
     <Compile Include="VerticalLine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="..\..\resources\NPlot-icon.ico">
+    <EmbeddedResource Include="..\..\resources\Florence-icon.ico">
       <LogicalName>NPlot.icon.ico</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
