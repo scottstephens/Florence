@@ -57,7 +57,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\..\bin\$(Configuration)\</OutputPath>
     <DefineConstants>TRACE;RELEASE</DefineConstants>
-    <DocumentationFile>NPlot.xml</DocumentationFile>
+    <DocumentationFile>Florence.xml</DocumentationFile>
     <DebugSymbols>false</DebugSymbols>
     <Optimize>true</Optimize>
   </PropertyGroup>
