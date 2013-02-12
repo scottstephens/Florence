@@ -153,11 +153,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Florence.WinForms\NPlot.WinForms.csproj">
+    <ProjectReference Include="..\..\src\Florence.WinForms\Florence.WinForms.csproj">
       <Project>{7173A744-7A13-439B-AE13-A1CCCF4C8197}</Project>
       <Name>NPlot.WinForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Florence\NPlot.csproj">
+    <ProjectReference Include="..\..\src\Florence\Florence.csproj">
       <Project>{E6867FF5-74EC-4464-8958-D71CB46232F3}</Project>
       <Name>NPlot</Name>
     </ProjectReference>

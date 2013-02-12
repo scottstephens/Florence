@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPlot", "src\Florence\NPlot.csproj", "{E6867FF5-74EC-4464-8958-D71CB46232F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Florence", "src\Florence\Florence.csproj", "{E6867FF5-74EC-4464-8958-D71CB46232F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPlot.WinForms", "src\Florence.WinForms\NPlot.WinForms.csproj", "{7173A744-7A13-439B-AE13-A1CCCF4C8197}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Florence.WinForms", "src\Florence.WinForms\Florence.WinForms.csproj", "{7173A744-7A13-439B-AE13-A1CCCF4C8197}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPlot.Web", "src\Florence.Web\NPlot.Web.csproj", "{516937CF-6815-4979-930C-14D7FCEC40B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Florence.Web", "src\Florence.Web\Florence.Web.csproj", "{516937CF-6815-4979-930C-14D7FCEC40B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -84,7 +84,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Florence\NPlot.csproj">
+    <ProjectReference Include="..\Florence\Florence.csproj">
       <Project>{E6867FF5-74EC-4464-8958-D71CB46232F3}</Project>
       <Name>NPlot</Name>
     </ProjectReference>
