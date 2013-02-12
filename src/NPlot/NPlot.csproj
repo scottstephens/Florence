@@ -30,7 +30,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -74,17 +74,8 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
-    <Reference Include="System.Design">
-      <Name>System.Design</Name>
-    </Reference>
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
-    </Reference>
-    <Reference Include="System.Web">
-      <Name>System.Web</Name>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <Name>System.Windows.Forms</Name>
     </Reference>
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
@@ -152,9 +143,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ISequencePlot.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ISurface.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ITransform2D.cs">
@@ -244,21 +232,8 @@
     <Compile Include="VerticalLine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Web.Design.PlotSurface2D.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Web.PlotSurface2D.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Windows.PlotSurface2D.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <EmbeddedResource Include="..\..\resources\NPlot-icon.ico">
       <LogicalName>NPlot.icon.ico</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\resources\Windows.PlotSurface2D.resx">
-      <LogicalName>Windows.PlotSurface2D.resources</LogicalName>
-      <DependentUpon>..\src\NPlot\Windows.PlotSurface2D.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -279,7 +254,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="NPlot-key.snk" />
+    <None Include="..\..\NPlot-key.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" Condition="'$(SharpDevelopBinPath)'==''" />
   <Import Project="$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets" Condition="'$(SharpDevelopBinPath)'=='' AND '$(TargetFrameworkVersion)'=='v1.1' and Exists('$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets')" />
