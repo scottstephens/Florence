@@ -60,16 +60,27 @@
     <Compile Include="Interactions\RubberBandSelection.cs" />
     <Compile Include="Interactions\VerticalDrag.cs" />
     <Compile Include="Interactions\VerticalGuideline.cs" />
+    <Compile Include="InteractiveHost.cs" />
+    <Compile Include="InteractivePlotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InteractivePlotForm.designer.cs">
+      <DependentUpon>InteractivePlotForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ISurface.cs" />
     <Compile Include="IWinFormsInteraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinFormsInteraction.cs" />
+    <Compile Include="WinFormsPlotContext.cs" />
     <Compile Include="WinFormsPlotSurface2D.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="..\..\resources\WinFormsPlotSurface2D.resx">
       <LogicalName>Windows.PlotSurface2D.resources</LogicalName>
       <DependentUpon>..\src\NPlot.WinForms\WinFormsPlotSurface2D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InteractivePlotForm.resx">
+      <DependentUpon>InteractivePlotForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

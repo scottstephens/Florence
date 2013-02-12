@@ -200,6 +200,7 @@
     <Compile Include="PiAxis.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PlotContext.cs" />
     <Compile Include="PlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>
