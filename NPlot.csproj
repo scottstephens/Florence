@@ -1,0 +1,249 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E6867FF5-74EC-4464-8958-D71CB46232F3}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>NPlot</AssemblyName>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NPlot</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <TargetFrameworkVersion>v1.1</TargetFrameworkVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <ErrorReport>prompt</ErrorReport>
+    <BaseFX1_1OutputPath>bin\net\1.1\</BaseFX1_1OutputPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\net\2.0\debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CHECK_ERRORS</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\net\2.0\release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <DocumentationFile>NPlot.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\AdapterUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\ArrowItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\AxesConstraint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Axis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\BarPlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\BasePlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\BaseSequencePlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Bitmap.PlotSurface2D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\CandlePlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\DateTimeAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\FilledRegion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Grid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\HistogramPlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\HorizontalLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\IDrawable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\IGradient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\ImagePlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\IPlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\IPlotSurface2D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\ISequencePlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\ISurface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\ITransform2D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\LabelAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\LabelPointPlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Legend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\LegendBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\LinearAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\LinearGradient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\LinePlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\LogAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Marker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\MarkerItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\NPlotException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\PageAlignedPhysicalAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\PhysicalAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\PiAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\PlotSurface2D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\PointD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\PointPlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\RectangleBrushes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\RectangleD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\SequenceAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\StartStep.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\StepGradient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\StepPlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\TextItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\TradingDateTimeAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Transform2D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Utils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\VerticalLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Web.Design.PlotSurface2D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Web.PlotSurface2D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\Windows.PlotSurface2D.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="resources\NPlot-icon.ico">
+      <LogicalName>NPlot.icon.ico</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\Windows.PlotSurface2D.resx">
+      <LogicalName>Windows.PlotSurface2D.resources</LogicalName>
+      <DependentUpon>..\src\Windows.PlotSurface2D.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="changelog.txt" />
+    <Content Include="doc\house_rules.txt" />
+    <Content Include="license.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" Condition="'$(SharpDevelopBinPath)'==''" />
+  <Import Project="$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets" Condition="'$(SharpDevelopBinPath)'=='' AND '$(TargetFrameworkVersion)'=='v1.1' and Exists('$(MSBuildExtensionsPath)\MSBee\MSBuildExtras.FX1_1.CSharp.targets')" />
+  <Import Project="$(SharpDevelopBinPath)\SharpDevelop.Build.CSharp.targets" Condition="'$(SharpDevelopBinPath)'!=''" />
+</Project>
