@@ -546,7 +546,7 @@ namespace Florence
 			// then the derived type didn't override this method as it should have.
 			if (this.GetType() != typeof(Axis))
 			{
-				throw new NPlotException( "Clone not defined in derived type." );
+				throw new FlorenceException( "Clone not defined in derived type." );
 			}
 			
 			Axis a = new Axis();
@@ -689,7 +689,7 @@ namespace Florence
 		{
 			if (double.IsNaN(WorldMin) || double.IsNaN(WorldMax))
 			{
-				throw new NPlotException( "world min / max not set" );
+				throw new FlorenceException( "world min / max not set" );
 			}
 
 			if (coord > this.WorldMax || coord < this.WorldMin)

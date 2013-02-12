@@ -134,7 +134,7 @@ namespace Florence
             }
             else
             {
-                throw new NPlotException("One of bounds was set to null");
+                throw new FlorenceException("One of bounds was set to null");
             }
         }
 

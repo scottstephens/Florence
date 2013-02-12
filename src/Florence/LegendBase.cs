@@ -158,7 +158,7 @@ namespace Florence
 			}
 			else
 			{
-				throw new NPlotException( "logic error in legend base" );
+				throw new FlorenceException( "logic error in legend base" );
 			}
 
 			// determine height of legend in items count units.

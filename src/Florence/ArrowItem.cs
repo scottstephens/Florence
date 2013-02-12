@@ -339,7 +339,7 @@ namespace Florence
 					break;
 
 				default:
-					throw new NPlotException( "Programmer error." );
+					throw new FlorenceException( "Programmer error." );
 
 			}
 

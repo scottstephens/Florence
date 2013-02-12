@@ -54,7 +54,7 @@ namespace Florence
 			// ensure that this isn't being called on a derived type. If it is, then oh no!
 			if (this.GetType() != a.GetType())
 			{
-				throw new NPlotException( "Clone not defined in derived type. Help!" );
+				throw new FlorenceException( "Clone not defined in derived type. Help!" );
 			}
 			this.DoClone( this, a );
 			return a;
@@ -278,7 +278,7 @@ namespace Florence
 
 			if ( double.IsNaN(WorldMin) || double.IsNaN(WorldMax) )
 			{
-				throw new NPlotException( "world extent of axis not set." );
+				throw new FlorenceException( "world extent of axis not set." );
 			}
 			
 			double adjustedMax = this.AdjustedWorldValue( WorldMax );
@@ -322,7 +322,7 @@ namespace Florence
 			largeTickPositions = new ArrayList();
 
 			if (tickDist < 0.0) // some sanity checking. TODO: remove this.
-				throw new NPlotException( "Tick dist is negative" );
+				throw new FlorenceException( "Tick dist is negative" );
 
 			double position = first;
 			int safetyCount = 0;
@@ -375,7 +375,7 @@ namespace Florence
 
 			if ( double.IsNaN(WorldMin) || double.IsNaN(WorldMax) )
 			{
-				throw new NPlotException( "world extent of axis not set." );
+				throw new FlorenceException( "world extent of axis not set." );
 			}
 
 			// if the large tick has been explicitly set, then return this.
@@ -383,7 +383,7 @@ namespace Florence
 			{
 				if ( largeTickStep_ <= 0.0f )
 				{
-					throw new NPlotException( 
+					throw new FlorenceException( 
 						"can't have negative or zero tick step - reverse WorldMin WorldMax instead."
 					);
 				}
@@ -478,7 +478,7 @@ namespace Florence
 
 			if (this.SmallTickCounts.Length != this.Mantissas.Length)
 			{
-				throw new NPlotException( "Mantissa.Length != SmallTickCounts.Length" );
+				throw new FlorenceException( "Mantissa.Length != SmallTickCounts.Length" );
 			}
 
 			if (bigTickDist > 0.0f)

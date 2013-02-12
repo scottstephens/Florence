@@ -125,7 +125,7 @@ namespace Florence
 				return System.Convert.ToDouble(o);
 			}
 
-			throw new NPlotException( "Invalid datatype" );
+			throw new FlorenceException( "Invalid datatype" );
 		}
 
 

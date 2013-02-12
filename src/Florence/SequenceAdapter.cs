@@ -226,7 +226,7 @@ namespace Florence
 				// unknown.
 			}
 
-			throw new NPlotException( "Do not know how to interpret data provided to chart." );
+			throw new FlorenceException( "Do not know how to interpret data provided to chart." );
 		}
 
 

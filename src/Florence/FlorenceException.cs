@@ -37,7 +37,7 @@ namespace Florence
 	/// <summary>
 	/// All exceptions thrown by NPlot are of this type.
 	/// </summary>
-	public class NPlotException : System.Exception
+	public class FlorenceException : System.Exception
 	{
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Florence
 		/// </summary>
 		/// <param name="message">The error message that explains the reason for the exception.</param>
 		/// <param name="innerException">The exception that is the cause of the current exception.</param>
-		public NPlotException( string message, System.Exception innerException )
+		public FlorenceException( string message, System.Exception innerException )
 			: base( message, innerException )
 		{
 		}
@@ -54,7 +54,7 @@ namespace Florence
 		/// Constructor
 		/// </summary>
 		/// <param name="message">The error message that explains the reason for the exception.</param>
-		public NPlotException( string message )
+		public FlorenceException( string message )
 			: base( message )
 		{
 		}
@@ -62,7 +62,7 @@ namespace Florence
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public NPlotException()
+		public FlorenceException()
 		{
 		}
 	}

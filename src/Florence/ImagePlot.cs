@@ -123,7 +123,7 @@ namespace Florence
 #if CHECK_ERRORS
 			if (data == null || data.GetLength(0) == 0 || data.GetLength(1) == 0)
 			{
-				throw new NPlotException( "ERROR: ImagePlot.ImagePlot: Data null, or zero length" );
+				throw new FlorenceException( "ERROR: ImagePlot.ImagePlot: Data null, or zero length" );
 			}
 #endif
 

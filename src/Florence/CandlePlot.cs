@@ -254,7 +254,7 @@ namespace Florence
 					}
 					else
 					{
-						throw new NPlotException ( "not implemented yet" );
+						throw new FlorenceException ( "not implemented yet" );
 					}
 				}
 
@@ -317,7 +317,7 @@ namespace Florence
                     }
                     else
                     {
-                        throw new NPlotException("not implemented yet");
+                        throw new FlorenceException("not implemented yet");
                     }
                 }
 			}
@@ -352,20 +352,20 @@ namespace Florence
                         int size = ((IList)openData_).Count;
                         if (size != ((IList)closeData_).Count)
                         {
-                            throw new NPlotException("open and close arrays are not of same length");
+                            throw new FlorenceException("open and close arrays are not of same length");
                         }
                         if (size != ((IList)lowData_).Count)
                         {
-                            throw new NPlotException("open and low arrays are not of same length");
+                            throw new FlorenceException("open and low arrays are not of same length");
                         }
                         if (size != ((IList)highData_).Count)
                         {
-                            throw new NPlotException("open and high arrays are not of same length");
+                            throw new FlorenceException("open and high arrays are not of same length");
                         }
                         return size;
                     }
 
-                    throw new NPlotException( "data not in correct format" );
+                    throw new FlorenceException( "data not in correct format" );
 				}
 			}
 
@@ -817,7 +817,7 @@ namespace Florence
 			{
 				if (value < 1)
 				{
-					throw new NPlotException( "Stick width must be greater than 0." );
+					throw new FlorenceException( "Stick width must be greater than 0." );
 				}
 				stickWidth_ = value;
 			}

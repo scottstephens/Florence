@@ -56,7 +56,7 @@ namespace Florence
 			// ensure that this isn't being called on a derived type. If it is, then oh no!
 			if (this.GetType() != a.GetType())
 			{
-				throw new NPlotException( "Error. Clone method is not defined in derived type." );
+				throw new FlorenceException( "Error. Clone method is not defined in derived type." );
 			}
 			DoClone( this, a );
 			return a;

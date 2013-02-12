@@ -52,7 +52,7 @@ namespace Florence
 			LogAxis a = new LogAxis();
 			if (this.GetType() != a.GetType())
 			{
-				throw new NPlotException("Clone not defined in derived type. Help!");
+				throw new FlorenceException("Clone not defined in derived type. Help!");
 			}
 			this.DoClone( this, a );
 			return a;
@@ -198,7 +198,7 @@ namespace Florence
 
 			if (smallTickPositions != null)
 			{
-				throw new NPlotException( "not expecting smallTickPositions to be set already." );
+				throw new FlorenceException( "not expecting smallTickPositions to be set already." );
 			}
 
 			smallTickPositions = new ArrayList();
@@ -339,7 +339,7 @@ namespace Florence
 
 			if ( double.IsNaN(WorldMin) || double.IsNaN(WorldMax) )
 			{
-				throw new NPlotException( "world extent of axis not set." );
+				throw new FlorenceException( "world extent of axis not set." );
 			}
 
 			double roundTickDist = this.DetermineTickSpacing( );
@@ -403,7 +403,7 @@ namespace Florence
 		{
 			if ( double.IsNaN(WorldMin) || double.IsNaN(WorldMax) )
 			{
-				throw new NPlotException( "world extent of axis is not set." );
+				throw new FlorenceException( "world extent of axis is not set." );
 			}
 
 			// if largeTickStep has been set, it is used
@@ -411,7 +411,7 @@ namespace Florence
 			{
 				if ( this.largeTickStep_ <= 0.0f )
 				{
-					throw new NPlotException( "can't have negative tick step - reverse WorldMin WorldMax instead." );
+					throw new FlorenceException( "can't have negative tick step - reverse WorldMin WorldMax instead." );
 				}
 
 				return this.largeTickStep_;
@@ -469,7 +469,7 @@ namespace Florence
 			}
 			else
 			{
-				throw new NPlotException("Wrong Major tick distance setting");
+				throw new FlorenceException("Wrong Major tick distance setting");
 			}
 		}
 
@@ -553,7 +553,7 @@ namespace Florence
 
 			if (coord < 0.0f)
 			{
-				throw new NPlotException( "Cannot have negative values for data using Log Axis" );
+				throw new FlorenceException( "Cannot have negative values for data using Log Axis" );
 			}
 
 			// inside range or don't want to clip.
@@ -613,7 +613,7 @@ namespace Florence
 				}
 				else
 				{
-					throw new NPlotException("Cannot have negative values in Log Axis");
+					throw new FlorenceException("Cannot have negative values in Log Axis");
 				}
 			}
 		}
@@ -636,7 +636,7 @@ namespace Florence
 				}
 				else
 				{
-					throw new NPlotException("Cannot have negative values in Log Axis");
+					throw new FlorenceException("Cannot have negative values in Log Axis");
 				}
 			}
 		}

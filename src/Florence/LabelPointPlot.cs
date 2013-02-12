@@ -76,7 +76,7 @@ namespace Florence
 					{
 						if (dataSource_ == null)
 						{
-							throw new NPlotException( "Error: DataSource null" );
+							throw new FlorenceException( "Error: DataSource null" );
 						}
 
 						System.Data.DataRowCollection rows;
@@ -100,7 +100,7 @@ namespace Florence
 						}
 						else
 						{
-							throw new NPlotException ( "not implemented yet" );
+							throw new FlorenceException ( "not implemented yet" );
 						}
 
 						return (string)((System.Data.DataRow)(rows[i]))[(string)data_];
@@ -113,7 +113,7 @@ namespace Florence
                         {
                             return (string)dataPoint;
                         }
-						throw new NPlotException( "TextDataAdapter: data not in recognised format" );
+						throw new FlorenceException( "TextDataAdapter: data not in recognised format" );
 					}
 					
 					if (data_ == null)
@@ -121,7 +121,7 @@ namespace Florence
 						return "text";
 					}
 
-					throw new NPlotException( "Text data not of recognised type" );
+					throw new FlorenceException( "Text data not of recognised type" );
 				}
 			}
 
@@ -143,7 +143,7 @@ namespace Florence
 					{
 						return ((System.Collections.ArrayList)data_).Count;
 					}
-					throw new NPlotException( "Text data not in correct format" );
+					throw new FlorenceException( "Text data not in correct format" );
 				}
 			}
 		}
@@ -294,7 +294,7 @@ namespace Florence
 				}
 				catch
 				{
-					throw new NPlotException("Error in TextPlot.Draw");
+					throw new FlorenceException("Error in TextPlot.Draw");
 				}
 			}
 		}

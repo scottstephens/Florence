@@ -232,7 +232,7 @@ namespace Florence
 				}
 				else
 				{
-					throw new NPlotException( "Base width must be between 0.0 and 1.0" );
+					throw new FlorenceException( "Base width must be between 0.0 and 1.0" );
 				}
 			}
 		}
@@ -412,17 +412,17 @@ namespace Florence
 					isStacked_ = true;
 					if ( hpData.Count != data.Count )
 					{
-						throw new NPlotException("Can stack HistogramPlot data only with the same number of datapoints.");
+						throw new FlorenceException("Can stack HistogramPlot data only with the same number of datapoints.");
 					}
 					for ( int i=0; i < data.Count; ++i )
 					{
 						if ( data[i].X != hpData[i].X )
 						{
-							throw new NPlotException("Can stack HistogramPlot data only with the same X coordinates.");
+							throw new FlorenceException("Can stack HistogramPlot data only with the same X coordinates.");
 						}
 						if ( hpData[i].Y < 0.0f)
 						{
-							throw new NPlotException("Can stack HistogramPlot data only with positive Y coordinates.");
+							throw new FlorenceException("Can stack HistogramPlot data only with positive Y coordinates.");
 						}
 					}
 				}

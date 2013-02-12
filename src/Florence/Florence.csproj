@@ -188,7 +188,7 @@
     <Compile Include="MarkerItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NPlotException.cs">
+    <Compile Include="FlorenceException.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PageAlignedPhysicalAxis.cs">

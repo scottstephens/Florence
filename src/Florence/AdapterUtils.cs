@@ -592,7 +592,7 @@ namespace Florence
 			/// <returns>ith data value.</returns>
             public double Get(int i)
             {
-                throw new NPlotException( "No Data!" );
+                throw new FlorenceException( "No Data!" );
             }
         }
 
@@ -725,7 +725,7 @@ namespace Florence
 				abscissaColumnNumber_ = rows_[0].Table.Columns.IndexOf( omitThisColumn );
                 if (abscissaColumnNumber_ < 0)
                 {
-                    throw new NPlotException("invalid column name");
+                    throw new FlorenceException("invalid column name");
                 }
 			}
 

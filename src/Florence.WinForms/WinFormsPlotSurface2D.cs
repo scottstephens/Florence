@@ -183,17 +183,17 @@ namespace Florence.WinForms
 
 			if ( g == null ) 
 			{
-				throw (new NPlotException("null graphics context!"));
+				throw (new FlorenceException("null graphics context!"));
 			}
 			
 			if ( ps_ == null )
 			{
-				throw (new NPlotException("null NPlot.PlotSurface2D"));
+				throw (new FlorenceException("null NPlot.PlotSurface2D"));
 			}
 			
 			if ( border == Rectangle.Empty )
 			{
-				throw (new NPlotException("null border context"));
+				throw (new FlorenceException("null border context"));
 			}
 
 			this.Draw( g, border );

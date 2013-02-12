@@ -470,7 +470,7 @@ namespace Florence
             }
             catch (System.ArgumentException)
             {
-                throw new NPlotException("Error: Arial font is not installed on this system");
+                throw new FlorenceException("Error: Arial font is not installed on this system");
             }
 
 			padding_ = 10;
@@ -594,7 +594,7 @@ namespace Florence
 		{
             if (drawables_.Count != xAxisPositions_.Count || drawables_.Count != yAxisPositions_.Count)
             {
-                throw new NPlotException("plots and axis position arrays our of sync");
+                throw new FlorenceException("plots and axis position arrays our of sync");
             }
 
             int position = 0;
@@ -771,7 +771,7 @@ namespace Florence
 			{
 				if (this.xAxis2_ == null)
 				{
-					throw new NPlotException( "Error: No X-Axis specified" );
+					throw new FlorenceException( "Error: No X-Axis specified" );
 				}
 				xAxis1 = (Axis)this.xAxis2_.Clone();
 				xAxis1.HideTickText = true;
@@ -790,7 +790,7 @@ namespace Florence
 			{
 				if (this.yAxis2_ == null)
 				{
-					throw new NPlotException( "Error: No Y-Axis specified" );
+					throw new FlorenceException( "Error: No Y-Axis specified" );
 				}
 				yAxis1 = (Axis)this.yAxis2_.Clone();
 				yAxis1.HideTickText = true;

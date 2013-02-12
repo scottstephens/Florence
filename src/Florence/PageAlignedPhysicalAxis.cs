@@ -74,7 +74,7 @@ namespace Florence
 			}
 			else
 			{
-				throw new NPlotException( "Physical axis is not page aligned" );
+				throw new FlorenceException( "Physical axis is not page aligned" );
 			}
 
 			pLength_ = pMax_ - pMin_;
