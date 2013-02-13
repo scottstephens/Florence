@@ -50,10 +50,10 @@ namespace Florence.WinForms
 	/// Unfortunately it's not possible to derive from both Control and Florence.PlotSurface2D.
 	/// </remarks>
 	[ ToolboxBitmapAttribute(typeof(Florence.WinForms.WinFormsPlotSurface2D),"PlotSurface2D.ico") ]
-	public class WinFormsPlotSurface2D : System.Windows.Forms.Control, IInteractivePlotSurface2D, ISurface
+	public partial class WinFormsPlotSurface2D : System.Windows.Forms.UserControl, IInteractivePlotSurface2D, ISurface
 	{
 
-        private System.Windows.Forms.ToolTip coordinates_;
+        
 
 		private System.Collections.ArrayList selectedObjects_;
         private Florence.PlotSurface2D ps_;
@@ -85,7 +85,6 @@ namespace Florence.WinForms
 			}
 		}
 
-
 		/// <summary>
 		/// Default constructor.
 		/// </summary>
@@ -94,34 +93,16 @@ namespace Florence.WinForms
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-            // double buffer, and update when resize.
-			base.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-			base.SetStyle(ControlStyles.DoubleBuffer, true);
-			base.SetStyle(ControlStyles.UserPaint, true);
-			base.ResizeRedraw = true;
+            // double buffer, and update when resize.            
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.ResizeRedraw = true;
 
 			ps_ = new Florence.PlotSurface2D();
-                        
-            this.PreRefresh += new PreRefreshHandler( OnPreRefresh );
+            this.PreRefresh += new PreRefreshHandler(OnPreRefresh);
 		}
 
-        public event Action<object, IInteraction> InteractionOccurred;
-
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
-		/// the contents of this method with the code editor.
-		/// </summary>
-		/// <remarks>Modified! :-)</remarks>
-		private void InitializeComponent()
-		{
-			this.components = new System.ComponentModel.Container();
-			this.coordinates_ = new System.Windows.Forms.ToolTip(this.components);
-			// 
-			// PlotSurface2D
-			// 
-			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.Size = new System.Drawing.Size(328, 272);
-		}
+        public event Action<object, IInteraction> InteractionOccurred;		
 
 
         /// <summary>
@@ -1648,19 +1629,8 @@ namespace Florence.WinForms
 		}
 		#endregion
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if( components != null )
-					components.Dispose();
-			}
-			base.Dispose( disposing );
-		}
 
-		private System.ComponentModel.IContainer components;
+
+		
 	}
 }

@@ -73,14 +73,16 @@
     <Compile Include="WinFormsInteraction.cs" />
     <Compile Include="WinFormsPlotContext.cs" />
     <Compile Include="WinFormsPlotSurface2D.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
-    <EmbeddedResource Include="..\..\resources\WinFormsPlotSurface2D.resx">
-      <LogicalName>Windows.PlotSurface2D.resources</LogicalName>
-      <DependentUpon>..\src\Florence.WinForms\WinFormsPlotSurface2D.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="WinFormsPlotSurface2D.designer.cs">
+      <DependentUpon>WinFormsPlotSurface2D.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="InteractivePlotForm.resx">
       <DependentUpon>InteractivePlotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormsPlotSurface2D.resx">
+      <DependentUpon>WinFormsPlotSurface2D.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
