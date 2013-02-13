@@ -1,7 +1,7 @@
 /*
  * Florence - A charting library for .NET
  * 
- * Windows.PlotSurface2d.cs
+ * WinFormsPlotSurface2d.cs
  * Copyright (C) 2003-2006 Matt Howlett and others.
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.

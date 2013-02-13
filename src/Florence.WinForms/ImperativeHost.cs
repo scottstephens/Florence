@@ -1,8 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * InteractiveHost.cs
- * Copyright (C) 2003-2006 Matt Howlett and others.
+ * ImperativeHost.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 

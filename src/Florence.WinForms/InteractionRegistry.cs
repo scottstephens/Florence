@@ -2,7 +2,6 @@
  * Florence - A charting library for .NET
  * 
  * InteractionRegistry.cs
- * Copyright (C) 2003-2006 Matt Howlett and others.
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
