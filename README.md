@@ -10,7 +10,7 @@ Florence is a plotting library for .NET/Mono.  While still in its early stages o
 
 ## Origins
 Florence began as a fork of the NPlot library (http://sourceforge.net/projects/nplot/) and owes a good deal of its functionality to that project and its contributors.  Major contributors to NPlot include:
-Matt Howlett
+* Matt Howlett
 
 ## The Name
 Florence is named in honor of Florence Nightingale, an early prolific user of graphs for practical purposes.
