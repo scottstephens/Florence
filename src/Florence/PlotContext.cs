@@ -43,28 +43,38 @@ namespace Florence
         protected enum PlotState { Ready, Hidden, Closed }
 
         public IPlotSurface2D PlotSurface { get; private set; }
-        
+        public IInteractivePlotSurface2D InteractivePlotSurface { get; private set; }
+
         protected PlotState State { get; set; }
 
         public PlotContext(IPlotSurface2D plot_surface)
         {
             this.PlotSurface = plot_surface;
+            this.InteractivePlotSurface = plot_surface as IInteractivePlotSurface2D;            
             this.State = PlotState.Ready;
         }
 
-        public void scatter(IEnumerable<double> x, IEnumerable<double> y, string x_label="X", string y_label="Y", string title="")
+        public void points(IEnumerable<double> x, IEnumerable<double> y, string x_label="X", string y_label="Y", string title="")
         {
-            this.invokeOnGuiThread(() => scatter_impl(x, y, x_label, y_label, title));
+            this.invokeOnGuiThread(() => points_impl(x, y, x_label, y_label, title));
         }
 
-        protected void scatter_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
+        protected void points_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
         {
             PointPlot pp = new PointPlot();
             pp.OrdinateData = y;
             pp.AbscissaData = x;
             pp.Marker = new Marker(Marker.MarkerType.FilledCircle, 4, new Pen(Color.Blue));
             this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
-            
+            this.PlotSurface.XAxis1.Label = x_label;
+            this.PlotSurface.YAxis1.Label = y_label;
+            this.PlotSurface.Title = title;
+            if (this.InteractivePlotSurface != null)
+            {
+                this.InteractivePlotSurface.AddInteraction(new Interactions.AxisDrag(false));
+                this.InteractivePlotSurface.AddInteraction(new Interactions.HorizontalDrag());
+                this.InteractivePlotSurface.AddInteraction(new Interactions.VerticalDrag());
+            }
             this.refresh();
         }
 
