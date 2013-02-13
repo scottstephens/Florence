@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * WinFormsPlotContext.cs
+ * InteractivePlotForm.cs
  * Copyright (C) 2003-2006 Matt Howlett and others.
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
@@ -32,45 +32,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using Florence;
+using System.Windows.Forms;
 
 namespace Florence.WinForms
 {
-    public class WinFormsPlotContext : PlotContext
+    public partial class ImperativeFigureForm : Form
     {
-        public InteractivePlotForm HostForm { get; private set; }
+        public  Florence.WinForms.WinFormsPlotSurface2D PlotSurface { get { return plotSurface; } }
 
-        public WinFormsPlotContext(InteractivePlotForm host_form)
-            : base(host_form.PlotSurface)
+        public ImperativeFigureForm()
         {
-            this.HostForm = host_form;
-        }
-
-        public override void hide()
-        {
-            this.HostForm.Hide();
-            this.clear();
-        }
-                
-        public override void close()
-        {
-            this.HostForm.Close();
-
-        }
-
-        public override void refresh()
-        {
-            this.HostForm.PlotSurface.Refresh();
-        }
-
-        public override void invokeOnGuiThread(Action action)
-        {
-            if (this.HostForm.InvokeRequired)
-                this.HostForm.Invoke(action);
-            else
-                action();
+            InitializeComponent();
         }
     }
 }

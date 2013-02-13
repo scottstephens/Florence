@@ -146,6 +146,7 @@
     <Compile Include="Interactions\RubberBandSelection.cs" />
     <Compile Include="Interactions\VerticalDrag.cs" />
     <Compile Include="Interactions\VerticalGuideline.cs" />
+    <Compile Include="ImperativeHost.cs" />
     <Compile Include="IPlot.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -200,7 +201,7 @@
     <Compile Include="PiAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PlotContext.cs" />
+    <Compile Include="ImperativeFigure.cs" />
     <Compile Include="PlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -38,28 +38,63 @@ using System.Drawing;
 
 namespace Florence
 {
-    public class PlotContext
+    public enum FigureState { Ready, Hidden, Closed };
+
+    public interface ImperativeFigure : ImperativePlottable
+    {        
+        IPlotSurface2D PlotSurface { get; }
+        IInteractivePlotSurface2D InteractivePlotSurface { get; }        
+        void hide();
+        void show();
+        void close();
+        void refresh();
+        event Action<ImperativeFigure, FigureState> StateChange;
+    }
+
+    public abstract class BaseImperativeFigure<T> : ImperativeFigure where T : IPlotSurface2D
     {
-        protected enum PlotState { Ready, Hidden, Closed }
+        
 
-        public IPlotSurface2D PlotSurface { get; private set; }
-        public IInteractivePlotSurface2D InteractivePlotSurface { get; private set; }
+        public IPlotSurface2D PlotSurface { get { return this.PlotSurfaceTyped; } }
+        public IInteractivePlotSurface2D InteractivePlotSurface { get { return this.PlotSurfaceTyped as IInteractivePlotSurface2D; } }
 
-        protected PlotState State { get; set; }
+        protected T PlotSurfaceTyped { get; set; }
+        protected FigureState State { get; set; }
 
-        public PlotContext(IPlotSurface2D plot_surface)
+        public BaseImperativeFigure(T plot_surface)
         {
-            this.PlotSurface = plot_surface;
-            this.InteractivePlotSurface = plot_surface as IInteractivePlotSurface2D;            
-            this.State = PlotState.Ready;
+            this.PlotSurfaceTyped = plot_surface;
+            this.StateChange += new Action<ImperativeFigure, FigureState>(BaseImperativeFigure_StateChanged);
+
+        }
+
+        void BaseImperativeFigure_StateChanged(ImperativeFigure arg1, FigureState arg2)
+        {
+            this.State = arg2;
+        }
+
+        private void ensureNotClosed()
+        {
+            if (this.State == FigureState.Closed)
+                throw new FlorenceException("Cannot plot on a closed ImperativeFigure. Create a new one from the ImperativeHost.");
+        }
+
+        // ImperativePlottable Implementations
+        public void clear()
+        {
+            this.PlotSurfaceTyped.Clear();
         }
 
         public void points(IEnumerable<double> x, IEnumerable<double> y, string x_label="X", string y_label="Y", string title="")
         {
+            this.ensureNotClosed();
             this.invokeOnGuiThread(() => points_impl(x, y, x_label, y_label, title));
+            this.show();
         }
 
-        protected void points_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
+
+        // Actual Plotting Implementations
+        protected void points_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title)
         {
             PointPlot pp = new PointPlot();
             pp.OrdinateData = y;
@@ -77,31 +112,13 @@ namespace Florence
             }
             this.refresh();
         }
-
-        public void clear()
-        {
-            this.PlotSurface.Clear();
-        }
-
-        public virtual void hide()
-        {
-
-        }
-
-        public virtual void close()
-        {
-
-        }
-
-        public virtual void refresh()
-        {
-
-        }
-
-        public virtual void invokeOnGuiThread(Action action)
-        {
-            action();
-        }
-
+             
+        // Abstract methods that must be implemented in a GUI Toolkit specific way
+        public abstract void hide();
+        public abstract void show();
+        public abstract void close();
+        public abstract void refresh();
+        public abstract void invokeOnGuiThread(Action action);
+        public abstract event Action<ImperativeFigure, FigureState> StateChange;
     }
 }

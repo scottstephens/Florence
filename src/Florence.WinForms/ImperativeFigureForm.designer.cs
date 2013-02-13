@@ -1,6 +1,6 @@
 ﻿namespace Florence.WinForms
 {
-    partial class InteractivePlotForm
+    partial class ImperativeFigureForm
     {
         /// <summary>
         /// Required designer variable.

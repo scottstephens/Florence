@@ -40,20 +40,31 @@ using System.Windows.Forms;
 namespace Florence.WinForms
 {
 
-    public class InteractiveHost
+    public class ImperativeHost : BaseImperativeHost<WinFormsImperativeFigure>
     {
         public Thread GuiThread { get; private set; }
-        public List<WinFormsPlotContext> Figures { get; private set; }
         protected Control _main_form;
-        private WaitHandle _waiter;
 
-        public InteractiveHost()
+        public ImperativeHost()
         {
             this.GuiThread = null;
-            this.Figures = new List<WinFormsPlotContext>();
         }
 
-        public void Start()
+
+        protected void Run()
+        {
+            _main_form = new Control();
+
+            // This seems to force the control to actually get a handle,
+            // which then makes _main_form.InvokeRequired and _main_form.Invoke()
+            // use the thread running this method as the GUI thread, which is 
+            // the desired behavior in this case.
+            System.IntPtr a = _main_form.Handle;
+
+            Application.Run();
+        }
+
+        public override void Start()
         {
             this.GuiThread = new Thread(Run);
             this.GuiThread.Name = "GuiThread";
@@ -62,7 +73,7 @@ namespace Florence.WinForms
                 Thread.Sleep(20);
         }
 
-        public void Stop()
+        public override void Stop()
         {
             if (_main_form.InvokeRequired)
             {
@@ -74,27 +85,21 @@ namespace Florence.WinForms
             }
             Application.Exit();
             this.GuiThread = null;
-        }
+        }        
 
-        protected void Run()
-        {
-            _main_form = new Control();
-            System.IntPtr a = _main_form.Handle;
-            Application.Run();
-        }
-
-        public PlotContext newFigure()
+        protected override WinFormsImperativeFigure createNewFigure()
         {
             if (_main_form.InvokeRequired)
             {
-                return (PlotContext)_main_form.Invoke(new Func<PlotContext>(this.newFigure));
+                return (WinFormsImperativeFigure)_main_form.Invoke(new Func<ImperativeFigure>(this.createNewFigure));
             }
-            var tmp_form = new InteractivePlotForm();
-            var tmp_context = new WinFormsPlotContext(tmp_form);
-            this.Figures.Add(tmp_context);
+            var tmp_form = new ImperativeFigureForm();
+            var tmp_context = new WinFormsImperativeFigure(tmp_form);            
             tmp_form.Show();
             return tmp_context;
         }
+
+        
 
     }
 }
