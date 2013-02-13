@@ -8,7 +8,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>resources\FlorenceDemo-icon.ico</ApplicationIcon>
-    <AssemblyName>NPlotDemo</AssemblyName>
+    <AssemblyName>FlorenceDemo</AssemblyName>
     <DelaySign>false</DelaySign>
     <OutputType>WinExe</OutputType>
     <RootNamespace>NPlotDemo</RootNamespace>
@@ -86,7 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\NPlotDemo-icon.ico" />
+    <Content Include="resources\FlorenceDemo-icon.ico" />
     <Compile Include="src\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

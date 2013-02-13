@@ -1,5 +1,5 @@
 /*
- * NPlot - A charting library for .NET
+ * Florence - A charting library for .NET
  * 
  * PlotSurface2DDemo.cs
  * Copyright (C) 2003-2006 Matt Howlett and others.
@@ -13,7 +13,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 3. Neither the name of NPlot nor the names of its contributors may
+ * 3. Neither the name of Florence nor the names of its contributors may
  *    be used to endorse or promote products derived from this software without
  *    specific prior written permission.
  * 
@@ -42,7 +42,7 @@ using System.IO;
 using System.Reflection;
 
 
-namespace NPlotDemo
+namespace FlorenceDemo
 {
 
 	/// <summary>
@@ -66,9 +66,9 @@ namespace NPlotDemo
 		/// </summary>
 		private PlotDemoDelegate [] PlotRoutines;
 
-		// Note that a NPlot.Windows.PlotSurface2D class
+		// Note that a Florence.Windows.PlotSurface2D class
 		// is used here. This has exactly the same 
-		// functionality as the NPlot.PlotSurface2D 
+		// functionality as the Florence.PlotSurface2D 
 		// class, except that it is derived from Forms.UserControl
 		// and automatically paints itself in a windows.forms
 		// application. Windows.PlotSurface2D can also paint itself
@@ -536,7 +536,7 @@ namespace NPlotDemo
 			// Image downloaded from http://squidfingers.com. Thanks!
 			Assembly a = Assembly.GetExecutingAssembly();
 			System.IO.Stream file =
-				a.GetManifestResourceStream( "NPlotDemo.resources.pattern01.jpg" );
+				a.GetManifestResourceStream( "FlorenceDemo.resources.pattern01.jpg" );
 			System.Drawing.Image im = Image.FromStream( file );
 			plotSurface.PlotBackImage = new Bitmap( im );
 
@@ -936,7 +936,7 @@ namespace NPlotDemo
 			// obtain stock information from xml file
 			DataSet ds = new DataSet();
 			System.IO.Stream file =
-				Assembly.GetExecutingAssembly().GetManifestResourceStream( "NPlotDemo.resources.asx_jbh.xml" );
+				Assembly.GetExecutingAssembly().GetManifestResourceStream( "FlorenceDemo.resources.asx_jbh.xml" );
 			ds.ReadXml( file, System.Data.XmlReadMode.ReadSchema );
 			DataTable dt = ds.Tables[0];
 			DataView dv = new DataView( dt );
@@ -1159,7 +1159,7 @@ namespace NPlotDemo
 			// obtain stock information from xml file
 			DataSet ds = new DataSet();
 			System.IO.Stream file =
-				Assembly.GetExecutingAssembly().GetManifestResourceStream( "NPlotDemo.resources.asx_jbh.xml" );
+				Assembly.GetExecutingAssembly().GetManifestResourceStream( "FlorenceDemo.resources.asx_jbh.xml" );
 			ds.ReadXml( file, System.Data.XmlReadMode.ReadSchema );
 			DataTable dt = ds.Tables[0];
 
@@ -1263,7 +1263,7 @@ namespace NPlotDemo
 			//((LinearAxis)plotSurface.YAxis1).TicksIndependentOfPhysicalExtent = true;
 
 			AxesConstraint.AxisPosition c1 = 
-				new NPlot.AxesConstraint.AxisPosition( PlotSurface2D.YAxisPosition.Left, 100.0f );
+				new Florence.AxesConstraint.AxisPosition( PlotSurface2D.YAxisPosition.Left, 100.0f );
 
 			AxesConstraint.AspectRatio c2 = 
 				new AxesConstraint.AspectRatio( 5.0f, PlotSurface2D.YAxisPosition.Left );
@@ -1289,7 +1289,7 @@ namespace NPlotDemo
 
             //FileStream fs = new FileStream( @"c:\light.wav", System.IO.FileMode.Open );
             System.IO.Stream file =
-                Assembly.GetExecutingAssembly().GetManifestResourceStream("NPlotDemo.resources.light.wav");
+                Assembly.GetExecutingAssembly().GetManifestResourceStream("FlorenceDemo.resources.light.wav");
 
             
             System.Int16[] w = new short[5000];
@@ -1406,7 +1406,7 @@ namespace NPlotDemo
 		{
 			string[] lines = {
 								 "THE TEST (can your charting library handle this?) - ",
-								 "NPlot demonstrates it can handle real world charting requirements." };
+								 "Florence demonstrates it can handle real world charting requirements." };
 			infoBox.Lines = lines;
 
 			// first of all, generate some mockup data.
@@ -1743,7 +1743,7 @@ namespace NPlotDemo
             this.Controls.Add(this.exampleNumberLabel);
             this.Controls.Add(this.nextPlotButton);
             this.Name = "PlotSurface2DDemo";
-            this.Text = "NPlot C# Demo";
+            this.Text = "Florence C# Demo";
             this.ResumeLayout(false);
 
         }
@@ -1815,7 +1815,7 @@ namespace NPlotDemo
 
 
 		/// <summary>
-		/// Callback for NPlot link label click
+		/// Callback for Florence link label click
 		/// </summary>
 		/// <param name="sender">unused</param>
 		/// <param name="e">unused</param>

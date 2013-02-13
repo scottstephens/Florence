@@ -1,11 +1,11 @@
 /*
-NPlot - A charting library for .NET
+Florence - A charting library for .NET
 
 FinancialDemo.cs
 Copyright (C) 2003 
 Matt Howlett
 
-Redistribution and use of NPlot or parts there-of in source and
+Redistribution and use of Florence or parts there-of in source and
 binary forms, with or without modification, are permitted provided
 that the following conditions are met:
 
@@ -13,7 +13,7 @@ that the following conditions are met:
    source file the above copyright notice, this list of conditions
    and the following disclaimer.
 
-2. Any product ("the product") that makes use NPlot or parts 
+2. Any product ("the product") that makes use Florence or parts 
    there-of must either:
   
     (a) allow any user of the product to obtain a complete machine-
@@ -61,7 +61,7 @@ using System.Reflection;
 using Florence;
 
 
-namespace NPlotDemo
+namespace FlorenceDemo
 {
 	/// <summary>
 	/// Summary description for BasicDemo.
@@ -112,7 +112,7 @@ namespace NPlotDemo
             // obtain stock information from xml file
             DataSet ds = new DataSet();
             System.IO.Stream file =
-                Assembly.GetExecutingAssembly().GetManifestResourceStream("NPlotDemo.resources.asx_jbh.xml");
+                Assembly.GetExecutingAssembly().GetManifestResourceStream("FlorenceDemo.resources.asx_jbh.xml");
             ds.ReadXml(file, System.Data.XmlReadMode.ReadSchema);
             DataTable dt = ds.Tables[0];
             DataView dv = new DataView(dt);
