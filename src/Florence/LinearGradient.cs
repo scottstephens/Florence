@@ -1,8 +1,9 @@
 /*
- * NPlot - A charting library for .NET
+ * Florence - A charting library for .NET
  * 
  * LinearGradient.cs
  * Copyright (C) 2003-2006 Matt Howlett and others.
+ * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification,
@@ -13,7 +14,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 3. Neither the name of NPlot nor the names of its contributors may
+ * 3. Neither the name of Florence nor the names of its contributors may
  *    be used to endorse or promote products derived from this software without
  *    specific prior written permission.
  * 

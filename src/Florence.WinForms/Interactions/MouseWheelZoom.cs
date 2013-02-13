@@ -37,7 +37,7 @@ namespace Florence.WinForms.Interactions
         /// <param name="ctr"></param>
         public override bool DoMouseDown(MouseEventArgs e, Control ctr)
         {
-            //NPlot.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
+            //Florence.PlotSurface2D ps = ((Windows.PlotSurface2D)ctr).Inner;
 
             //if (e.X > ps.PlotAreaBoundingBoxCache.Left && e.X < ps.PlotAreaBoundingBoxCache.Right &&
             //    e.Y > ps.PlotAreaBoundingBoxCache.Top && e.Y < ps.PlotAreaBoundingBoxCache.Bottom)

@@ -1,8 +1,9 @@
 /*
- * NPlot - A charting library for .NET
+ * Florence - A charting library for .NET
  * 
  * Windows.PlotSurface2d.cs
  * Copyright (C) 2003-2006 Matt Howlett and others.
+ * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification,
@@ -13,7 +14,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 3. Neither the name of NPlot nor the names of its contributors may
+ * 3. Neither the name of Florence nor the names of its contributors may
  *    be used to endorse or promote products derived from this software without
  *    specific prior written permission.
  * 
@@ -46,7 +47,7 @@ namespace Florence.WinForms
 	/// A Windows.Forms PlotSurface2D control.
 	/// </summary>
 	/// <remarks>
-	/// Unfortunately it's not possible to derive from both Control and NPlot.PlotSurface2D.
+	/// Unfortunately it's not possible to derive from both Control and Florence.PlotSurface2D.
 	/// </remarks>
 	[ ToolboxBitmapAttribute(typeof(Florence.WinForms.WinFormsPlotSurface2D),"PlotSurface2D.ico") ]
 	public class WinFormsPlotSurface2D : System.Windows.Forms.Control, IInteractivePlotSurface2D, ISurface
@@ -188,7 +189,7 @@ namespace Florence.WinForms
 			
 			if ( ps_ == null )
 			{
-				throw (new FlorenceException("null NPlot.PlotSurface2D"));
+				throw (new FlorenceException("null Florence.PlotSurface2D"));
 			}
 			
 			if ( border == Rectangle.Empty )
@@ -1015,7 +1016,7 @@ namespace Florence.WinForms
 		public void Print( bool preview ) 
 		{
 			PrintDocument printDocument = new PrintDocument();
-			printDocument.PrintPage += new PrintPageEventHandler(NPlot_PrintPage);
+			printDocument.PrintPage += new PrintPageEventHandler(Florence_PrintPage);
 			printDocument.DefaultPageSettings.Landscape = true;
 				 	
 			DialogResult result;
@@ -1052,7 +1053,7 @@ namespace Florence.WinForms
 		}
 
 
-		private void NPlot_PrintPage(object sender, PrintPageEventArgs ev) 
+		private void Florence_PrintPage(object sender, PrintPageEventArgs ev) 
 		{
 			Rectangle r = ev.MarginBounds;
 			this.Draw( ev.Graphics, r );
@@ -1132,7 +1133,7 @@ namespace Florence.WinForms
 
 		/// <summary>
 		/// Sets the right context menu. Custom menus can be designed by overriding
-		/// NPlot.Windows.PlotSurface2D.ContextMenu.
+		/// Florence.Windows.PlotSurface2D.ContextMenu.
 		/// </summary>
 		[
 		Browsable(false),
@@ -1157,7 +1158,7 @@ namespace Florence.WinForms
 
 
 		/// <summary>
-		/// Gets an instance of a NPlot.Windows.PlotSurface2D.ContextMenu that
+		/// Gets an instance of a Florence.Windows.PlotSurface2D.ContextMenu that
 		/// is useful in typical situations.
 		/// </summary>
 		public static PlotContextMenu DefaultContextMenu
