@@ -1,1 +1,1 @@
-Florence is a plotting library for .NET/Mono.  It began life as a fork of the NPlot library (http://sourceforge.net/projects/nplot/), which is good to know, but should not be taken as endorsement of any kind by the NPlot authors or the NPlot project in general.
+Florence is a plotting library for .NET/Mono.  
