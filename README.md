@@ -1,9 +1,8 @@
 # Florence
-
-## Introduction
-## Origins
-## The Name
-## Build Instructions
+1. Introduction
+2. Origins
+3. The Name
+4. Build Instructions
 
 
 ## Introduction
