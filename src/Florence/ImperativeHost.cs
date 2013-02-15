@@ -149,7 +149,7 @@ namespace Florence
             if (state == FigureState.Closed)
             {
                 int index = this.FiguresTyped.FindIndex((x) => figure == x);
-                if (index > 0)
+                if (index >= 0)
                 {
                     this.FiguresTyped.RemoveAt(index);
                     if (this.ActiveFigureIndex >= index)
