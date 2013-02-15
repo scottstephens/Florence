@@ -40,7 +40,8 @@ namespace Florence
     public interface ImperativePlottable
     {
         void clear();
-        void points(IEnumerable<double> x, IEnumerable<double> y, string x_label="X", string y_label="Y", string title="");
+        void points(IEnumerable<double> x, IEnumerable<double> y, string x_label=null, string y_label=null, string title=null);
+		void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label=null, string y_label=null, string title=null);
     }
 
     public interface ImperativeHost : ImperativePlottable
@@ -171,6 +172,13 @@ namespace Florence
                 this.newFigure();
             this.ActiveFigureTyped.points(x, y, x_label, y_label, title);
         }
+
+		public void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
+		{
+			if (this.ActiveFigure == null)
+				this.newFigure();
+			this.ActiveFigureTyped.lines(x, y, x_label, y_label, title);
+		}
 
         // Abstract methods that must be implemented by derived class
         protected abstract T createNewFigure();

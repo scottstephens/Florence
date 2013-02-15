@@ -91,6 +91,12 @@ namespace Florence
             this.show();
         }
 
+		public void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
+		{
+			this.ensureNotClosed();
+			this.invokeOnGuiThread(() => lines_impl(x, y, x_label, y_label, title));
+			this.show();
+		}
 
         // Actual Plotting Implementations
         protected void points_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title)
@@ -99,19 +105,58 @@ namespace Florence
             pp.OrdinateData = y;
             pp.AbscissaData = x;
             pp.Marker = new Marker(Marker.MarkerType.FilledCircle, 4, new Pen(Color.Blue));
-            this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
-            this.PlotSurface.XAxis1.Label = x_label;
-            this.PlotSurface.YAxis1.Label = y_label;
-            this.PlotSurface.Title = title;
-            if (this.InteractivePlotSurface != null)
-            {
-                this.InteractivePlotSurface.AddInteraction(new Interactions.AxisDrag(false));
-                this.InteractivePlotSurface.AddInteraction(new Interactions.HorizontalDrag());
-                this.InteractivePlotSurface.AddInteraction(new Interactions.VerticalDrag());
-            }
+
+			this.do_interactions();
+			
+			this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
+
+			this.do_labels(x_label, y_label, title);
+			
+            
             this.refresh();
         }
-             
+
+		protected void lines_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title)
+		{
+			LinePlot pp = new LinePlot();
+			pp.OrdinateData = y;
+			pp.AbscissaData = x;
+
+			this.do_interactions();
+
+			this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
+
+			this.do_labels(x_label, y_label, title);
+			
+			
+			this.refresh();		
+		}
+
+		private void do_labels(string x_label, string y_label, string title)
+		{
+			if (x_label == null && this.PlotSurface.XAxis1.Label == "")
+				this.PlotSurface.XAxis1.Label = "X";
+			else if (x_label != null)
+				this.PlotSurface.XAxis1.Label = x_label;
+
+			if (y_label == null && this.PlotSurface.YAxis1.Label == "")
+				this.PlotSurface.YAxis1.Label = "Y";
+			else if (y_label != null)
+				this.PlotSurface.YAxis1.Label = y_label;
+
+			if (title != null)
+				this.PlotSurface.Title = title;
+		}
+
+		private void do_interactions()
+		{
+			if (this.PlotSurface.Drawables.Count == 0 && this.InteractivePlotSurface != null)
+			{
+				this.InteractivePlotSurface.AddInteraction(new Interactions.AxisDrag(false));
+				this.InteractivePlotSurface.AddInteraction(new Interactions.HorizontalDrag());
+				this.InteractivePlotSurface.AddInteraction(new Interactions.VerticalDrag());
+			}
+		}
         // Abstract methods that must be implemented in a GUI Toolkit specific way
         public abstract void hide();
         public abstract void show();
@@ -120,4 +165,6 @@ namespace Florence
         public abstract void invokeOnGuiThread(Action action);
         public abstract event Action<ImperativeFigure, FigureState> StateChange;
     }
+
+	
 }
