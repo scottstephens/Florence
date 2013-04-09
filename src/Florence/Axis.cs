@@ -3,6 +3,7 @@
  * 
  * Axis.cs
  * Copyright (C) 2003-2006 Matt Howlett and others.
+ * Copyright (C) 2003-2013 Hywel Thomas
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -1424,35 +1425,174 @@ namespace Florence
 			WorldTickPositions_SecondPass( physicalMin, physicalMax, largeTickPositions, ref smallTickPositions );
 		}
 
+        #region Axis Range Utilities
+        //
+        // The following utilities are provided to simplify expansion, contraction, and
+        // translation of the Axis.	 They are all based on modifying the WorldRange by a
+        // given proportion, which is convenient for those user-interactions which move
+        // or re-range the plot based on mouse movements in the plot's Physical space.
+        // In order to handle non-linear axes correctly, it is not possible to simply
+        // adjust the WorldMin and WorldMax values directly, since this may result in
+        // invalid endpoints (eg LogAxis).	Instead, the notional physical axis is 
+        // modified by the appropriate amounts, and the new physicalMin and physicalMax
+        // are then re-mapped to World coordinates using the specific Axis transforms.
+        // Since an Axis does not depend on the physical size or orientation to which it
+        // is drawn, the World limits may for convenience be mapped to a nominal unit
+        // vector on the real axis, then transformed to their new values after adjustment.
+        //
 
-		/// <summary>
-		/// Moves the world min and max values so that the world axis
-		/// length is [percent] bigger. If the current world
-		/// max and min values are the same, they are moved appart 
-		/// an arbitrary amount. This arbitrary amount is currently
-		/// 0.01, and will probably be configurable in the future.
-		/// </summary>
-		/// <param name="percent">Percentage to increase world length by.</param>
-		/// <remarks>Works for the case WorldMax is less than WorldMin.</remarks>
-		public void IncreaseRange( double percent )
-		{
-			double range = WorldMax - WorldMin;
-			
-			if ( !Utils.DoubleEqual( range, 0.0 ) )
-			{
-				range *= percent;
-			}
-			else
-			{
-				// arbitrary number. 
-				// TODO make this configurable.
-				range = 0.01;
-			}
+        /// <summary>
+        /// Modifies WorldMin and WorldMax by the respective increments, specified as
+        /// proportions of the existing range. Typically, to restrict the range, deltaWorldMin
+        /// should be +ve, and deltaWorldMax -ve, while increments of the opposite sign will
+        /// extend the range. This is a private helper routine used by the public interface,
+        /// which assumes all parameter validation and clipping has already been done.
+        /// </summary>
+        /// <param name="deltaWorldMin"></param>
+        /// <param name="deltaWorldMax"></param>
+        private void ModifyRange(double deltaWorldMin, double deltaWorldMax)
+        {
+            PointF origin = new PointF(0, 0);	// Unit vector origin
+            PointF vector = new PointF(1, 0);	// ...and endpoint
 
-			WorldMax += range;
-			WorldMin -= range;
-		}
+            PointF newMin = origin;	// copy unit vector, since original
+            PointF newMax = vector;	// will be used in final transform
 
+            // Adjust unit vector by WorldMin/Max increments
+            newMin.X += (float)(deltaWorldMin);
+            newMax.X += (float)(deltaWorldMax);
+
+            // map new physical axis to World coordinates, then update WorldMin/Max
+            double newWorldMin = PhysicalToWorld(newMin, origin, vector, false);
+            double newWorldMax = PhysicalToWorld(newMax, origin, vector, false);
+            WorldMin = newWorldMin;
+            WorldMax = newWorldMax;
+        }
+
+        /// <summary>
+        /// Moves the WorldMin and WorldMax values so that the world axis length is
+        /// [proportion] bigger, with the value [focusRatio] remaining at the same
+        /// relative position along the axis
+        /// </summary>
+        /// <param name="proportion">Proportion to increase world length by.</param>
+        /// <param name="focusRatio">Remains at same relative position on axis.</param>
+        /// <remarks>
+        /// [focusRatio] should be in the range 0.0 (corresponding to WorldMin) to 1.0
+        /// (corresponding to WorldMax).  At present, it is clipped if outside this
+        /// range, though this is only a 'sensible' limit. If [proportion] is -ve, the
+        /// range will be reduced, although a limit of -0.99 is imposed (ie the World
+        /// axis range will not be reduced to less than 0.01 (1%) of its original value.
+        /// This arbitrary amount may be made configurable at some stage.
+        /// </remarks>
+        public void IncreaseRange(double proportion, double focusRatio)
+        {
+            double lo = -0.99;
+
+            // clip proportion and focusRatio
+            proportion = Math.Max(proportion, lo);
+            focusRatio = Math.Max(focusRatio, 0.0);
+            focusRatio = Math.Min(focusRatio, 1.0);
+
+            // calculate WorldMin/Max increments, preserving focusRatio
+            double deltaWorldMin = -proportion * focusRatio;
+            double deltaWorldMax = +proportion * (1.0 - focusRatio);
+
+            ModifyRange(deltaWorldMin, deltaWorldMax);
+
+        }
+
+        /// <summary>
+        /// Modifies the WorldMin and WorldMax values so that the world axis length is
+        /// [proportion] bigger (eg 0.1 increases range by 10%). WorldMax and WorldMin
+        /// are changed so that the expansion/contraction of the axis is symmetrical
+        /// about its midpoint. If the	current WorldMax and WorldMin are the same,
+        /// they are (currently) moved apart by an arbitrary amount (epsilon). This
+        /// condition seems arbitrary, and may be removed at some stage.
+        /// </summary>
+        /// <param name="proportion">Proportion to increase world length by.</param>
+        public void IncreaseRange(double proportion)
+        {
+            double epsilon = 0.01;
+            double range = WorldMax - WorldMin;
+
+            if (Utils.DoubleEqual(range, 0.0))
+            {
+                // TODO remove this arbitrary condition?
+                proportion = epsilon;
+            }
+            IncreaseRange(proportion, 0.5);
+        }
+
+        /// <summary>
+        /// Redefines the WorldMin and WorldMax values based on [newWorldMin] and
+        /// [newWorldMax] expressed as proportions of the existing axes, where both
+        /// are in the range (0.0,1.0) with [newWorldMin] less than [newWorldMax]
+        /// </summary>
+        /// <param name="newWorldMin">as a proportion of current range</param>
+        /// <param name="newWorldMax">as a proportion of current range</param>
+        /// <remarks>
+        /// Values will be swapped (and clipped if clipToWorld is true) and a minimum
+        /// new range of 1% of the existing range is arbitrarily enforced (for safety).
+        /// If clipToWorld is false, new WorldRange may lie outside the current limits 
+        /// </remarks>
+        public void DefineRange(double newWorldMin, double newWorldMax, bool clipToWorld)
+        {
+            double lo = 0.0, hi = 1.0;
+            double epsilon = 0.01;
+
+            // order the min and max values
+            if (newWorldMin > newWorldMax)
+            {
+                Utils.Swap(ref newWorldMin, ref newWorldMax);
+            }
+            // clip to existing range if requested
+            if (clipToWorld)
+            {
+                newWorldMin = Math.Max(newWorldMin, lo);
+                newWorldMin = Math.Min(newWorldMin, hi);
+                newWorldMax = Math.Max(newWorldMax, lo);
+                newWorldMax = Math.Min(newWorldMax, hi);
+            }
+
+            // enforce minimum range limit
+            if ((newWorldMax - newWorldMin) < epsilon)
+            {
+                if (newWorldMax <= (hi - epsilon))
+                {
+                    newWorldMax = newWorldMin + epsilon;
+                }
+                else
+                {
+                    newWorldMin = newWorldMax - epsilon;
+                }
+            }
+
+            double deltaWorldMin = newWorldMin;
+            double deltaWorldMax = newWorldMax - 1.0;
+
+            ModifyRange(deltaWorldMin, deltaWorldMax);
+
+        }
+
+        /// <summary>
+        /// Modifies the WorldMin and WorldMax values so that the world axis is
+        /// translated by the specified [shiftProportion].	If [shiftProportion] is
+        /// positive, WorldMin and WorldMax are both increased, so that the range is
+        /// shifted to the right (assuming WorldMin to the left of WorldMax), while
+        /// negative values of [shiftProportion] decrease both WorldMin and WorldMax.
+        /// </summary>
+        /// <param name="shiftProportion">as a proportion of current range</param>
+        public void TranslateRange(double shiftProportion)
+        {
+            double deltaWorldMin = shiftProportion;
+            double deltaWorldMax = shiftProportion;
+
+            ModifyRange(deltaWorldMin, deltaWorldMax);
+
+        }
+
+
+        #endregion Axis Utilities
 
 		/// <summary>
 		/// Scale label and tick fonts by this factor. Set by PlotSurface2D 

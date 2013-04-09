@@ -1,8 +1,8 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * IInteraction.cs
- * Copyright (C) 2003-2006 Matt Howlett and others.
+ * CursorType.cs
+ * Copyright (C) 2003-2013 Hywel Thomas
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -31,14 +31,22 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Florence
 {
-    // Purely a marker interface
-    public interface IInteraction
+    /// <summary>
+    /// CursorTypes for Florence that are useful for Interactions
+    /// </summary>
+    public enum CursorType
     {
+        None,			// no cursor displayed
+        LeftPointer,	// standard mouse pointer
+        RightPointer,	// same but pointing right
+        CrossHair,		// for accurate coordinates
+        Hand,			// use for dragging in plot
+        LeftRight,		// expanding horizontal axis
+        UpDown,			// expanding vertical axis
+        Zoom			// expanding both axes
     }
+
 }

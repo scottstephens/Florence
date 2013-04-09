@@ -133,20 +133,21 @@
     <Compile Include="IGradient.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IInteraction.cs" />
-    <Compile Include="IInteractivePlotSurface2D.cs" />
     <Compile Include="ImagePlot.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interactions\AxisDrag.cs" />
-    <Compile Include="Interactions\HorizontalDrag.cs" />
+    <Compile Include="Interactions\CursorType.cs" />
     <Compile Include="Interactions\HorizontalGuideline.cs" />
-    <Compile Include="Interactions\HorizontalRangeSelection.cs" />
-    <Compile Include="Interactions\MouseWheelZoom.cs" />
-    <Compile Include="Interactions\RubberBandSelection.cs" />
-    <Compile Include="Interactions\VerticalDrag.cs" />
-    <Compile Include="Interactions\VerticalGuideline.cs" />
+    <Compile Include="Interactions\Interaction.cs" />
+    <Compile Include="Interactions\InteractivePlotSurface2D.cs" />
+    <Compile Include="Interactions\KeyActions.cs" />
+    <Compile Include="Interactions\Modifier.cs" />
+    <Compile Include="Interactions\PlotDrag.cs" />
+    <Compile Include="Interactions\PlotSelection.cs" />
+    <Compile Include="Interactions\PlotZoom.cs" />
     <Compile Include="ImperativeHost.cs" />
+    <Compile Include="Interactions\VerticalGuideline.cs" />
     <Compile Include="IPlot.cs">
       <SubType>Code</SubType>
     </Compile>

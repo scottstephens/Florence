@@ -42,7 +42,7 @@ namespace Florence
     public interface ImperativeFigure : ImperativePlottable
     {        
         IPlotSurface2D PlotSurface { get; }
-        IInteractivePlotSurface2D InteractivePlotSurface { get; }        
+        InteractivePlotSurface2D InteractivePlotSurface { get; }        
         void hide();
         void show();
         void close();
@@ -55,7 +55,7 @@ namespace Florence
         
 
         public IPlotSurface2D PlotSurface { get { return this.PlotSurfaceTyped; } }
-        public IInteractivePlotSurface2D InteractivePlotSurface { get { return this.PlotSurfaceTyped as IInteractivePlotSurface2D; } }
+        public InteractivePlotSurface2D InteractivePlotSurface { get { return this.PlotSurfaceTyped as InteractivePlotSurface2D; } }
 
         protected T PlotSurfaceTyped { get; set; }
         protected FigureState State { get; set; }
@@ -152,9 +152,8 @@ namespace Florence
 		{
 			if (this.PlotSurface.Drawables.Count == 0 && this.InteractivePlotSurface != null)
 			{
-				this.InteractivePlotSurface.AddInteraction(new Interactions.AxisDrag(false));
-				this.InteractivePlotSurface.AddInteraction(new Interactions.HorizontalDrag());
-				this.InteractivePlotSurface.AddInteraction(new Interactions.VerticalDrag());
+				this.InteractivePlotSurface.AddInteraction(new AxisDrag(false));
+				this.InteractivePlotSurface.AddInteraction(new PlotDrag());				
 			}
 		}
         // Abstract methods that must be implemented in a GUI Toolkit specific way
