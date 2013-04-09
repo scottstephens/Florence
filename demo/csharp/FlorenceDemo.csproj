@@ -11,7 +11,7 @@
     <AssemblyName>FlorenceDemo</AssemblyName>
     <DelaySign>false</DelaySign>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>NPlotDemo</RootNamespace>
+    <RootNamespace>FlorenceDemo</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -87,6 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\FlorenceDemo-icon.ico" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -102,8 +107,12 @@
     <Compile Include="src\PlotSurface2DDemo.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="resources\asx_jbh.xml">
-      <LogicalName>NPlotDemo.resources.asx_jbh.xml</LogicalName>
+      <LogicalName>FlorenceDemo.resources.asx_jbh.xml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\AxisTestsForm.resx">
       <LogicalName>AxisTestsForm.resources</LogicalName>
@@ -116,7 +125,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\light.wav">
-      <LogicalName>NPlotDemo.resources.light.wav</LogicalName>
+      <LogicalName>FlorenceDemo.resources.light.wav</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\MenuForm.resx">
       <LogicalName>MenuForm.resources</LogicalName>
@@ -124,7 +133,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\pattern01.jpg">
-      <LogicalName>NPlotDemo.resources.pattern01.jpg</LogicalName>
+      <LogicalName>FlorenceDemo.resources.pattern01.jpg</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\PlotSurface2DDemo.resx">
       <LogicalName>PlotSurface2DDemo.resources</LogicalName>
