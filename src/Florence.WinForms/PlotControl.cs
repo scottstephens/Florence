@@ -49,8 +49,8 @@ namespace Florence.WinForms
 	/// <remarks>
 	/// Unfortunately it's not possible to derive from both Control and Florence.PlotSurface2D.
 	/// </remarks>
-	[ ToolboxBitmapAttribute(typeof(Florence.WinForms.WinFormsPlotSurface2D),"PlotSurface2D.ico") ]
-	public partial class WinFormsPlotSurface2D : System.Windows.Forms.UserControl, IPlotWidget
+	[ ToolboxBitmapAttribute(typeof(Florence.WinForms.PlotControl),"PlotSurface2D.ico") ]
+	public partial class PlotControl : System.Windows.Forms.UserControl, IPlotWidget
 	{
         InteractivePlotSurface2D Surface;
 
@@ -69,7 +69,7 @@ namespace Florence.WinForms
 		/// <summary>
 		/// Default constructor.
 		/// </summary>
-		public WinFormsPlotSurface2D()
+		public PlotControl()
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();

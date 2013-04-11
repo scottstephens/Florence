@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Florence.WinForms
 {
-    public partial class WinFormsPlotSurface2D
+    public partial class PlotControl
     {
         /// <summary>
         /// Required designer variable.

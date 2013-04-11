@@ -51,8 +51,8 @@ namespace FlorenceDemo
 	{
         private Florence.InteractivePlotSurface2D volumePS;
         private Florence.InteractivePlotSurface2D costPS;
-        private Florence.WinForms.WinFormsPlotSurface2D volumeControl;
-        private Florence.WinForms.WinFormsPlotSurface2D costControl;
+        private Florence.WinForms.PlotControl volumeControl;
+        private Florence.WinForms.PlotControl costControl;
         private System.Windows.Forms.Button closeButton;
 
 
@@ -172,8 +172,8 @@ namespace FlorenceDemo
 		private void InitializeComponent()
 		{
             this.closeButton = new System.Windows.Forms.Button();
-            this.volumeControl = new Florence.WinForms.WinFormsPlotSurface2D();
-            this.costControl = new Florence.WinForms.WinFormsPlotSurface2D();
+            this.volumeControl = new Florence.WinForms.PlotControl();
+            this.costControl = new Florence.WinForms.PlotControl();
             this.SuspendLayout();
 // 
 // closeButton

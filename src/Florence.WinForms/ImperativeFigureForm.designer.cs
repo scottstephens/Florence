@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.plotSurface = new Florence.WinForms.WinFormsPlotSurface2D();
+            this.plotSurface = new Florence.WinForms.PlotControl();
             this.components = new System.ComponentModel.Container();            
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             this.ResumeLayout(false);
 
         }
-        private WinFormsPlotSurface2D plotSurface;
+        private PlotControl plotSurface;
 
         #endregion
 

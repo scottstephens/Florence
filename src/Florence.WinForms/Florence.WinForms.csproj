@@ -60,17 +60,17 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinFormsImperativeFigure.cs" />
-    <Compile Include="WinFormsPlotSurface2D.cs">
+    <Compile Include="PlotControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinFormsPlotSurface2D.designer.cs">
-      <DependentUpon>WinFormsPlotSurface2D.cs</DependentUpon>
+    <Compile Include="PlotControl.designer.cs">
+      <DependentUpon>PlotControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ImperativeFigureForm.resx">
       <DependentUpon>ImperativeFigureForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinFormsPlotSurface2D.resx">
-      <DependentUpon>WinFormsPlotSurface2D.cs</DependentUpon>
+    <EmbeddedResource Include="PlotControl.resx">
+      <DependentUpon>PlotControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

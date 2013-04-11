@@ -82,7 +82,7 @@ namespace FlorenceDemo
 		private PrintDocument printDocument;
 		private System.Windows.Forms.Button prevPlotButton;
 		private Florence.InteractivePlotSurface2D plotSurface;
-        private Florence.WinForms.WinFormsPlotSurface2D plotControl;
+        private Florence.WinForms.PlotControl plotControl;
 		private System.Windows.Forms.Timer qeExampleTimer;
 		private System.Windows.Forms.Label exampleNumberLabel;
 
@@ -1649,7 +1649,7 @@ namespace FlorenceDemo
             this.prevPlotButton = new System.Windows.Forms.Button();
             this.qeExampleTimer = new System.Windows.Forms.Timer(this.components);
             this.infoBox = new System.Windows.Forms.TextBox();
-            this.plotControl = new Florence.WinForms.WinFormsPlotSurface2D();
+            this.plotControl = new Florence.WinForms.PlotControl();
             this.SuspendLayout();
 // 
 // quitButton
