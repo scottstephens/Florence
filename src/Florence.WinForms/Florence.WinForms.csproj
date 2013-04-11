@@ -51,15 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InteractionRegistry.cs" />
-    <Compile Include="Interactions\AxisDrag.cs" />
-    <Compile Include="Interactions\HorizontalDrag.cs" />
-    <Compile Include="Interactions\HorizontalGuideline.cs" />
-    <Compile Include="Interactions\HorizontalRangeSelection.cs" />
-    <Compile Include="Interactions\MouseWheelZoom.cs" />
-    <Compile Include="Interactions\RubberBandSelection.cs" />
-    <Compile Include="Interactions\VerticalDrag.cs" />
-    <Compile Include="Interactions\VerticalGuideline.cs" />
     <Compile Include="ImperativeHost.cs" />
     <Compile Include="ImperativeFigureForm.cs">
       <SubType>Form</SubType>
