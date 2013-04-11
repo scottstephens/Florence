@@ -62,6 +62,9 @@ namespace Florence
             this.PreRefresh += new PreRefreshHandler(OnPreRefresh);
         }
 
+        public event Action<Rectangle> DrawQueued;
+        public event Action RefreshRequested;
+
         /// <summary>
         /// Clear the plot and reset to default values.
         /// </summary>
@@ -328,11 +331,14 @@ namespace Florence
         // PlotSurface is passed as well as the event details, so that Interactions can call the
         // PlotSurface public methods if required (eg to redraw an area of the plotSurface)
 
+
         /// <summary>
         /// Handle Draw event for all interactions. Called by platform-specific OnDraw/Paint
         /// </summary>
-        protected void DoDraw(Graphics g, Rectangle clip)
+        public void DoDraw(Graphics g, Rectangle clip)
         {
+            base.Draw(g, clip);
+            
             foreach (Interaction i in interactions)
             {
                 i.DoDraw(g, clip);
@@ -343,7 +349,7 @@ namespace Florence
         /// Handle MouseEnter for all PlotSurface interactions
         /// </summary>
         /// <returns>true if plot has been modified</returns>
-        protected bool DoMouseEnter(EventArgs args)
+        public bool DoMouseEnter(EventArgs args)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -363,7 +369,7 @@ namespace Florence
         /// Handle MouseLeave for all PlotSurface interactions
         /// </summary>
         /// <returns>true if plot has been modified</returns>
-        protected bool DoMouseLeave(EventArgs args)
+        public bool DoMouseLeave(EventArgs args)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -386,7 +392,7 @@ namespace Florence
         /// <param name="Y"> mouse Y position</param>
         /// <param name="keys"> mouse and keyboard modifiers</param>
         /// <returns>true if plot has been modified</returns>
-        protected bool DoMouseDown(int X, int Y, Modifier keys)
+        public bool DoMouseDown(int X, int Y, Modifier keys)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -409,7 +415,7 @@ namespace Florence
         /// <param name="Y"> mouse Y position</param>
         /// <param name="keys"> mouse and keyboard modifiers</param>
         /// <returns>true if plot has been modified</returns>
-        protected bool DoMouseUp(int X, int Y, Modifier keys)
+        public bool DoMouseUp(int X, int Y, Modifier keys)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -432,7 +438,7 @@ namespace Florence
         /// <param name="Y"> mouse Y position</param>
         /// <param name="keys"> mouse and keyboard modifiers</param>
         /// <returns>true if plot has been modified</returns>
-        protected bool DoMouseMove(int X, int Y, Modifier keys)
+        public bool DoMouseMove(int X, int Y, Modifier keys)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -456,7 +462,7 @@ namespace Florence
         /// <param name="direction"> scroll direction</param>
         /// <param name="keys"> mouse and keyboard modifiers</param>
         /// <returns>true if plot has been modified</returns>
-        protected bool DoMouseScroll(int X, int Y, int direction, Modifier keys)
+        public bool DoMouseScroll(int X, int Y, int direction, Modifier keys)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -475,7 +481,7 @@ namespace Florence
         /// <summary>
         /// Handle KeyPressed for all PlotSurface interactions
         /// </summary>
-        protected bool DoKeyPress(Modifier keys, InteractivePlotSurface2D ps)
+        public bool DoKeyPress(Modifier keys, InteractivePlotSurface2D ps)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -494,7 +500,7 @@ namespace Florence
         /// <summary>
         /// Handle KeyReleased for all PlotSurface interactions
         /// </summary>
-        protected bool DoKeyRelease(Modifier keys, InteractivePlotSurface2D ps)
+        public bool DoKeyRelease(Modifier keys, InteractivePlotSurface2D ps)
         {
             bool modified = false;
             foreach (Interaction i in interactions)
@@ -527,6 +533,8 @@ namespace Florence
         /// </summary>
         public virtual void Refresh()
         {
+            if (this.RefreshRequested != null)
+                this.RefreshRequested();
         }
 
         /// <summary>
@@ -534,6 +542,8 @@ namespace Florence
         /// </summary>
         public virtual void QueueDraw(Rectangle dirtyRect)
         {
+            if (this.DrawQueued != null)
+                this.DrawQueued(dirtyRect);
         }
 
         /// <summary>

@@ -50,12 +50,12 @@ namespace Florence
         event Action<ImperativeFigure, FigureState> StateChange;
     }
 
-    public abstract class BaseImperativeFigure<T> : ImperativeFigure where T : IPlotSurface2D
+    public abstract class BaseImperativeFigure<T> : ImperativeFigure where T : InteractivePlotSurface2D
     {
         
 
         public IPlotSurface2D PlotSurface { get { return this.PlotSurfaceTyped; } }
-        public InteractivePlotSurface2D InteractivePlotSurface { get { return this.PlotSurfaceTyped as InteractivePlotSurface2D; } }
+        public InteractivePlotSurface2D InteractivePlotSurface { get { return this.PlotSurfaceTyped; } }
 
         protected T PlotSurfaceTyped { get; set; }
         protected FigureState State { get; set; }
@@ -152,8 +152,8 @@ namespace Florence
 		{
 			if (this.PlotSurface.Drawables.Count == 0 && this.InteractivePlotSurface != null)
 			{
-				this.InteractivePlotSurface.AddInteraction(new AxisDrag(false));
-				this.InteractivePlotSurface.AddInteraction(new PlotDrag());				
+				this.InteractivePlotSurface.AddInteraction(new AxisDrag());
+				this.InteractivePlotSurface.AddInteraction(new PlotDrag(true, true));				
 			}
 		}
         // Abstract methods that must be implemented in a GUI Toolkit specific way

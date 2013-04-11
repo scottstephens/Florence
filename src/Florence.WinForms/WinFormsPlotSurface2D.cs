@@ -50,10 +50,21 @@ namespace Florence.WinForms
 	/// Unfortunately it's not possible to derive from both Control and Florence.PlotSurface2D.
 	/// </remarks>
 	[ ToolboxBitmapAttribute(typeof(Florence.WinForms.WinFormsPlotSurface2D),"PlotSurface2D.ico") ]
-	public partial class WinFormsPlotSurface2D : System.Windows.Forms.UserControl
+	public partial class WinFormsPlotSurface2D : System.Windows.Forms.UserControl, IPlotWidget
 	{
+        InteractivePlotSurface2D Surface;
 
-        public InteractivePlotSurface2D InteractivePlotSurface2D { get; set; }
+        public InteractivePlotSurface2D InteractivePlotSurface2D
+        {
+            get { return this.Surface; }
+            set
+            {
+                this.Surface = value;
+                this.InitializePlotSurface();
+            }
+        }
+
+        private KeyEventArgs lastKeyEventArgs;
 
 		/// <summary>
 		/// Default constructor.
@@ -67,8 +78,128 @@ namespace Florence.WinForms
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
             this.ResizeRedraw = true;
+
+            this.Surface = null;
+
+            // Map control events to generic events
+            this.MouseEnter += new EventHandler(WinFormsPlotSurface2D_MouseEnter);
+            this.MouseLeave += new EventHandler(WinFormsPlotSurface2D_MouseLeave);
+            this.MouseDown += new MouseEventHandler(WinFormsPlotSurface2D_MouseDown);
+            this.MouseMove += new MouseEventHandler(WinFormsPlotSurface2D_MouseMove);
+            this.MouseUp += new MouseEventHandler(WinFormsPlotSurface2D_MouseUp);
+            this.MouseWheel += new MouseEventHandler(WinFormsPlotSurface2D_MouseWheel);
+            this.KeyDown += new KeyEventHandler(WinFormsPlotSurface2D_KeyDown);
+            this.KeyUp += new KeyEventHandler(WinFormsPlotSurface2D_KeyUp);
 		}
 
+        void InitializePlotSurface()
+        {
+            this.InteractivePlotSurface2D.DrawQueued += new Action<Rectangle>(InteractivePlotSurface2D_DrawQueued);
+            this.InteractivePlotSurface2D.RefreshRequested += new Action(InteractivePlotSurface2D_RefreshRequested);
+        }
+
+        void InteractivePlotSurface2D_RefreshRequested()
+        {
+            this.Invalidate();
+        }
+
+        void InteractivePlotSurface2D_DrawQueued(Rectangle obj)
+        {
+            this.Invalidate(obj);
+        }
+
+        void WinFormsPlotSurface2D_KeyUp(object sender, KeyEventArgs e)
+        {
+            lastKeyEventArgs = e;
+
+            Modifier keys = Key(e.KeyCode);
+            keys |= ControlKeys(e);
+            this.InteractivePlotSurface2D.DoKeyRelease(keys, this.InteractivePlotSurface2D);
+        }
+
+        void WinFormsPlotSurface2D_KeyDown(object sender, KeyEventArgs e)
+        {
+            lastKeyEventArgs = e;
+            Modifier keys = Key(e.KeyCode);
+            keys |= ControlKeys(e);
+            this.InteractivePlotSurface2D.DoKeyPress(keys, this.InteractivePlotSurface2D);
+        }
+
+        void WinFormsPlotSurface2D_MouseWheel(object sender, MouseEventArgs e)
+        {
+            this.InteractivePlotSurface2D.DoMouseScroll(e.X, e.Y, e.Delta > 0 ? 1 : -1, this.MouseInput(e));
+        }
+
+        void WinFormsPlotSurface2D_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.InteractivePlotSurface2D.DoMouseUp(e.X, e.Y, this.MouseInput(e));
+        }
+
+        void WinFormsPlotSurface2D_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.InteractivePlotSurface2D.DoMouseMove(e.X, e.Y, this.MouseInput(e));
+        }
+        private Modifier Key(System.Windows.Forms.Keys input)
+        {
+            switch (input)
+            {
+                case Keys.Home:
+                    return Modifier.Home;
+                case Keys.Add:
+                    return Modifier.Plus;
+                case Keys.Subtract:
+                    return Modifier.Minus;
+                case Keys.Left:
+                    return Modifier.Left;
+                case Keys.Right:
+                    return Modifier.Right;
+                case Keys.Up:
+                    return Modifier.Up;
+                case Keys.Down:
+                    return Modifier.Down;
+                default:
+                    return Modifier.None;
+            }
+        }
+        private Modifier ControlKeys(KeyEventArgs args)
+        {
+            Modifier keys = Modifier.None;
+            if (args == null)
+                return keys;
+            if (args.Control)
+                keys |= Modifier.Control;
+            if (args.Alt)
+                keys |= Modifier.Alt;
+            if (args.Shift)
+                keys |= Modifier.Shift;
+            return keys;
+        }
+
+        private Modifier MouseInput(MouseEventArgs args)
+        {
+            Modifier keys = Modifier.None;
+            if (args.Button == MouseButtons.Left) keys |= Modifier.Button1;
+            if (args.Button == MouseButtons.Middle) keys |= Modifier.Button2;
+            if (args.Button == MouseButtons.Right) keys |= Modifier.Button3;
+            // Get Control, Alt, etc from last KeyDown
+            keys |= ControlKeys(lastKeyEventArgs);
+            return keys;
+        }
+
+        void WinFormsPlotSurface2D_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.InteractivePlotSurface2D.DoMouseDown(e.X, e.Y, this.MouseInput(e));
+        }
+
+        void WinFormsPlotSurface2D_MouseLeave(object sender, EventArgs e)
+        {
+            this.InteractivePlotSurface2D.DoMouseLeave(e);
+        }
+
+        void WinFormsPlotSurface2D_MouseEnter(object sender, EventArgs e)
+        {
+            this.InteractivePlotSurface2D.DoMouseEnter(e);
+        }
 
         /// <summary>
 		/// the paint event callback.
@@ -127,7 +258,7 @@ namespace Florence.WinForms
 				this.drawDesignMode( g, bounds );
 			}
 
-			this.InteractivePlotSurface2D.Draw( g, bounds );
+			this.InteractivePlotSurface2D.DoDraw( g, bounds );
 		}
 
 
@@ -234,5 +365,6 @@ namespace Florence.WinForms
 
 			Clipboard.SetDataObject( sb.ToString(), true );
 		}
-	}
+
+    }
 }

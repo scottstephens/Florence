@@ -154,6 +154,7 @@
     <Compile Include="IPlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IPlotWidget.cs" />
     <Compile Include="ISequencePlot.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -49,35 +49,37 @@ namespace FlorenceDemo
 	/// </summary>
 	public class FinancialDemo : System.Windows.Forms.Form
 	{
-        private Florence.WinForms.WinFormsPlotSurface2D volumePS;
-        private Florence.WinForms.WinFormsPlotSurface2D costPS;
+        private Florence.InteractivePlotSurface2D volumePS;
+        private Florence.InteractivePlotSurface2D costPS;
+        private Florence.WinForms.WinFormsPlotSurface2D volumeControl;
+        private Florence.WinForms.WinFormsPlotSurface2D costControl;
         private System.Windows.Forms.Button closeButton;
 
 
-		/// <summary>
-		/// Right context menu with non-default functionality. Just take out some functionality. Could also have added some.
-		/// </summary>
-		public class ReducedContextMenu : Florence.WinForms.WinFormsPlotSurface2D.PlotContextMenu
-		{
+        ///// <summary>
+        ///// Right context menu with non-default functionality. Just take out some functionality. Could also have added some.
+        ///// </summary>
+        //public class ReducedContextMenu : Florence.WinForms.WinFormsPlotSurface2D.PlotContextMenu
+        //{
 
-			/// <summary>
-			/// Constructor
-			/// </summary>
-			public ReducedContextMenu()
-				: base()
-			{
-				ArrayList menuItems = this.MenuItems;
+        //    /// <summary>
+        //    /// Constructor
+        //    /// </summary>
+        //    public ReducedContextMenu()
+        //        : base()
+        //    {
+        //        ArrayList menuItems = this.MenuItems;
 
-				// remove show coordinates, and print functionality
-				menuItems.RemoveAt(4);
-				menuItems.RemoveAt(3);
-				menuItems.RemoveAt(1);
+        //        // remove show coordinates, and print functionality
+        //        menuItems.RemoveAt(4);
+        //        menuItems.RemoveAt(3);
+        //        menuItems.RemoveAt(1);
 
-                this.SetMenuItems(menuItems);
+        //        this.SetMenuItems(menuItems);
 
-			}
+        //    }
 
-		}
+        //}
 
 
         public FinancialDemo()
@@ -87,8 +89,13 @@ namespace FlorenceDemo
 			//
 			InitializeComponent();
 
+            this.volumePS = new InteractivePlotSurface2D();
+            this.costPS = new InteractivePlotSurface2D();
+            this.volumeControl.InteractivePlotSurface2D = this.volumePS;
+            this.costControl.InteractivePlotSurface2D = this.costPS;
+
             costPS.Clear();
-            costPS.DateTimeToolTip = true;
+            //costPS.DateTimeToolTip = true;
 
             // obtain stock information from xml file
             DataSet ds = new DataSet();
@@ -118,9 +125,8 @@ namespace FlorenceDemo
             costPS.YAxis1.LabelOffsetAbsolute = true;
             costPS.XAxis1.HideTickText = true;
             costPS.SurfacePadding = 5;
-            costPS.AddInteraction(new Florence.Interactions.HorizontalDrag());
-            costPS.AddInteraction(new Florence.Interactions.VerticalDrag());
-            costPS.AddInteraction(new Florence.Interactions.AxisDrag(false));
+            costPS.AddInteraction(new PlotDrag(true,true));
+            costPS.AddInteraction(new AxisDrag());
             costPS.InteractionOccurred += costPS_InteractionOccured;
             costPS.AddAxesConstraint(new AxesConstraint.AxisPosition(PlotSurface2D.YAxisPosition.Left, 60));
 
@@ -137,23 +143,23 @@ namespace FlorenceDemo
             volumePS.YAxis1.LabelOffset = 40;
             volumePS.SurfacePadding = 5;
             volumePS.AddAxesConstraint(new AxesConstraint.AxisPosition(PlotSurface2D.YAxisPosition.Left, 60));
-            volumePS.AddInteraction(new Florence.Interactions.AxisDrag(false));
-            volumePS.AddInteraction(new Florence.Interactions.HorizontalDrag());
+            volumePS.AddInteraction(new AxisDrag());
+            volumePS.AddInteraction(new PlotDrag(true, false));
             volumePS.InteractionOccurred += volumePS_InteractionOccured;
-            volumePS.PreRefresh += new Florence.WinForms.WinFormsPlotSurface2D.PreRefreshHandler(volumePS_PreRefresh);
+            volumePS.PreRefresh += volumePS_PreRefresh;
 
-            this.costPS.RightMenu = new ReducedContextMenu();
+            //this.costPS.RightMenu = new ReducedContextMenu();
 			
         }
 
         protected override void OnResize(EventArgs e)
         {
-            this.costPS.Height = (int)(0.5 * (this.Height));
-            this.costPS.Width = (int)(this.Width - 35);
+            this.costControl.Height = (int)(0.5 * (this.Height));
+            this.costControl.Width = (int)(this.Width - 35);
 
-            this.volumePS.Top = costPS.Height + 12;
-            this.volumePS.Height = this.Height - (costPS.Height + 25) - 80;
-            this.volumePS.Width = (int)(this.Width - 35);
+            this.volumeControl.Top = costControl.Height + 12;
+            this.volumeControl.Height = this.Height - (costControl.Height + 25) - 80;
+            this.volumeControl.Width = (int)(this.Width - 35);
 
             base.OnResize(e);
         }
@@ -166,8 +172,8 @@ namespace FlorenceDemo
 		private void InitializeComponent()
 		{
             this.closeButton = new System.Windows.Forms.Button();
-            this.volumePS = new Florence.WinForms.WinFormsPlotSurface2D();
-            this.costPS = new Florence.WinForms.WinFormsPlotSurface2D();
+            this.volumeControl = new Florence.WinForms.WinFormsPlotSurface2D();
+            this.costControl = new Florence.WinForms.WinFormsPlotSurface2D();
             this.SuspendLayout();
 // 
 // closeButton
@@ -181,50 +187,26 @@ namespace FlorenceDemo
 // 
 // volumePS
 // 
-            this.volumePS.AutoScaleAutoGeneratedAxes = false;
-            this.volumePS.AutoScaleTitle = false;
-            this.volumePS.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.volumePS.Legend = null;
-            this.volumePS.Location = new System.Drawing.Point(13, 305);
-            this.volumePS.Name = "volumePS";
-            this.volumePS.RightMenu = null;
-            this.volumePS.ShowCoordinates = false;
-            this.volumePS.Size = new System.Drawing.Size(606, 109);
-            this.volumePS.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            this.volumePS.TabIndex = 3;
-            this.volumePS.Title = "";
-            this.volumePS.TitleFont = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.volumePS.XAxis1 = null;
-            this.volumePS.XAxis2 = null;
-            this.volumePS.YAxis1 = null;
-            this.volumePS.YAxis2 = null;
+            this.volumeControl.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.volumeControl.Location = new System.Drawing.Point(13, 305);
+            this.volumeControl.Name = "volumePS";
+            this.volumeControl.Size = new System.Drawing.Size(606, 109);
+            this.volumeControl.TabIndex = 3;
 // 
 // costPS
 // 
-            this.costPS.AutoScaleAutoGeneratedAxes = false;
-            this.costPS.AutoScaleTitle = false;
-            this.costPS.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.costPS.Legend = null;
-            this.costPS.Location = new System.Drawing.Point(13, 13);
-            this.costPS.Name = "costPS";
-            this.costPS.RightMenu = null;
-            this.costPS.ShowCoordinates = false;
-            this.costPS.Size = new System.Drawing.Size(606, 285);
-            this.costPS.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            this.costPS.TabIndex = 2;
-            this.costPS.Title = "";
-            this.costPS.TitleFont = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.costPS.XAxis1 = null;
-            this.costPS.XAxis2 = null;
-            this.costPS.YAxis1 = null;
-            this.costPS.YAxis2 = null;
+            this.costControl.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.costControl.Location = new System.Drawing.Point(13, 13);
+            this.costControl.Name = "costPS";
+            this.costControl.Size = new System.Drawing.Size(606, 285);
+            this.costControl.TabIndex = 2;
 // 
 // FinancialDemo
 // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(631, 450);
-            this.Controls.Add(this.volumePS);
-            this.Controls.Add(this.costPS);
+            this.Controls.Add(this.volumeControl);
+            this.Controls.Add(this.costControl);
             this.Controls.Add(this.closeButton);
             this.Name = "FinancialDemo";
             this.Text = "BasicDemo";
@@ -247,7 +229,7 @@ namespace FlorenceDemo
         /// When the costPS chart has changed, this is called which updates the volumePS chart.
         /// </summary>
         /// <param name="sender"></param>
-        private void costPS_InteractionOccured(object sender, IInteraction interaction)
+        private void costPS_InteractionOccured(object sender)
         {
             DateTimeAxis axis = new DateTimeAxis(costPS.XAxis1);
             axis.Label = "Date / Time";
@@ -260,7 +242,7 @@ namespace FlorenceDemo
         /// <summary>
         /// When the volumePS chart has changed, this is called which updates hte costPS chart.
         /// </summary>
-        private void volumePS_InteractionOccured(object sender, IInteraction interaction)
+        private void volumePS_InteractionOccured(object sender)
         {
             DateTimeAxis axis = new DateTimeAxis(volumePS.XAxis1);
             axis.Label = "";

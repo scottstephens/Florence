@@ -58,10 +58,7 @@
     <Compile Include="ImperativeFigureForm.designer.cs">
       <DependentUpon>ImperativeFigureForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ISurface.cs" />
-    <Compile Include="IWinFormsInteraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinFormsInteraction.cs" />
     <Compile Include="WinFormsImperativeFigure.cs" />
     <Compile Include="WinFormsPlotSurface2D.cs">
       <SubType>UserControl</SubType>

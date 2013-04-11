@@ -104,9 +104,10 @@ namespace Florence
 		private object bbYAxis2Cache_;
 		private object bbTitleCache_;
 
-		private object plotBackColor_ = null;
+		private Color? plotBackColor_ = null;
 		private System.Drawing.Bitmap plotBackImage_ = null;
 		private IRectangleBrush plotBackBrush_ = null;
+        private Color? outerBackColor = null;
 
 		private System.Collections.ArrayList drawables_;
 		private System.Collections.ArrayList xAxisPositions_;
@@ -397,6 +398,16 @@ namespace Florence
 			}
 		}
 
+        /// <summary>
+        /// A color used to paint the outer background.
+        /// </summary>
+        public Color OuterBackColor
+        {
+            set
+            {
+                outerBackColor = value;
+            }
+        }
 
 		/// <summary>
 		/// A color used to paint the plot background. Mutually exclusive with PlotBackImage and PlotBackBrush
@@ -488,7 +499,7 @@ namespace Florence
 			pYAxis2Cache_ = null;
 			titleBrush_ = new SolidBrush( Color.Black );
 			plotBackColor_ = Color.White;
-			
+            outerBackColor = null;
 			this.legend_ = null;
 
 			smoothingMode_ = System.Drawing.Drawing2D.SmoothingMode.None;
@@ -914,6 +925,19 @@ namespace Florence
 		/// surface to confine drawing to.</param>
 		public void Draw( Graphics g, Rectangle bounds )
 		{
+            // Draw background            
+            if (outerBackColor != null && outerBackColor != Color.Transparent)
+                g.FillRectangle(new SolidBrush(outerBackColor.Value), bounds);
+            else if (outerBackColor == null)
+            {
+                if (plotBackColor_ != null)
+                    g.FillRectangle(new SolidBrush(plotBackColor_.Value), bounds);
+                else if (plotBackBrush_ != null)
+                    g.FillRectangle(plotBackBrush_.Get(bounds), bounds);
+                else
+                    g.FillRectangle(new SolidBrush(Color.White), bounds);
+            }
+
 			// determine font sizes and tick scale factor.
 			float scale = DetermineScaleFactor( bounds.Width, bounds.Height );
 

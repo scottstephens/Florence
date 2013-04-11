@@ -37,7 +37,7 @@ using Florence;
 
 namespace Florence.WinForms
 {
-    public class WinFormsImperativeFigure : BaseImperativeFigure<WinFormsPlotSurface2D>
+    public class WinFormsImperativeFigure : BaseImperativeFigure<InteractivePlotSurface2D>
     {
         public ImperativeFigureForm HostForm { get; private set; }
 

@@ -81,7 +81,8 @@ namespace FlorenceDemo
 		private System.ComponentModel.IContainer components;
 		private PrintDocument printDocument;
 		private System.Windows.Forms.Button prevPlotButton;
-		private Florence.WinForms.WinFormsPlotSurface2D plotSurface;
+		private Florence.InteractivePlotSurface2D plotSurface;
+        private Florence.WinForms.WinFormsPlotSurface2D plotControl;
 		private System.Windows.Forms.Timer qeExampleTimer;
 		private System.Windows.Forms.Label exampleNumberLabel;
 
@@ -545,11 +546,10 @@ namespace FlorenceDemo
 			plotSurface.XAxis1.WorldMax = plotSurface.YAxis1.WorldMax;
 			plotSurface.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            plotSurface.AddInteraction(new Florence.Interactions.MouseWheelZoom());
+            plotSurface.AddInteraction(new PlotZoom());
 
             // make sure plot surface colors are as we expect - the wave example changes them.
             //plotSurface.PlotBackColor = Color.White;
-            plotSurface.BackColor = System.Drawing.SystemColors.Control;
             plotSurface.XAxis1.Color = Color.Black;
             plotSurface.YAxis1.Color = Color.Black;
 
@@ -628,7 +628,7 @@ namespace FlorenceDemo
 			plotSurface.Title = "Internet useage for user:\n johnc 09/01/03 - 09/07/03";
 
 			plotSurface.XAxis1.TicksLabelAngle = 30.0f;
-
+                        
 			plotSurface.PlotBackBrush = RectangleBrushes.Vertical.FaintRedFade;
 			plotSurface.Refresh();
 		}
@@ -1027,14 +1027,12 @@ namespace FlorenceDemo
 
 			plotSurface.XAxis1 = new TradingDateTimeAxis( plotSurface.XAxis1 );
 
-            plotSurface.AddInteraction(new Florence.Interactions.HorizontalDrag());
-            plotSurface.AddInteraction(new Florence.Interactions.VerticalDrag());
-            plotSurface.AddInteraction(new Florence.Interactions.AxisDrag(true));
+            plotSurface.AddInteraction(new PlotDrag(true,true));            
+            plotSurface.AddInteraction(new AxisDrag());
 
 
             // make sure plot surface colors are as we expect - the wave example changes them.
             plotSurface.PlotBackColor = Color.White;
-            plotSurface.BackColor = System.Drawing.SystemColors.Control;
             plotSurface.XAxis1.Color = Color.Black;
             plotSurface.YAxis1.Color = Color.Black;
 
@@ -1102,7 +1100,7 @@ namespace FlorenceDemo
 			//	new AxesConstraint.YPixelWorldLength(0.1f,PlotSurface2D.XAxisPosition.Bottom) );
 			//plotSurface.AddAxesConstraint( new AxesConstraint.AspectRatio(1.0,PlotSurface2D.XAxisPosition.Top,PlotSurface2D.YAxisPosition.Left) );
 
-            plotSurface.AddInteraction(new Florence.Interactions.RubberBandSelection());
+            plotSurface.AddInteraction(new PlotSelection());
 
             plotSurface.Refresh();
 
@@ -1303,9 +1301,10 @@ namespace FlorenceDemo
             file.Close();
 
             plotSurface.Clear();
-            plotSurface.AddInteraction(new Florence.Interactions.VerticalGuideline());
-            plotSurface.AddInteraction(new Florence.Interactions.HorizontalRangeSelection(3));
-            plotSurface.AddInteraction(new Florence.Interactions.AxisDrag(true));
+            plotSurface.AddInteraction(new VerticalGuideline(Color.Gray));
+            plotSurface.AddInteraction(new HorizontalGuideline(Color.Gray));
+            plotSurface.AddInteraction(new PlotDrag(true,true));
+            plotSurface.AddInteraction(new AxisDrag());
 
             plotSurface.Add(new HorizontalLine(0.0, Color.LightBlue));
             
@@ -1317,8 +1316,8 @@ namespace FlorenceDemo
 
             plotSurface.YAxis1.FlipTicksLabel = true;
 
-            plotSurface.PlotBackColor = Color.DarkBlue;
-            plotSurface.BackColor = Color.Black;
+            plotSurface.OuterBackColor = Color.Black;
+            plotSurface.PlotBackColor = Color.DarkBlue;            
             plotSurface.XAxis1.Color = Color.White;
             plotSurface.YAxis1.Color = Color.White;
             
@@ -1394,7 +1393,7 @@ namespace FlorenceDemo
 			line2.LengthScale = 0.89f;
 			plotSurface.Add( line2 );
 
-			plotSurface.AddInteraction( new Florence.Interactions.MouseWheelZoom() );
+			plotSurface.AddInteraction( new PlotZoom() );
 
 			plotSurface.Title = "Line in the Title Number 1\nFollowed by another title line\n and another";
             plotSurface.Refresh();
@@ -1573,11 +1572,14 @@ namespace FlorenceDemo
 			//
 			InitializeComponent();
 
-			this.plotSurface.Anchor = 
+            this.plotControl.Anchor = 
 				System.Windows.Forms.AnchorStyles.Left |
 				System.Windows.Forms.AnchorStyles.Right |
 				System.Windows.Forms.AnchorStyles.Top |
 				System.Windows.Forms.AnchorStyles.Bottom;
+
+            this.plotSurface = new InteractivePlotSurface2D();
+            this.plotControl.InteractivePlotSurface2D = this.plotSurface;
 
 			// List here the plot routines that you want to be accessed
 			PlotRoutines = new PlotDemoDelegate [] {    
@@ -1609,7 +1611,7 @@ namespace FlorenceDemo
 			int id = currentPlot + 1;
 			exampleNumberLabel.Text = "Plot " + id.ToString("0") + "/" + PlotRoutines.Length.ToString("0");
 
-            this.plotSurface.RightMenu = Florence.WinForms.WinFormsPlotSurface2D.DefaultContextMenu;
+            //this.plotSurface.RightMenu = Florence.WinForms.WinFormsPlotSurface2D.DefaultContextMenu;
 
             // draw the first plot.
 			currentPlot = 0;
@@ -1647,7 +1649,7 @@ namespace FlorenceDemo
             this.prevPlotButton = new System.Windows.Forms.Button();
             this.qeExampleTimer = new System.Windows.Forms.Timer(this.components);
             this.infoBox = new System.Windows.Forms.TextBox();
-            this.plotSurface = new Florence.WinForms.WinFormsPlotSurface2D();
+            this.plotControl = new Florence.WinForms.WinFormsPlotSurface2D();
             this.SuspendLayout();
 // 
 // quitButton
@@ -1713,30 +1715,18 @@ namespace FlorenceDemo
 // 
 // plotSurface
 // 
-            this.plotSurface.AutoScaleAutoGeneratedAxes = false;
-            this.plotSurface.AutoScaleTitle = false;
-            this.plotSurface.BackColor = System.Drawing.SystemColors.Control;
-            this.plotSurface.Legend = null;
-            this.plotSurface.Location = new System.Drawing.Point(8, 8);
-            this.plotSurface.Name = "plotSurface";
-            this.plotSurface.RightMenu = null;
-            this.plotSurface.ShowCoordinates = false;
-            this.plotSurface.Size = new System.Drawing.Size(616, 360);
-            this.plotSurface.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            this.plotSurface.TabIndex = 13;
-            this.plotSurface.Title = "";
-            this.plotSurface.TitleFont = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.plotSurface.XAxis1 = null;
-            this.plotSurface.XAxis2 = null;
-            this.plotSurface.YAxis1 = null;
-            this.plotSurface.YAxis2 = null;
+            this.plotControl.BackColor = System.Drawing.SystemColors.Control;
+            this.plotControl.Location = new System.Drawing.Point(8, 8);
+            this.plotControl.Name = "plotSurface";
+            this.plotControl.Size = new System.Drawing.Size(616, 360);
+            this.plotControl.TabIndex = 13;
 // 
 // PlotSurface2DDemo
 // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(631, 520);
             this.Controls.Add(this.infoBox);
-            this.Controls.Add(this.plotSurface);
+            this.Controls.Add(this.plotControl);
             this.Controls.Add(this.quitButton);
             this.Controls.Add(this.printButton);
             this.Controls.Add(this.prevPlotButton);
@@ -1809,7 +1799,7 @@ namespace FlorenceDemo
 			int id = currentPlot+1;
 			qeExampleTimer.Enabled = false;
 			exampleNumberLabel.Text = "Plot " + id.ToString("0") + "/" + PlotRoutines.Length.ToString("0");
-			this.plotSurface.DateTimeToolTip = false;
+			//this.plotSurface.DateTimeToolTip = false;
 			PlotRoutines[currentPlot]();
 		}
 

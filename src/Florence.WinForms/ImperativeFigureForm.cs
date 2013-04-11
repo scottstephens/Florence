@@ -39,15 +39,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using Florence;
+
 namespace Florence.WinForms
 {
     public partial class ImperativeFigureForm : Form
     {
-        public  Florence.WinForms.WinFormsPlotSurface2D PlotSurface { get { return plotSurface; } }
+        public InteractivePlotSurface2D PlotSurface { get; set; }
 
         public ImperativeFigureForm()
         {
             InitializeComponent();
+            this.PlotSurface = new InteractivePlotSurface2D();
+            plotSurface.InteractivePlotSurface2D = this.PlotSurface;
         }
     }
 }
