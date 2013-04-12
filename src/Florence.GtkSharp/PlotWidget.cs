@@ -267,13 +267,27 @@ namespace Florence.GtkSharp
         {
             Gdk.Window window = args.Event.Window;
             Gdk.Rectangle area = args.Event.Area;   // the Exposed Area
-            Rectangle clip = new Rectangle(area.X, area.Y, area.Width, area.Height);
+
+            // This one has trouble with Guideline interaction on single plot, and drag on multiplot
+            //Rectangle clip = new Rectangle(area.X, area.Y, area.Width, area.Height);
+
+            // This one makes single plot examples work, but multiplot even more broken
+            Rectangle clip = new Rectangle(this.Allocation.Left, this.Allocation.Top, this.Allocation.Width, this.Allocation.Height);
+
+            var window_info = this.WindowPositionAndSize(window);
+            
             using (Graphics g = Gtk.DotNet.Graphics.FromDrawable(window, true))
             {
                 this.InteractivePlotSurface2D.DoDraw(g, clip);
             }
         }                
-
+        Rectangle WindowPositionAndSize(Gdk.Window window)
+        {
+            int x,y,width,height;
+            window.GetPosition(out x, out y);
+            window.GetSize(out width, out height);
+            return new Rectangle(x,y,width,height);
+        }
         void PlotWidget_SizeAllocated(object o, SizeAllocatedArgs args)
         {
             this.Allocated = true;
