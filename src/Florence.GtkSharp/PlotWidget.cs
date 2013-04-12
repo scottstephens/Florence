@@ -270,7 +270,7 @@ namespace Florence.GtkSharp
             Rectangle clip = new Rectangle(area.X, area.Y, area.Width, area.Height);
             using (Graphics g = Gtk.DotNet.Graphics.FromDrawable(window, true))
             {
-                this.InteractivePlotSurface2D.Draw(g, clip);
+                this.InteractivePlotSurface2D.DoDraw(g, clip);
             }
         }                
 
