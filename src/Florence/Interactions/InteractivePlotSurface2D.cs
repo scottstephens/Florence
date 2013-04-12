@@ -75,16 +75,6 @@ namespace Florence
             base.Clear();
         }
 
-        /// <summary>
-        /// Raise the PreRefresh event, then let the platform-specific
-        /// Refresh methods redraw the plot and copy it to the screen
-        /// </summary>
-        public void ReDraw()
-        {
-            this.PreRefresh(this);
-            Refresh();
-        }
-
         private CursorType plotcursor;
 
         public CursorType plotCursor
@@ -360,7 +350,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -380,7 +370,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -403,7 +393,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -426,7 +416,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -449,7 +439,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -473,7 +463,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -491,7 +481,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -510,7 +500,7 @@ namespace Florence
             if (modified)
             {
                 InteractionOccurred(this);
-                ReDraw();
+                Refresh();
             }
             return (modified);
         }
@@ -533,6 +523,8 @@ namespace Florence
         /// </summary>
         public virtual void Refresh()
         {
+            this.PreRefresh(this);
+
             if (this.RefreshRequested != null)
                 this.RefreshRequested();
         }
