@@ -66,11 +66,23 @@ namespace Florence.GtkSharp
 
         #region fields
         bool Allocated = false;
-
+        InteractivePlotSurface2D plotSurface;
         #endregion 
 
         #region properties
-        public InteractivePlotSurface2D InteractivePlotSurface2D { get; set; }
+
+        public InteractivePlotSurface2D InteractivePlotSurface2D
+        {
+            get
+            {
+                return plotSurface;
+            }
+            set
+            {
+                plotSurface = value;
+                InitializeSuface();
+            }
+        }
         #endregion 
 
         protected void Init()
@@ -98,6 +110,22 @@ namespace Florence.GtkSharp
             this.AddEvents((int)Gdk.EventMask.PointerMotionHintMask);
             this.AddEvents((int)Gdk.EventMask.ScrollMask);
 
+        }
+
+        void InitializeSuface()
+        {
+            plotSurface.DrawQueued += new Action<Rectangle>(plotSurface_DrawQueued);
+            plotSurface.RefreshRequested += new System.Action(plotSurface_RefreshRequested);
+        }
+
+        void plotSurface_DrawQueued(Rectangle obj)
+        {
+            this.QueueDrawArea(obj.Left, obj.Top, obj.Width, obj.Height);
+        }
+
+        void plotSurface_RefreshRequested()
+        {
+            this.QueueDraw();
         }
 
         void PlotWidget_KeyReleaseEvent(object o, KeyReleaseEventArgs args)
@@ -236,24 +264,20 @@ namespace Florence.GtkSharp
         }
 
         void PlotWidget_ExposeEvent(object o, ExposeEventArgs args)
-        {            
+        {
+            Gdk.Window window = args.Event.Window;
             Gdk.Rectangle area = args.Event.Area;   // the Exposed Area
             Rectangle clip = new Rectangle(area.X, area.Y, area.Width, area.Height);
-            this.Draw(clip);
-        }
-
-        protected void Draw(Rectangle bounds)
-        {
-            using (Graphics g = Gtk.DotNet.Graphics.FromDrawable(this.ParentWindow, true))
+            using (Graphics g = Gtk.DotNet.Graphics.FromDrawable(window, true))
             {
-                this.InteractivePlotSurface2D.Draw(g, bounds);
+                this.InteractivePlotSurface2D.Draw(g, clip);
             }
         }                
 
         void PlotWidget_SizeAllocated(object o, SizeAllocatedArgs args)
         {
             this.Allocated = true;
-            this.Draw(new Rectangle(this.Allocation.Left, this.Allocation.Top, this.Allocation.Width, this.Allocation.Height));
+            this.QueueDraw();
         }
 
     }

@@ -7,7 +7,8 @@
     <ProjectGuid>{7427C7A7-6CB0-4CB3-A0DB-F11603C5C29A}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>resources\FlorenceDemo-icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <AssemblyName>FlorenceDemo</AssemblyName>
     <DelaySign>false</DelaySign>
     <OutputType>WinExe</OutputType>
@@ -86,12 +87,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\FlorenceDemo-icon.ico" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="src\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,35 +104,15 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\asx_jbh.xml">
-      <LogicalName>FlorenceDemo.resources.asx_jbh.xml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\AxisTestsForm.resx">
-      <LogicalName>AxisTestsForm.resources</LogicalName>
-      <DependentUpon>..\src\AxisTestsForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\FinancialDemo.resx">
-      <LogicalName>FinancialDemo.resources</LogicalName>
-      <DependentUpon>..\src\FinancialDemo.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\light.wav">
-      <LogicalName>FlorenceDemo.resources.light.wav</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\MenuForm.resx">
-      <LogicalName>MenuForm.resources</LogicalName>
-      <DependentUpon>..\src\MenuForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\pattern01.jpg">
-      <LogicalName>FlorenceDemo.resources.pattern01.jpg</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="resources\PlotSurface2DDemo.resx">
-      <LogicalName>PlotSurface2DDemo.resources</LogicalName>
-      <DependentUpon>..\src\PlotSurface2DDemo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -162,13 +137,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Florence.WinForms\Florence.WinForms.csproj">
+    <ProjectReference Include="..\..\..\src\Florence.WinForms\Florence.WinForms.csproj">
       <Project>{7173A744-7A13-439B-AE13-A1CCCF4C8197}</Project>
-      <Name>NPlot.WinForms</Name>
+      <Name>Florence.WinForms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Florence\Florence.csproj">
+    <ProjectReference Include="..\..\..\src\Florence\Florence.csproj">
       <Project>{E6867FF5-74EC-4464-8958-D71CB46232F3}</Project>
-      <Name>NPlot</Name>
+      <Name>Florence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoLib\DemoLib.csproj">
+      <Project>{DD6DB5B6-6718-4911-9E8A-C96B74B669E2}</Project>
+      <Name>DemoLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" Condition="'$(SharpDevelopBinPath)'==''" />

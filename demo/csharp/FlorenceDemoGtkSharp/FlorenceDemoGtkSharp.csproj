@@ -2,19 +2,20 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1BDEF389-7E30-4D02-93F9-449CC19D07BF}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{EF428519-FFF9-478D-83D4-FDAE0D18F950}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Florence.GtkSharp</RootNamespace>
-    <AssemblyName>Florence.GtkSharp</AssemblyName>
+    <RootNamespace>FlorenceDemoGtkSharp</RootNamespace>
+    <AssemblyName>FlorenceDemoGtkSharp</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,17 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlotWidget.cs" />
+    <Compile Include="MenuWindow.cs" />
+    <Compile Include="MultiPlotDemo.cs" />
+    <Compile Include="PlotSurface2DSamples.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Florence\Florence.csproj">
+    <ProjectReference Include="..\..\..\src\Florence.GtkSharp\Florence.GtkSharp.csproj">
+      <Project>{1BDEF389-7E30-4D02-93F9-449CC19D07BF}</Project>
+      <Name>Florence.GtkSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Florence\Florence.csproj">
       <Project>{E6867FF5-74EC-4464-8958-D71CB46232F3}</Project>
       <Name>Florence</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\asx_jbh.xml" />
+    <ProjectReference Include="..\DemoLib\DemoLib.csproj">
+      <Project>{DD6DB5B6-6718-4911-9E8A-C96B74B669E2}</Project>
+      <Name>DemoLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
