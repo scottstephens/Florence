@@ -120,8 +120,17 @@ namespace FlorenceDemoGtkSharp
             quitButton = new Gtk.Button("Quit");
             quitButton.Clicked += new System.EventHandler(this.quitButton_Click);
             layout.Attach(quitButton, 2, 4, 7, 8, 0, 0, 0, 0);
-
+            //
+            // Gtk.Window events
+            //
+            this.Destroyed += new EventHandler(MenuForm_Destroyed);
         }
+
+        void MenuForm_Destroyed(object sender, EventArgs e)
+        {
+            Application.Quit();
+        }
+
         #endregion
 
         private void runDemoButton_Click(object sender, System.EventArgs e)
