@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * ImperativeHost.cs
+ * BaseImperativeHost.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -36,34 +36,10 @@ using System.Text;
 
 namespace Florence
 {
-
-    public interface ImperativePlottable
-    {
-        void clear();
-        void points(IEnumerable<double> x, IEnumerable<double> y, string x_label=null, string y_label=null, string title=null);
-		void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label=null, string y_label=null, string title=null);
-    }
-
-    public interface ImperativeHost : ImperativePlottable
-    {
-        void Start();
-        void Stop();
-
-
-        IEnumerable<ImperativeFigure> Figures { get; }     
-        int FigureCount { get; }
-        ImperativeFigure ActiveFigure { get; set; }
-
-        ImperativeFigure newFigure();
-        ImperativeFigure next();        
-        ImperativeFigure previous();
-        
-    }
-
     public abstract class BaseImperativeHost<T> : ImperativeHost where T : class, ImperativeFigure
     {
         protected List<T> FiguresTyped { get; set; }
-        
+
         protected int ActiveFigureIndex { get; set; }
         protected T ActiveFigureTyped { get { return this.ActiveFigureIndex < 0 ? null : this.FiguresTyped[this.ActiveFigureIndex]; } }
 
@@ -107,8 +83,8 @@ namespace Florence
             if (found)
             {
                 this.ActiveFigureIndex = ii;
-            } 
-            else 
+            }
+            else
             {
                 throw new FlorenceException("Figure chosen to be active not in set of active figures kept by ImperativeHost");
             }
@@ -116,7 +92,7 @@ namespace Florence
 
         public ImperativeFigure newFigure()
         {
-            var new_figure = this.createNewFigure();            
+            var new_figure = this.createNewFigure();
             this.FiguresTyped.Add(new_figure);
             new_figure.StateChange += handle_figure_state_changed;
             this.ActiveFigureIndex = this.FiguresTyped.Count - 1;
@@ -173,17 +149,17 @@ namespace Florence
             this.ActiveFigureTyped.points(x, y, x_label, y_label, title);
         }
 
-		public void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
-		{
-			if (this.ActiveFigure == null)
-				this.newFigure();
-			this.ActiveFigureTyped.lines(x, y, x_label, y_label, title);
-		}
+        public void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
+        {
+            if (this.ActiveFigure == null)
+                this.newFigure();
+            this.ActiveFigureTyped.lines(x, y, x_label, y_label, title);
+        }
 
         // Abstract methods that must be implemented by derived class
         protected abstract T createNewFigure();
         public abstract void Start();
         public abstract void Stop();
-        
+
     }
 }

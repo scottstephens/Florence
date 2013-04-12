@@ -136,6 +136,9 @@
     <Compile Include="ImagePlot.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ImperativeApi\BaseImperativeFigure.cs" />
+    <Compile Include="ImperativeApi\BaseImperativeHost.cs" />
+    <Compile Include="ImperativeApi\ImperativePlottable.cs" />
     <Compile Include="Interactions\AxisDrag.cs" />
     <Compile Include="Interactions\CursorType.cs" />
     <Compile Include="Interactions\HorizontalGuideline.cs" />
@@ -146,7 +149,7 @@
     <Compile Include="Interactions\PlotDrag.cs" />
     <Compile Include="Interactions\PlotSelection.cs" />
     <Compile Include="Interactions\PlotZoom.cs" />
-    <Compile Include="ImperativeHost.cs" />
+    <Compile Include="ImperativeApi\ImperativeHost.cs" />
     <Compile Include="Interactions\VerticalGuideline.cs" />
     <Compile Include="IPlot.cs">
       <SubType>Code</SubType>
@@ -203,7 +206,7 @@
     <Compile Include="PiAxis.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ImperativeFigure.cs" />
+    <Compile Include="ImperativeApi\ImperativeFigure.cs" />
     <Compile Include="PlotSurface2D.cs">
       <SubType>Code</SubType>
     </Compile>

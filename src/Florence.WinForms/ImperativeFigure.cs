@@ -37,11 +37,11 @@ using Florence;
 
 namespace Florence.WinForms
 {
-    public class WinFormsImperativeFigure : BaseImperativeFigure<InteractivePlotSurface2D>
+    public class ImperativeFigure : BaseImperativeFigure<InteractivePlotSurface2D>
     {
         public ImperativeFigureForm HostForm { get; private set; }
 
-        public WinFormsImperativeFigure(ImperativeFigureForm host_form)
+        public ImperativeFigure(ImperativeFigureForm host_form)
             : base(host_form.PlotSurface)
         {
             this.HostForm = host_form;
@@ -91,6 +91,6 @@ namespace Florence.WinForms
             else
                 action();
         }
-        public override event Action<ImperativeFigure, FigureState> StateChange;
+        public override event Action<Florence.ImperativeFigure, FigureState> StateChange;
     }
 }

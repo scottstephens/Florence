@@ -33,67 +33,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
-using Gtk;
-
-namespace Florence.GtkSharp
+namespace Florence
 {
-    public class ImperativeHost : BaseImperativeHost<ImperativeFigure>
+    public interface ImperativeHost : ImperativePlottable
     {
-        public Thread GuiThread { get; private set; }
-        public object _main_form;
+        void Start();
+        void Stop();
 
-        public ImperativeHost()
-        {
-            this.GuiThread = null;
-        }
 
-        protected void Run()
-        {
-            //_main_form = new Window("tmp");
-            _main_form = new object();
-            Application.Init();
-            Application.Run();
-        }
+        IEnumerable<ImperativeFigure> Figures { get; }     
+        int FigureCount { get; }
+        ImperativeFigure ActiveFigure { get; set; }
 
-        public override void Start()
-        {
-            this.GuiThread = new Thread(Run);
-            this.GuiThread.Name = "GuiThread";
-            this.GuiThread.Start();
-            while (_main_form == null)
-                Thread.Sleep(20);
-        }
-
-        public override void Stop()
-        {
-            Application.Quit();
-            this.GuiThread = null;
-        }
-
-        AutoResetEvent _event;
-        object _lock = new object();
-        ImperativeFigure _tmp_figure;
-        protected void createNewFigureInternal(object sender, EventArgs args)
-        {
-            var tmp_form = new ImperativeFigureForm("");
-            var tmp_context = new ImperativeFigure(tmp_form);
-            tmp_form.ShowAll();
-            _tmp_figure = tmp_context;
-            _event.Set();
-        }
-
-        protected override ImperativeFigure createNewFigure()
-        {
-            lock (_lock)
-            {
-                _event = new AutoResetEvent(false);
-                Gtk.Application.Invoke(createNewFigureInternal);
-                _event.WaitOne();
-                return _tmp_figure;
-            }               
-        }
-
+        ImperativeFigure newFigure();
+        ImperativeFigure next();        
+        ImperativeFigure previous();
+        
     }
 }

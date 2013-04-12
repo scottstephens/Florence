@@ -39,7 +39,7 @@ using System.Windows.Forms;
 namespace Florence.WinForms
 {
 
-    public class ImperativeHost : BaseImperativeHost<WinFormsImperativeFigure>
+    public class ImperativeHost : BaseImperativeHost<ImperativeFigure>
     {
         public Thread GuiThread { get; private set; }
         protected Control _main_form;
@@ -86,14 +86,14 @@ namespace Florence.WinForms
             this.GuiThread = null;
         }        
 
-        protected override WinFormsImperativeFigure createNewFigure()
+        protected override ImperativeFigure createNewFigure()
         {
             if (_main_form.InvokeRequired)
             {
-                return (WinFormsImperativeFigure)_main_form.Invoke(new Func<ImperativeFigure>(this.createNewFigure));
+                return (ImperativeFigure)_main_form.Invoke(new Func<ImperativeFigure>(this.createNewFigure));
             }
             var tmp_form = new ImperativeFigureForm();
-            var tmp_context = new WinFormsImperativeFigure(tmp_form);            
+            var tmp_context = new ImperativeFigure(tmp_form);            
             tmp_form.Show();
             return tmp_context;
         }
