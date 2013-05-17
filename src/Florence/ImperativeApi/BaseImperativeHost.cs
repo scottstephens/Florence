@@ -142,11 +142,11 @@ namespace Florence
                 this.ActiveFigure.clear();
         }
 
-        public void points(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
+        public void points(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "", Marker marker=null)
         {
             if (this.ActiveFigureTyped == null)
                 this.newFigure();
-            this.ActiveFigureTyped.points(x, y, x_label, y_label, title);
+            this.ActiveFigureTyped.points(x, y, x_label, y_label, title, marker);
         }
 
         public void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")

@@ -71,10 +71,10 @@ namespace Florence
             this.PlotSurfaceTyped.Clear();
         }
 
-        public void points(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
+        public void points(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "", Marker marker = null)
         {
             this.ensureNotClosed();
-            this.invokeOnGuiThread(() => points_impl(x, y, x_label, y_label, title));
+            this.invokeOnGuiThread(() => points_impl(x, y, x_label, y_label, title, marker));
             this.show();
         }
 
@@ -86,13 +86,16 @@ namespace Florence
         }
 
         // Actual Plotting Implementations
-        protected void points_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title)
+        protected void points_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title, Marker marker)
         {
+			if (marker == null)
+				marker = new Marker(Marker.MarkerType.FilledCircle, 4, new Pen(Color.Blue));
+
             PointPlot pp = new PointPlot();
             pp.OrdinateData = y;
             pp.AbscissaData = x;
-            pp.Marker = new Marker(Marker.MarkerType.FilledCircle, 4, new Pen(Color.Blue));
-
+			pp.Marker = marker;
+			
             this.do_interactions();
 
             this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
@@ -105,6 +108,7 @@ namespace Florence
 
         protected void lines_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title)
         {
+			
             LinePlot pp = new LinePlot();
             pp.OrdinateData = y;
             pp.AbscissaData = x;

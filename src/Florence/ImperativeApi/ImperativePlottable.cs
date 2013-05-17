@@ -39,7 +39,7 @@ namespace Florence
     public interface ImperativePlottable
     {
         void clear();
-        void points(IEnumerable<double> x, IEnumerable<double> y, string x_label = null, string y_label = null, string title = null);
+        void points(IEnumerable<double> x, IEnumerable<double> y, string x_label = null, string y_label = null, string title = null, Marker marker = null);
         void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label = null, string y_label = null, string title = null);
     }
 }
