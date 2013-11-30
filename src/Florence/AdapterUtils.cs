@@ -153,13 +153,14 @@ namespace Florence
 
                 if (Utils.ArrayMinMax(data_, out min, out max))
                 {
+                    double buffer = (max - min) * 0.04;
                     if (data_[0] is DateTime)
                     {
-                        return new DateTimeAxis(min, max);
+                        return new DateTimeAxis(min - buffer, max + buffer);
                     }
                     else
                     {
-                        return new LinearAxis(min, max);
+                        return new LinearAxis(min - buffer, max + buffer);
                     }
 
                     // perhaps return LogAxis here if range large enough 
@@ -324,13 +325,14 @@ namespace Florence
 
                 if (Utils.RowArrayMinMax(rows_, out min, out max, columnName_))
                 {
+                    double buffer = (max - min) * 0.04;
                     if ((rows_[0])[columnName_] is DateTime)
                     {
-                        return new DateTimeAxis(min, max);
+                        return new DateTimeAxis(min - buffer, max + buffer);
                     }
                     else
                     {
-                        return new LinearAxis(min, max);
+                        return new LinearAxis(min - buffer, max + buffer);
                     }
                 }
 
@@ -369,13 +371,14 @@ namespace Florence
 
                 if (Utils.DataViewArrayMinMax(data_, out min, out max, columnName_))
                 {
+                    double buffer = (max - min) * 0.04;
                     if ((data_[0])[columnName_] is DateTime)
                     {
-                        return new DateTimeAxis(min, max);
+                        return new DateTimeAxis(min - buffer, max + buffer);
                     }
                     else
                     {
-                        return new LinearAxis(min, max);
+                        return new LinearAxis(min - buffer, max + buffer);
                     }
                 }
 
