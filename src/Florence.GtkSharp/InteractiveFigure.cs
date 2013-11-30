@@ -59,7 +59,10 @@ namespace Florence.GtkSharp
         {
             if (this.State != FigureState.Hidden)
             {
-                this.HostForm.Hide();
+                this.invokeOnGuiThread(() =>
+                {
+                    this.HostForm.Hide();
+                });
                 if (this.StateChange != null)
                     this.StateChange(this, FigureState.Hidden);
             }
@@ -69,7 +72,10 @@ namespace Florence.GtkSharp
         {
             if (this.State != FigureState.Ready)
             {
-                this.HostForm.Show();
+                this.invokeOnGuiThread(() =>
+                {
+                    this.HostForm.Show();
+                });
                 if (this.StateChange != null)
                     this.StateChange(this, FigureState.Ready);
             }
@@ -77,14 +83,17 @@ namespace Florence.GtkSharp
 
         public override void close()
         {
-            this.HostForm.Destroy();
+            this.invokeOnGuiThread(() =>
+            {
+                this.HostForm.Destroy();
+            });
             if (this.StateChange != null)
                 this.StateChange(this, FigureState.Closed);
         }
 
         public override void refresh()
         {
-            this.HostForm.PlotSurface.Refresh();
+            this.invokeOnGuiThread(() => this.HostForm.PlotSurface.Refresh());
         }
 
 
