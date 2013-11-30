@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * WinFormsImperativeFigure.cs
+ * InteractiveFigure.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -37,11 +37,11 @@ using Florence;
 
 namespace Florence.WinForms
 {
-    public class ImperativeFigure : BaseImperativeFigure<InteractivePlotSurface2D>
+    public class InteractiveFigure : BaseInteractiveFigure<InteractivePlotSurface2D>
     {
-        public ImperativeFigureForm HostForm { get; private set; }
+        public InteractiveFigureForm HostForm { get; private set; }
 
-        public ImperativeFigure(ImperativeFigureForm host_form)
+        public InteractiveFigure(InteractiveFigureForm host_form)
             : base(host_form.PlotSurface)
         {
             this.HostForm = host_form;
@@ -98,6 +98,6 @@ namespace Florence.WinForms
             else
                 action();
         }
-        public override event Action<Florence.ImperativeFigure, FigureState> StateChange;
+        public override event Action<Florence.InteractiveFigure, FigureState> StateChange;
     }
 }

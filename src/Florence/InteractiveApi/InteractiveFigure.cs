@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * ImperativeFigure.cs
+ * InteractiveFigure.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -39,7 +39,7 @@ namespace Florence
 {
     public enum FigureState { Ready, Hidden, Closed };
 
-    public interface ImperativeFigure : IPlotSurface2D
+    public interface InteractiveFigure : IPlotSurface2D
     {        
         IPlotSurface2D PlotSurface { get; }
         InteractivePlotSurface2D InteractivePlotSurface { get; }        
@@ -47,7 +47,7 @@ namespace Florence
         void show();
         void close();
         void refresh();
-        event Action<ImperativeFigure, FigureState> StateChange;
+        event Action<InteractiveFigure, FigureState> StateChange;
     }
 	
 }

@@ -8,7 +8,7 @@ namespace SimpleTestCommon
 {
     public static class SimpleTestCommon
     {
-        public static void Run(ImperativeHost plot)
+        public static void Run(InteractiveHost plot)
         {
             plot.Start();
 

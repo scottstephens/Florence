@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * BaseImperativeHost.cs
+ * BaseInteractiveHost.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -37,17 +37,17 @@ using System.Drawing;
 
 namespace Florence
 {
-    public abstract class BaseImperativeHost<T> : ImperativeHost where T : class, ImperativeFigure
+    public abstract class BaseInteractiveHost<T> : InteractiveHost where T : class, InteractiveFigure
     {
         protected List<T> FiguresTyped { get; set; }
 
         protected int ActiveFigureIndex { get; set; }
         protected T ActiveFigureTyped { get { return this.ActiveFigureIndex < 0 ? null : this.FiguresTyped[this.ActiveFigureIndex]; } }
 
-        public IEnumerable<ImperativeFigure> Figures { get { return this.FiguresTyped; } }
+        public IEnumerable<InteractiveFigure> Figures { get { return this.FiguresTyped; } }
         public int FigureCount { get { return this.FiguresTyped.Count; } }
 
-        public BaseImperativeHost()
+        public BaseInteractiveHost()
         {
             this.FiguresTyped = new List<T>();
             this.ActiveFigureIndex = -1;
@@ -55,7 +55,7 @@ namespace Florence
 
         #region imperative host methods/properties
 
-        public ImperativeFigure ActiveFigure
+        public InteractiveFigure ActiveFigure
         {
             get
             {
@@ -70,7 +70,7 @@ namespace Florence
             }
         }
 
-        protected ImperativeFigure ActiveOrNewFigure
+        protected InteractiveFigure ActiveOrNewFigure
         {
             get
             {
@@ -104,7 +104,7 @@ namespace Florence
             }
         }
 
-        public ImperativeFigure newFigure()
+        public InteractiveFigure newFigure()
         {
             var new_figure = this.createNewFigure();
             this.FiguresTyped.Add(new_figure);
@@ -112,7 +112,7 @@ namespace Florence
             this.ActiveFigureIndex = this.FiguresTyped.Count - 1;
             return new_figure;
         }
-        public ImperativeFigure next()
+        public InteractiveFigure next()
         {
             if (this.ActiveFigureIndex < 0)
                 return this.newFigure();
@@ -123,7 +123,7 @@ namespace Florence
                 return this.ActiveFigure;
             }
         }
-        public ImperativeFigure previous()
+        public InteractiveFigure previous()
         {
             if (this.ActiveFigureIndex < 0)
                 return this.newFigure();
@@ -135,7 +135,7 @@ namespace Florence
             }
         }
 
-        private void handle_figure_state_changed(ImperativeFigure figure, FigureState state)
+        private void handle_figure_state_changed(InteractiveFigure figure, FigureState state)
         {
             if (state == FigureState.Closed)
             {

@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * ImperativeFigure.cs
+ * InteractiveHost.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -33,70 +33,75 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
-namespace Florence.GtkSharp
+namespace Florence.WinForms
 {
-    public class ImperativeFigure : BaseImperativeFigure<InteractivePlotSurface2D>
+
+    public class InteractiveHost : BaseInteractiveHost<InteractiveFigure>
     {
-        public ImperativeFigureForm HostForm { get; private set; }
+        public Thread GuiThread { get; private set; }
+        protected Control _main_form;
 
-        public ImperativeFigure(ImperativeFigureForm host_form)
-            : base(host_form.PlotSurface)
+        public InteractiveHost()
         {
-            this.HostForm = host_form;
-            this.HostForm.Destroyed += new EventHandler(HostForm_Destroyed);
+            this.GuiThread = null;
         }
 
-        public override event Action<Florence.ImperativeFigure, FigureState> StateChange;
 
-        void HostForm_Destroyed(object sender, EventArgs e)
+        protected void Run()
         {
-            if (this.StateChange != null)
-                this.StateChange(this, FigureState.Closed);
+            _main_form = new Control();
+
+            // This seems to force the control to actually get a handle,
+            // which then makes _main_form.InvokeRequired and _main_form.Invoke()
+            // use the thread running this method as the GUI thread, which is 
+            // the desired behavior in this case.
+            System.IntPtr a = _main_form.Handle;
+
+            Application.Run();
         }
 
-        public override void hide()
+        public override void Start()
         {
-            if (this.State != FigureState.Hidden)
+            this.GuiThread = new Thread(Run);
+            this.GuiThread.Name = "GuiThread";
+            this.GuiThread.Start();
+            while (_main_form == null)
+                Thread.Sleep(20);
+        }
+
+        public override void Stop()
+        {
+            if (_main_form.InvokeRequired)
             {
-                this.HostForm.Hide();
-                if (this.StateChange != null)
-                    this.StateChange(this, FigureState.Hidden);
+                _main_form.Invoke(new Action(this.Stop));
+            }
+            else
+            {
+                _main_form.Dispose();
+                Application.Exit();
+                this.GuiThread = null;
+            }
+        }        
+
+        protected override InteractiveFigure createNewFigure()
+        {
+            if (_main_form.InvokeRequired)
+            {
+                return (InteractiveFigure)_main_form.Invoke(new Func<InteractiveFigure>(this.createNewFigure));
+            }
+            else
+            {
+                var tmp_form = new InteractiveFigureForm();
+                var tmp_context = new InteractiveFigure(tmp_form);
+                tmp_form.Show();
+                return tmp_context;
             }
         }
 
-        public override void show()
-        {
-            if (this.State != FigureState.Ready)
-            {
-                this.HostForm.Show();
-                if (this.StateChange != null)
-                    this.StateChange(this, FigureState.Ready);
-            }
-        }
+        
 
-        public override void close()
-        {
-            this.HostForm.Destroy();
-            if (this.StateChange != null)
-                this.StateChange(this, FigureState.Closed);
-        }
-
-        public override void refresh()
-        {
-            this.HostForm.PlotSurface.Refresh();
-        }
-
-
-        private void invokeOnGuiThreadInternal(object sender, EventArgs args)
-        {
-            Action action = (Action)sender;
-            action();
-        }
-
-        public override void invokeOnGuiThread(Action action)
-        {
-            Gtk.Application.Invoke(action, new EventArgs(), invokeOnGuiThreadInternal);            
-        }
     }
 }

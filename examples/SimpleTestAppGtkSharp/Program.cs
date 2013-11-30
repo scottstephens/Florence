@@ -11,7 +11,7 @@ namespace SimpleTestAppGtkSharp
     {
         static void Main(string[] args)
         {
-            var plot = new Florence.GtkSharp.ImperativeHost();
+            var plot = new Florence.GtkSharp.InteractiveHost();
             SimpleTestCommon.SimpleTestCommon.Run(plot);
         }
     }

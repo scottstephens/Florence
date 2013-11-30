@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * BaseImperativeFigure.cs
+ * BaseInteractiveFigure.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -37,7 +37,7 @@ using System.Drawing;
 
 namespace Florence
 {
-    public abstract class BaseImperativeFigure<T> : ImperativeFigure where T : InteractivePlotSurface2D
+    public abstract class BaseInteractiveFigure<T> : InteractiveFigure where T : InteractivePlotSurface2D
     {
 
         public IPlotSurface2D PlotSurface { get { return this.PlotSurfaceTyped; } }
@@ -46,16 +46,16 @@ namespace Florence
         protected T PlotSurfaceTyped { get; set; }
         protected FigureState State { get; set; }
 
-        public BaseImperativeFigure(T plot_surface)
+        public BaseInteractiveFigure(T plot_surface)
         {
             this.PlotSurfaceTyped = plot_surface;
-            this.StateChange += new Action<ImperativeFigure, FigureState>(BaseImperativeFigure_StateChanged);
+            this.StateChange += new Action<InteractiveFigure, FigureState>(BaseImperativeFigure_StateChanged);
 
         }
 
         #region imperative figure methods
 
-        void BaseImperativeFigure_StateChanged(ImperativeFigure arg1, FigureState arg2)
+        void BaseImperativeFigure_StateChanged(InteractiveFigure arg1, FigureState arg2)
         {
             this.State = arg2;
         }
@@ -85,7 +85,7 @@ namespace Florence
         public abstract void close();
         public abstract void refresh();
         public abstract void invokeOnGuiThread(Action action);
-        public abstract event Action<ImperativeFigure, FigureState> StateChange;
+        public abstract event Action<InteractiveFigure, FigureState> StateChange;
 
         #endregion
 

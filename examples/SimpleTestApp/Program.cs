@@ -10,7 +10,7 @@ namespace SimpleTestApp
     {
         static void Main(string[] args)
         {
-            var plot = new Florence.WinForms.ImperativeHost();
+            var plot = new Florence.WinForms.InteractiveHost();
             SimpleTestCommon.SimpleTestCommon.Run(plot);
         }
     }

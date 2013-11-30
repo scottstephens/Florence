@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImperativeFigure.cs" />
-    <Compile Include="ImperativeFigureForm.cs" />
-    <Compile Include="ImperativeHost.cs" />
+    <Compile Include="InteractiveFigure.cs" />
+    <Compile Include="InteractiveFigureForm.cs" />
+    <Compile Include="InteractiveHost.cs" />
     <Compile Include="PlotWidget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,7 +1,8 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * ImperativeHost.cs
+ * InteractiveFigureForm.cs
+ * Copyright (C) 2003-2006 Matt Howlett and others.
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -31,69 +32,26 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Windows.Forms;
 
-using Gtk;
+using Florence;
 
-namespace Florence.GtkSharp
+namespace Florence.WinForms
 {
-    public class ImperativeHost : BaseImperativeHost<ImperativeFigure>
+    public partial class InteractiveFigureForm : Form
     {
-        public Thread GuiThread { get; private set; }
-        public object _main_form;
+        public InteractivePlotSurface2D PlotSurface { get; set; }
 
-        public ImperativeHost()
+        public InteractiveFigureForm()
         {
-            this.GuiThread = null;
+            InitializeComponent();
+            this.PlotSurface = new InteractivePlotSurface2D();
+            plotSurface.InteractivePlotSurface2D = this.PlotSurface;
         }
-
-        protected void Run()
-        {
-            //_main_form = new Window("tmp");
-            _main_form = new object();
-            Application.Init();
-            Application.Run();
-        }
-
-        public override void Start()
-        {
-            this.GuiThread = new Thread(Run);
-            this.GuiThread.Name = "GuiThread";
-            this.GuiThread.Start();
-            while (_main_form == null)
-                Thread.Sleep(20);
-        }
-
-        public override void Stop()
-        {
-            Application.Quit();
-            this.GuiThread = null;
-        }
-
-        AutoResetEvent _event;
-        object _lock = new object();
-        ImperativeFigure _tmp_figure;
-        protected void createNewFigureInternal(object sender, EventArgs args)
-        {
-            var tmp_form = new ImperativeFigureForm("");
-            var tmp_context = new ImperativeFigure(tmp_form);
-            tmp_form.ShowAll();
-            _tmp_figure = tmp_context;
-            _event.Set();
-        }
-
-        protected override ImperativeFigure createNewFigure()
-        {
-            lock (_lock)
-            {
-                _event = new AutoResetEvent(false);
-                Gtk.Application.Invoke(createNewFigureInternal);
-                _event.WaitOne();
-                return _tmp_figure;
-            }               
-        }
-
     }
 }

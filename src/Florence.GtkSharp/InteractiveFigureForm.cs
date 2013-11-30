@@ -1,7 +1,7 @@
 ﻿/*
  * Florence - A charting library for .NET
  * 
- * ImperativeHost.cs
+ * InteractiveFigureForm.cs
  * Copyright (C) 2013 Scott Stephens
  * All rights reserved.
  * 
@@ -34,21 +34,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Florence
+namespace Florence.GtkSharp
 {
-    public interface ImperativeHost : IPlotSurface2D
+    public class InteractiveFigureForm : Gtk.Window
     {
-        void Start();
-        void Stop();
+        public InteractivePlotSurface2D PlotSurface { get; set; }
 
+        public InteractiveFigureForm(string title) : base(title)
+        {
+            this.InitializeComponent();
+            this.PlotSurface = new InteractivePlotSurface2D();
+            this.PlotWidget.InteractivePlotSurface2D = this.PlotSurface;
+        }
 
-        IEnumerable<ImperativeFigure> Figures { get; }     
-        int FigureCount { get; }
-        ImperativeFigure ActiveFigure { get; set; }
-
-        ImperativeFigure newFigure();
-        ImperativeFigure next();        
-        ImperativeFigure previous();
+        private PlotWidget PlotWidget;
         
+        protected void InitializeComponent()
+        {
+            this.PlotWidget = new PlotWidget();
+
+            this.SetSizeRequest(600, 500);
+
+            this.Add(this.PlotWidget);
+        }
     }
 }
