@@ -81,9 +81,9 @@ namespace Florence.WinForms
             else
             {
                 _main_form.Dispose();
+                Application.Exit();
+                this.GuiThread = null;
             }
-            Application.Exit();
-            this.GuiThread = null;
         }        
 
         protected override ImperativeFigure createNewFigure()
