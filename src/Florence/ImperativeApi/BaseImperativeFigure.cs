@@ -40,7 +40,6 @@ namespace Florence
     public abstract class BaseImperativeFigure<T> : ImperativeFigure where T : InteractivePlotSurface2D
     {
 
-
         public IPlotSurface2D PlotSurface { get { return this.PlotSurfaceTyped; } }
         public InteractivePlotSurface2D InteractivePlotSurface { get { return this.PlotSurfaceTyped; } }
 
@@ -54,6 +53,8 @@ namespace Florence
 
         }
 
+        #region imperative figure methods
+
         void BaseImperativeFigure_StateChanged(ImperativeFigure arg1, FigureState arg2)
         {
             this.State = arg2;
@@ -65,80 +66,6 @@ namespace Florence
                 throw new FlorenceException("Cannot plot on a closed ImperativeFigure. Create a new one from the ImperativeHost.");
         }
 
-        // ImperativePlottable Implementations
-        public void clear()
-        {
-            this.PlotSurfaceTyped.Clear();
-        }
-
-        public void points(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "", Marker marker = null)
-        {
-            this.ensureNotClosed();
-            this.invokeOnGuiThread(() => points_impl(x, y, x_label, y_label, title, marker));
-            this.show();
-        }
-
-        public void lines(IEnumerable<double> x, IEnumerable<double> y, string x_label = "X", string y_label = "Y", string title = "")
-        {
-            this.ensureNotClosed();
-            this.invokeOnGuiThread(() => lines_impl(x, y, x_label, y_label, title));
-            this.show();
-        }
-
-        // Actual Plotting Implementations
-        protected void points_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title, Marker marker)
-        {
-			if (marker == null)
-				marker = new Marker(Marker.MarkerType.FilledCircle, 4, new Pen(Color.Blue));
-
-            PointPlot pp = new PointPlot();
-            pp.OrdinateData = y;
-            pp.AbscissaData = x;
-			pp.Marker = marker;
-			
-            this.do_interactions();
-
-            this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
-
-            this.do_labels(x_label, y_label, title);
-
-
-            this.refresh();
-        }
-
-        protected void lines_impl(IEnumerable<double> x, IEnumerable<double> y, string x_label, string y_label, string title)
-        {
-			
-            LinePlot pp = new LinePlot();
-            pp.OrdinateData = y;
-            pp.AbscissaData = x;
-
-            this.do_interactions();
-
-            this.PlotSurface.Add(pp, Florence.PlotSurface2D.XAxisPosition.Bottom, Florence.PlotSurface2D.YAxisPosition.Left);
-
-            this.do_labels(x_label, y_label, title);
-
-
-            this.refresh();
-        }
-
-        private void do_labels(string x_label, string y_label, string title)
-        {
-            if (x_label == null && this.PlotSurface.XAxis1.Label == "")
-                this.PlotSurface.XAxis1.Label = "X";
-            else if (x_label != null)
-                this.PlotSurface.XAxis1.Label = x_label;
-
-            if (y_label == null && this.PlotSurface.YAxis1.Label == "")
-                this.PlotSurface.YAxis1.Label = "Y";
-            else if (y_label != null)
-                this.PlotSurface.YAxis1.Label = y_label;
-
-            if (title != null)
-                this.PlotSurface.Title = title;
-        }
-
         private void do_interactions()
         {
             if (this.PlotSurface.Drawables.Count == 0 && this.InteractivePlotSurface != null)
@@ -147,6 +74,11 @@ namespace Florence
                 this.InteractivePlotSurface.AddInteraction(new PlotDrag(true, true));
             }
         }
+
+        #endregion
+
+        #region abstract methods
+
         // Abstract methods that must be implemented in a GUI Toolkit specific way
         public abstract void hide();
         public abstract void show();
@@ -154,6 +86,228 @@ namespace Florence
         public abstract void refresh();
         public abstract void invokeOnGuiThread(Action action);
         public abstract event Action<ImperativeFigure, FigureState> StateChange;
+
+        #endregion
+
+        #region IPlotSurface2D implementation
+
+        public void Add(IDrawable p, int zOrder)
+        {
+            this.PlotSurface.Add(p, zOrder);
+        }
+
+        public void Add(IDrawable p, PlotSurface2D.XAxisPosition xp, PlotSurface2D.YAxisPosition yp, int zOrder)
+        {
+            this.PlotSurface.Add(p, xp, yp, zOrder);
+        }
+
+        public void Add(IDrawable p)
+        {
+            this.PlotSurface.Add(p);
+        }
+
+        public void Add(IDrawable p, PlotSurface2D.XAxisPosition xax, PlotSurface2D.YAxisPosition yax)
+        {
+            this.PlotSurface.Add(p, xax, yax);
+        }
+
+        public void Clear()
+        {
+            this.PlotSurface.Clear();
+        }
+
+        public Legend Legend
+        {
+            get
+            {
+                return this.PlotSurface.Legend;
+            }
+            set
+            {
+                this.PlotSurface.Legend = value;
+            }
+        }
+
+        public int LegendZOrder
+        {
+            get
+            {
+                return this.PlotSurface.LegendZOrder;
+            }
+            set
+            {
+                this.PlotSurface.LegendZOrder = value;
+            }
+        }
+
+        public int SurfacePadding
+        {
+            get
+            {
+                return this.PlotSurface.SurfacePadding;
+            }
+            set
+            {
+                this.PlotSurface.SurfacePadding = value;
+            }
+        }
+
+        public Color PlotBackColor
+        {
+            set { this.PlotSurface.PlotBackColor = value; }
+        }
+
+        public System.Drawing.Bitmap PlotBackImage
+        {
+            set { this.PlotSurface.PlotBackImage = value; }
+        }
+
+        public IRectangleBrush PlotBackBrush
+        {
+            set { this.PlotSurface.PlotBackBrush = value; }
+        }
+
+        public string Title
+        {
+            get
+            {
+                return this.PlotSurface.Title;
+            }
+            set
+            {
+                this.PlotSurface.Title = value;
+            }
+        }
+
+        public bool AutoScaleTitle
+        {
+            get
+            {
+                return this.PlotSurface.AutoScaleTitle;
+            }
+            set
+            {
+                this.PlotSurface.AutoScaleTitle = value;
+            }
+        }
+
+        public bool AutoScaleAutoGeneratedAxes
+        {
+            get
+            {
+                return this.PlotSurface.AutoScaleAutoGeneratedAxes;
+            }
+            set
+            {
+                this.PlotSurface.AutoScaleAutoGeneratedAxes = value;
+            }
+        }
+
+        public Color TitleColor
+        {
+            set { this.PlotSurface.TitleColor = value; }
+        }
+
+        public Brush TitleBrush
+        {
+            get
+            {
+                return this.PlotSurface.TitleBrush;
+            }
+            set
+            {
+                this.PlotSurface.TitleBrush = value;
+            }
+        }
+
+        public Font TitleFont
+        {
+            get
+            {
+                return this.PlotSurface.TitleFont;
+            }
+            set
+            {
+                this.PlotSurface.TitleFont = value;
+            }
+        }
+
+        public System.Drawing.Drawing2D.SmoothingMode SmoothingMode
+        {
+            get
+            {
+                return this.PlotSurface.SmoothingMode;
+            }
+            set
+            {
+                this.PlotSurface.SmoothingMode = value;
+            }
+        }
+
+        public void AddAxesConstraint(AxesConstraint c)
+        {
+            this.PlotSurface.AddAxesConstraint(c);
+        }
+
+        public Axis XAxis1
+        {
+            get
+            {
+                return this.PlotSurface.XAxis1;
+            }
+            set
+            {
+                this.PlotSurface.XAxis1 = value;
+            }
+        }
+
+        public Axis XAxis2
+        {
+            get
+            {
+                return this.PlotSurface.XAxis2;
+            }
+            set
+            {
+                this.PlotSurface.XAxis2 = value;
+            }
+        }
+
+        public Axis YAxis1
+        {
+            get
+            {
+                return this.PlotSurface.YAxis1;
+            }
+            set
+            {
+                this.PlotSurface.YAxis1 = value;
+            }
+        }
+
+        public Axis YAxis2
+        {
+            get
+            {
+                return this.PlotSurface.YAxis2;
+            }
+            set
+            {
+                this.PlotSurface.YAxis2 = value;
+            }
+        }
+
+        public void Remove(IDrawable p, bool updateAxes)
+        {
+            this.PlotSurface.Remove(p, updateAxes);
+        }
+
+        public System.Collections.ArrayList Drawables
+        {
+            get { return this.PlotSurface.Drawables; }
+        }
+
+        #endregion
     }
 
 

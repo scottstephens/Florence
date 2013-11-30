@@ -60,6 +60,10 @@
       <Project>{E6867FF5-74EC-4464-8958-D71CB46232F3}</Project>
       <Name>Florence</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimpleTestCommon\SimpleTestCommon.csproj">
+      <Project>{07ADCBF3-90B9-459E-BFB3-574BEF01786A}</Project>
+      <Name>SimpleTestCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

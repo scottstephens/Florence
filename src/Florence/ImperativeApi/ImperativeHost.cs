@@ -36,7 +36,7 @@ using System.Text;
 
 namespace Florence
 {
-    public interface ImperativeHost : ImperativePlottable
+    public interface ImperativeHost : IPlotSurface2D
     {
         void Start();
         void Stop();

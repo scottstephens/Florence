@@ -39,7 +39,7 @@ namespace Florence
 {
     public enum FigureState { Ready, Hidden, Closed };
 
-    public interface ImperativeFigure : ImperativePlottable
+    public interface ImperativeFigure : IPlotSurface2D
     {        
         IPlotSurface2D PlotSurface { get; }
         InteractivePlotSurface2D InteractivePlotSurface { get; }        
