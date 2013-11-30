@@ -92,10 +92,13 @@ namespace Florence.WinForms
             {
                 return (ImperativeFigure)_main_form.Invoke(new Func<ImperativeFigure>(this.createNewFigure));
             }
-            var tmp_form = new ImperativeFigureForm();
-            var tmp_context = new ImperativeFigure(tmp_form);            
-            tmp_form.Show();
-            return tmp_context;
+            else
+            {
+                var tmp_form = new ImperativeFigureForm();
+                var tmp_context = new ImperativeFigure(tmp_form);
+                tmp_form.Show();
+                return tmp_context;
+            }
         }
 
         
