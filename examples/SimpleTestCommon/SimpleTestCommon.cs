@@ -19,7 +19,6 @@ namespace SimpleTestCommon
             plot1.AbscissaData = x;
             plot1.OrdinateData = y;
             plot.Add(plot1);
-            plot.ActiveFigure.refresh();
 
             Console.ReadLine();
 

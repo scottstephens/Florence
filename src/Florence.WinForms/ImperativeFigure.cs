@@ -81,7 +81,14 @@ namespace Florence.WinForms
 
         public override void refresh()
         {
-            this.HostForm.PlotSurface.Refresh();
+            if (this.HostForm.InvokeRequired)
+            {
+                this.HostForm.Invoke(new Action(this.refresh));
+            }
+            else
+            {
+                this.HostForm.PlotSurface.Refresh();
+            }
         }
 
         public override void invokeOnGuiThread(Action action)
