@@ -62,7 +62,7 @@ namespace Florence
         private void ensureNotClosed()
         {
             if (this.State == FigureState.Closed)
-                throw new FlorenceException("Cannot plot on a closed ImperativeFigure. Create a new one from the ImperativeHost.");
+                throw new FlorenceException("Cannot plot on a closed InteractiveFigure. Create a new one from the InteractiveHost.");
         }
 
         #endregion

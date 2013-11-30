@@ -66,7 +66,7 @@ namespace Florence
                 if (value is T)
                     this.setActiveFigure(value as T);
                 else
-                    throw new FlorenceException("Can only set active figure of ImperativeHost to figure that uses same GUI toolkit as the host.");
+                    throw new FlorenceException("Can only set active figure of InteractiveHost to figure that uses same GUI toolkit as the host.");
             }
         }
 
@@ -100,7 +100,7 @@ namespace Florence
             }
             else
             {
-                throw new FlorenceException("Figure chosen to be active not in set of active figures kept by ImperativeHost");
+                throw new FlorenceException("Figure chosen to be active not in set of active figures kept by InteractiveHost");
             }
         }
 
