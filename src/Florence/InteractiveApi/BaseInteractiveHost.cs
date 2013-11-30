@@ -107,6 +107,8 @@ namespace Florence
         public InteractiveFigure newFigure()
         {
             var new_figure = this.createNewFigure();
+            new_figure.InteractivePlotSurface.AddInteraction(new AxisDrag());
+            new_figure.InteractivePlotSurface.AddInteraction(new PlotDrag(true, true));
             this.FiguresTyped.Add(new_figure);
             new_figure.StateChange += handle_figure_state_changed;
             this.ActiveFigureIndex = this.FiguresTyped.Count - 1;

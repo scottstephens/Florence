@@ -50,7 +50,6 @@ namespace Florence
         {
             this.PlotSurfaceTyped = plot_surface;
             this.StateChange += new Action<InteractiveFigure, FigureState>(BaseImperativeFigure_StateChanged);
-
         }
 
         #region imperative figure methods
@@ -64,15 +63,6 @@ namespace Florence
         {
             if (this.State == FigureState.Closed)
                 throw new FlorenceException("Cannot plot on a closed ImperativeFigure. Create a new one from the ImperativeHost.");
-        }
-
-        private void do_interactions()
-        {
-            if (this.PlotSurface.Drawables.Count == 0 && this.InteractivePlotSurface != null)
-            {
-                this.InteractivePlotSurface.AddInteraction(new AxisDrag());
-                this.InteractivePlotSurface.AddInteraction(new PlotDrag(true, true));
-            }
         }
 
         #endregion
