@@ -56,27 +56,48 @@ namespace Florence.WinForms
 
         public override void hide()
         {
-            if (this.State != FigureState.Hidden)
+            if (this.HostForm.InvokeRequired)
             {
-                this.HostForm.Hide();
-                if (this.StateChange != null)
-                    this.StateChange(this, FigureState.Hidden);
+                this.HostForm.Invoke(new Action(this.hide));
+            }
+            else
+            {
+                if (this.State != FigureState.Hidden)
+                {
+                    this.HostForm.Hide();
+                    if (this.StateChange != null)
+                        this.StateChange(this, FigureState.Hidden);
+                }
             }
         }
         public override void show()
         {
-            if (this.State != FigureState.Ready)
+            if (this.HostForm.InvokeRequired)
             {
-                this.HostForm.Show();
-                if (this.StateChange != null)
-                    this.StateChange(this, FigureState.Ready);
+                this.HostForm.Invoke(new Action(this.show));
+            }
+            else
+            {
+                if (this.State != FigureState.Ready)
+                {
+                    this.HostForm.Show();
+                    if (this.StateChange != null)
+                        this.StateChange(this, FigureState.Ready);
+                }
             }
         }
         public override void close()
         {
-            this.HostForm.Close();
-            if (this.StateChange != null)
-                this.StateChange(this,FigureState.Closed);
+            if (this.HostForm.InvokeRequired)
+            {
+                this.HostForm.Invoke(new Action(this.close));
+            }
+            else
+            {
+                this.HostForm.Close();
+                if (this.StateChange != null)
+                    this.StateChange(this, FigureState.Closed);
+            }
         }
 
         public override void refresh()
