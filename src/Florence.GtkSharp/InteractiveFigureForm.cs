@@ -57,5 +57,6 @@ namespace Florence.GtkSharp
 
             this.Add(this.PlotWidget);
         }
+
     }
 }
