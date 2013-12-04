@@ -33,12 +33,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Florence.GtkSharp
 {
     public class InteractiveFigure : BaseInteractiveFigure<InteractivePlotSurface2D>
     {
         public InteractiveFigureForm HostForm { get; private set; }
+
+        private int InvokeCounter = 0;
+        private object lockable = new object();
 
         public InteractiveFigure(InteractiveFigureForm host_form)
             : base(host_form.PlotSurface)
@@ -99,13 +103,40 @@ namespace Florence.GtkSharp
 
         private void invokeOnGuiThreadInternal(object sender, EventArgs args)
         {
+            var targs = (InvokeOnGuiThreadArgs)args;
             Action action = (Action)sender;
             action();
+            targs.Done();
         }
 
         public override void invokeOnGuiThread(Action action)
         {
-            Gtk.Application.Invoke(action, new EventArgs(), invokeOnGuiThreadInternal);            
+            InvokeOnGuiThreadArgs args;
+            lock(lockable)
+                args = new InvokeOnGuiThreadArgs(this.InvokeCounter++);
+            Gtk.Application.Invoke(action, args, invokeOnGuiThreadInternal);
+            args.Wait();
+        }
+    }
+
+    public class InvokeOnGuiThreadArgs : EventArgs
+    {
+        private ManualResetEvent ResetEvent;
+        private int Id;
+        public InvokeOnGuiThreadArgs(int id)
+        {
+            this.Id = id;
+            this.ResetEvent = new ManualResetEvent(false);
+        }
+
+        public void Done()
+        {
+            this.ResetEvent.Set();
+        }
+
+        public void Wait()
+        {
+            this.ResetEvent.WaitOne();
         }
     }
 }
