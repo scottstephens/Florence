@@ -40,13 +40,48 @@ namespace Florence
     public enum FigureState { Ready, Hidden, Closed };
 
     public interface InteractiveFigure : IPlotSurface2D
-    {        
+    {
+        /// <summary>
+        /// The concrete plot surface that commands issued to this figure will
+        /// affect.
+        /// </summary>
         IPlotSurface2D PlotSurface { get; }
-        InteractivePlotSurface2D InteractivePlotSurface { get; }        
+
+        /// <summary>
+        /// The concrete plot surface that commands issued to this figure will
+        /// affect.
+        /// </summary>
+        InteractivePlotSurface2D InteractivePlotSurface { get; }
+
+        /// <summary>
+        /// Hide the figure.
+        /// </summary>
         void hide();
+
+        /// <summary>
+        /// Make the figure visible.
+        /// </summary>
         void show();
+
+        /// <summary>
+        /// Permanently close the figure.
+        /// </summary>
         void close();
+
+        /// <summary>
+        /// Redraw the figure on the screen.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method should not be necessary unless you make changes to the PlotSurface
+        /// property directly, which you probably shouldn't do. But if for some reason your plot
+        /// seems stale (likely caused by a bug in the library) this might help you solve your 
+        /// problem.
+        /// </remarks>
         void refresh();
+
+        /// <summary>
+        /// Notifies listeners of changes to the state of this figure.
+        /// </summary>
         event Action<InteractiveFigure, FigureState> StateChange;
     }
 	

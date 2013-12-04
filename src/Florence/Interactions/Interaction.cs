@@ -51,41 +51,96 @@ namespace Florence
         {
         }
 
+        /// <summary>
+        /// React to the mouse entering the plot
+        /// </summary>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoMouseEnter(InteractivePlotSurface2D ps)
         {
             return false;
         }
 
+        /// <summary>
+        /// React to the mouse leaving the plot.
+        /// </summary>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoMouseLeave(InteractivePlotSurface2D ps)
         {
             return false;
         }
 
+        /// <summary>
+        /// React to a mouse button being pressed down.
+        /// </summary>
+        /// <param name="X">X coordinates of the cursor upon mouse down.</param>
+        /// <param name="Y">Y coordinates of the curson upon mouse down.</param>
+        /// <param name="keys">Indication of which mouse button has been pressed, along with which keyboard keys are also depressed.</param>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoMouseDown(int X, int Y, Modifier keys, InteractivePlotSurface2D ps)
         {
             return false;
         }
 
+        /// <summary>
+        /// React to a mouse button being released.
+        /// </summary>
+        /// <param name="X">X coordinates of the cursor upon mouse up.</param>
+        /// <param name="Y">Y coordinates of the curson upon mouse up.</param>
+        /// <param name="keys">Indication of which mouse button has been pressed, along with which keyboard keys are also depressed.</param>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoMouseUp(int X, int Y, Modifier keys, InteractivePlotSurface2D ps)
         {
             return false;
         }
 
+        /// <summary>
+        /// React to the mouse being moved.
+        /// </summary>
+        /// <param name="X">New X coordinates of the cursor.</param>
+        /// <param name="Y">New Y coordinates of the cursor.</param>
+        /// <param name="keys">Indication of which mouse buttons and keyboard keys have been pressed.</param>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoMouseMove(int X, int Y, Modifier keys, InteractivePlotSurface2D ps)
         {
             return false;
         }
 
+        /// <summary>
+        /// React to mouse scrolling.
+        /// </summary>
+        /// <param name="X">X coordinates of the cursor.</param>
+        /// <param name="Y">Y coordinates of the cursor.</param>
+        /// <param name="direction">Direction of scroll (1 for up, -1 for down).</param>
+        /// <param name="keys">Indication of which mouse buttons and keyboard keys have been pressed.</param>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoMouseScroll(int X, int Y, int direction, Modifier keys, InteractivePlotSurface2D ps)
         {
             return false;
         }
 
+        /// <summary>
+        /// React to a key being pressed.
+        /// </summary>
+        /// <param name="keys">Indication of which keys have been pressed.</param>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoKeyPress(Modifier keys, InteractivePlotSurface2D ps)
         {
             return false;
         }
 
+        /// <summary>
+        /// React to a key being released.
+        /// </summary>
+        /// <param name="keys">Indication of which keys have been released.</param>
+        /// <param name="ps">The plot surface to act on.</param>
+        /// <returns>True if the plot needs to redraw, false otherwise.</returns>
         public virtual bool DoKeyRelease(Modifier keys, InteractivePlotSurface2D ps)
         {
             return false;

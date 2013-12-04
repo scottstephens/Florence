@@ -37,6 +37,10 @@ using System.Drawing;
 
 namespace Florence
 {
+    /// <summary>
+    /// Base class for implementing GUI Toolkit-specific interactive figures.
+    /// </summary>
+    /// <typeparam name="T">The type of the GUI Toolkit-specific implementation of InteractivePlotSurface2D</typeparam>
     public abstract class BaseInteractiveFigure<T> : InteractiveFigure where T : InteractivePlotSurface2D
     {
 
@@ -70,11 +74,36 @@ namespace Florence
         #region abstract methods
 
         // Abstract methods that must be implemented in a GUI Toolkit specific way
+        
+        /// <summary>
+        /// Hide the figure from view.
+        /// </summary>
         public abstract void hide();
+        
+        /// <summary>
+        /// Make the figure visible.
+        /// </summary>
         public abstract void show();
+
+        /// <summary>
+        /// Permanently close the figure.
+        /// </summary>
         public abstract void close();
+
+        /// <summary>
+        /// Redraw the control/widget that displays the plot on screen.
+        /// </summary>
         public abstract void refresh();
+
+        /// <summary>
+        /// Invoke an action on the GUI thread. When clients of this class do something that will modify the plot, it will be done through this method.
+        /// </summary>
+        /// <param name="action">The action to invoke on the GUI thread.</param>
         public abstract void invokeOnGuiThread(Action action);
+        
+        /// <summary>
+        /// Notifies clients that the state of the figure has changed.
+        /// </summary>
         public abstract event Action<InteractiveFigure, FigureState> StateChange;
 
         #endregion
