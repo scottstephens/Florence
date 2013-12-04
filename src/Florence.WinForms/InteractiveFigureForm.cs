@@ -53,5 +53,13 @@ namespace Florence.WinForms
             this.PlotSurface = new InteractivePlotSurface2D();
             plotSurface.InteractivePlotSurface2D = this.PlotSurface;
         }
+
+        protected override bool ShowWithoutActivation
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

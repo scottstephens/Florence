@@ -84,6 +84,11 @@ namespace Florence.WinForms
                     if (this.StateChange != null)
                         this.StateChange(this, FigureState.Ready);
                 }
+                else if (this.State == FigureState.Ready)
+                {
+                    this.HostForm.TopMost = true;
+                    this.HostForm.TopMost = false;
+                }
             }
         }
         public override void close()

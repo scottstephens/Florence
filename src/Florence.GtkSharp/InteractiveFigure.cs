@@ -78,10 +78,21 @@ namespace Florence.GtkSharp
             {
                 this.invokeOnGuiThread(() =>
                 {
+                    // Do not know how to prevent window from grabbing focus here
+                    // this.HostForm.CanFocus = false; before, then = true after doesn't work
+                    // this.HostForm.AcceptFocus doesn't seem to do much either
                     this.HostForm.Show();
                 });
                 if (this.StateChange != null)
                     this.StateChange(this, FigureState.Ready);
+            }
+            else if (this.State == FigureState.Ready)
+            {
+                this.invokeOnGuiThread(() =>
+                {
+                    this.HostForm.KeepAbove = true;
+                    this.HostForm.KeepAbove = false;
+                });
             }
         }
 
