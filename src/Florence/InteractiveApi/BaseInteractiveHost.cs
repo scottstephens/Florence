@@ -114,6 +114,16 @@ namespace Florence
             this.ActiveFigureIndex = this.FiguresTyped.Count - 1;
             return new_figure;
         }
+
+        public void closeFigure()
+        {
+            // This will cause the state to change, which will trigger a handler
+            // for the state change event which will then get rid of the figure
+            // from this object's data structures.
+            if (this.ActiveFigure != null)
+                this.ActiveFigure.close(); 
+        }
+
         public InteractiveFigure next()
         {
             if (this.ActiveFigureIndex < 0)
@@ -125,6 +135,7 @@ namespace Florence
                 return this.ActiveFigure;
             }
         }
+
         public InteractiveFigure previous()
         {
             if (this.ActiveFigureIndex < 0)
@@ -133,6 +144,7 @@ namespace Florence
             {
                 this.ActiveFigureIndex -= 1;
                 this.ActiveFigureIndex %= this.FiguresTyped.Count;
+                this.ActiveFigure.show();
                 return this.ActiveFigure;
             }
         }
@@ -147,6 +159,7 @@ namespace Florence
                     this.FiguresTyped.RemoveAt(index);
                     if (this.ActiveFigureIndex >= index)
                         this.ActiveFigureIndex = Math.Max(this.ActiveFigureIndex - 1, this.FiguresTyped.Count - 1);
+                    figure.StateChange -= handle_figure_state_changed;
                 }
             }
         }
