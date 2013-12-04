@@ -233,7 +233,7 @@ namespace Florence
             {
                 this.invokeOnGuiThread(() =>
                 {
-                    this.PlotSurface.PlotBackBrush = value;                   
+                    this.PlotSurface.PlotBackBrush = value;
                 });
                 this.refresh();
             }
