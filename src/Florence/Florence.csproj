@@ -175,6 +175,7 @@
     <Compile Include="LegendBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Line.cs" />
     <Compile Include="LinearAxis.cs">
       <SubType>Code</SubType>
     </Compile>
