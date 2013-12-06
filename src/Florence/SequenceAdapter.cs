@@ -79,6 +79,9 @@ namespace Florence
 
                     if (abscissaData is IList)
 					{
+                        if (((IList)ordinateData).Count != ((IList)abscissaData).Count)
+                            throw new FlorenceException("Ordinate Data and Abscissa data have different lengths");
+
                         this.XAxisSuggester_ = new AdapterUtils.AxisSuggester_IList((IList)abscissaData);
                         if (abscissaData is Double[])
                         {
